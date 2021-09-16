@@ -11,6 +11,12 @@
 		4ABE817126F3970F00CC9C60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE817026F3970F00CC9C60 /* ContentView.swift */; };
 		4ABE817326F3970F00CC9C60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ABE817226F3970F00CC9C60 /* Assets.xcassets */; };
 		4ABE817626F3970F00CC9C60 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ABE817526F3970F00CC9C60 /* Preview Assets.xcassets */; };
+		4ABE817E26F3979800CC9C60 /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE817D26F3979800CC9C60 /* ServiceView.swift */; };
+		4ABE818026F39B1400CC9C60 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE817F26F39B1400CC9C60 /* Color.swift */; };
+		4ABE818226F39C1B00CC9C60 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE818126F39C1B00CC9C60 /* RoundedButton.swift */; };
+		4ABE818426F3B0D800CC9C60 /* RadioButtonPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE818326F3B0D800CC9C60 /* RadioButtonPicker.swift */; };
+		4ABE818626F3B48200CC9C60 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE818526F3B48200CC9C60 /* FoundationExtensions.swift */; };
+		4ABE818826F3B5F900CC9C60 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE818726F3B5F900CC9C60 /* RadioButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +26,12 @@
 		4ABE817226F3970F00CC9C60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4ABE817526F3970F00CC9C60 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4ABE817726F3970F00CC9C60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4ABE817D26F3979800CC9C60 /* ServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
+		4ABE817F26F39B1400CC9C60 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		4ABE818126F39C1B00CC9C60 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		4ABE818326F3B0D800CC9C60 /* RadioButtonPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonPicker.swift; sourceTree = "<group>"; };
+		4ABE818526F3B48200CC9C60 /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
+		4ABE818726F3B5F900CC9C60 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +69,11 @@
 				4ABE817226F3970F00CC9C60 /* Assets.xcassets */,
 				4ABE817726F3970F00CC9C60 /* Info.plist */,
 				4ABE817426F3970F00CC9C60 /* Preview Content */,
+				4ABE817D26F3979800CC9C60 /* ServiceView.swift */,
+				4ABE818926F3B60000CC9C60 /* RadioButtonPicker */,
+				4ABE817F26F39B1400CC9C60 /* Color.swift */,
+				4ABE818126F39C1B00CC9C60 /* RoundedButton.swift */,
+				4ABE818526F3B48200CC9C60 /* FoundationExtensions.swift */,
 			);
 			path = bStudio;
 			sourceTree = "<group>";
@@ -67,6 +84,15 @@
 				4ABE817526F3970F00CC9C60 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4ABE818926F3B60000CC9C60 /* RadioButtonPicker */ = {
+			isa = PBXGroup;
+			children = (
+				4ABE818326F3B0D800CC9C60 /* RadioButtonPicker.swift */,
+				4ABE818726F3B5F900CC9C60 /* RadioButton.swift */,
+			);
+			path = RadioButtonPicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +164,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ABE818626F3B48200CC9C60 /* FoundationExtensions.swift in Sources */,
 				4ABE817126F3970F00CC9C60 /* ContentView.swift in Sources */,
+				4ABE818226F39C1B00CC9C60 /* RoundedButton.swift in Sources */,
+				4ABE818026F39B1400CC9C60 /* Color.swift in Sources */,
+				4ABE817E26F3979800CC9C60 /* ServiceView.swift in Sources */,
+				4ABE818426F3B0D800CC9C60 /* RadioButtonPicker.swift in Sources */,
 				4ABE816F26F3970F00CC9C60 /* bStudioApp.swift in Sources */,
+				4ABE818826F3B5F900CC9C60 /* RadioButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
