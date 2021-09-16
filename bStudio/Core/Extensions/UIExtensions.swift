@@ -1,5 +1,5 @@
 //
-//  Color.swift
+//  UIExtensions.swift
 //  bStudio
 //
 //  Created by Pavel Vaitsikhouski on 16.09.21.

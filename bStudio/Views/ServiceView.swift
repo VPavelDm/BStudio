@@ -10,6 +10,7 @@ import SwiftUI
 struct ServiceView: View {
     @Binding var services: [String]
     var onClick: (Int) -> Void
+    @State private var selectionIndex = 0
     
     var body: some View {
         HStack {
@@ -34,20 +35,7 @@ struct ServiceView: View {
             .font(.system(size: 34, weight: .regular))
     }
     private var servicesView: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            ForEach(services, id: \.self) { service in
-                serviceView(service)
-            }
-        }
-    }
-    private func serviceView(_ service: String) -> some View {
-        HStack {
-            Circle()
-                .strokeBorder(Color.black, lineWidth: 2)
-                .frame(width: 20, height: 20)
-            Text(service)
-                .font(.system(size: 24, weight: .regular))
-        }
+        RadioButtonPicker(values: services, selectionIndex: $selectionIndex)
     }
     private var next: some View {
         Button {
