@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ServiceView: View {
     @Binding var services: [String]
-    var onClick: (Int) -> Void
+    @State private var shouldNavigateToNextScreen = false
     @State private var selectionIndex = 0
     
     var body: some View {
@@ -43,8 +43,10 @@ struct ServiceView: View {
         }
     }
     private var next: some View {
-        RoundedButton(text: "Дальше") {
-            
+        NavigationLink(destination: Text("Destination"), isActive: $shouldNavigateToNextScreen) {
+            RoundedButton(text: "Дальше") {
+                shouldNavigateToNextScreen = true
+            }
         }
     }
 }

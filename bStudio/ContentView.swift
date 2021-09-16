@@ -16,9 +16,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                ServiceView(services: $services) { index in
-                    
-                }
+                ServiceView(services: $services)
                 Spacer()
                 ProvidedView()
             }
