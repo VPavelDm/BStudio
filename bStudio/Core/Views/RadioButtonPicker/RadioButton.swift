@@ -11,9 +11,14 @@ struct RadioButton: View {
     var isSelected: Bool
     
     var body: some View {
-        Circle()
-            .strokeBorder(Color.blueSmoke, lineWidth: isSelected ? DrawingConstrants.selectedLineWidth : DrawingConstrants.lineWidth)
-            .frame(width: DrawingConstrants.radius, height: DrawingConstrants.radius)
+        ZStack {
+            Circle()
+                .foregroundColor(.white)
+                .opacity(isSelected ? 1.0 : 0.0)
+            Circle()
+                .strokeBorder(Color.blueSmoke, lineWidth: isSelected ? DrawingConstrants.selectedLineWidth : DrawingConstrants.lineWidth)
+        }
+        .frame(width: DrawingConstrants.radius, height: DrawingConstrants.radius)
     }
     
     struct DrawingConstrants {

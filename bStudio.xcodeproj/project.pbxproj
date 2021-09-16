@@ -66,7 +66,6 @@
 				4ABE818B26F3B98500CC9C60 /* Core */,
 				4ABE818A26F3B96C00CC9C60 /* Views */,
 				4ABE817026F3970F00CC9C60 /* ContentView.swift */,
-				4ABE818126F39C1B00CC9C60 /* RoundedButton.swift */,
 			);
 			path = bStudio;
 			sourceTree = "<group>";
@@ -109,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				4ABE818926F3B60000CC9C60 /* RadioButtonPicker */,
+				4ABE818126F39C1B00CC9C60 /* RoundedButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

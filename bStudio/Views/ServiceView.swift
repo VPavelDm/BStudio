@@ -14,46 +14,58 @@ struct ServiceView: View {
     
     var body: some View {
         HStack {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: .contentInset) {
                 content
                 Spacer()
             }
-            .padding(16)
+            .padding(.contentInset)
             Spacer()
         }
+        .background(Color.background.ignoresSafeArea())
     }
     
     @ViewBuilder
     private var content: some View {
         title
         servicesView
-            .padding(.leading, 8)
+            .padding(.leading, .radioButtonsInset)
         next
     }
     private var title: some View {
         Text("Выберите услугу")
-            .font(.system(size: 34, weight: .regular))
+            .font(.system(size: .titleFontSize, weight: .title))
+            .foregroundColor(.text)
     }
     private var servicesView: some View {
-        RadioButtonPicker(values: services, selectionIndex: $selectionIndex)
+        RadioButtonPicker(values: services, selectionIndex: $selectionIndex) { text in
+            Text(text)
+                .font(.system(size: .radioButtonFontSize, weight: .radioButton))
+                .foregroundColor(.text)
+        }
     }
     private var next: some View {
-        Button {
+        RoundedButton(text: "Дальше") {
             
-        } label: {
-            Text("Дальше")
-                .font(.system(size: 18))
-                .padding([.leading, .trailing], 16)
-                .padding([.top, .bottom], 10)
-//                .foregroundColor(.white)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.blueSmoke, lineWidth: 2)
-                )
         }
     }
 }
 
+// MARK: - Drawing constants
+fileprivate extension CGFloat {
+    static var titleFontSize: CGFloat = 34
+    static var radioButtonFontSize: CGFloat = 20
+    static var contentInset: CGFloat = 16
+    static var radioButtonsInset: CGFloat = 8
+}
+fileprivate extension Color {
+    static var text: Color = Color.white
+}
+fileprivate extension Font.Weight {
+    static var title: Font.Weight = .regular
+    static var radioButton: Font.Weight = .regular
+}
+
+// MARK: - Preview
 struct ServiceView_Previews: PreviewProvider {
     static var previews: some View {
         let services = ["Написание аранжировки",

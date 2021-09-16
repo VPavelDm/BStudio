@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct RadioButtonPicker: View {
+struct RadioButtonPicker<RowView>: View where RowView: View {
     var values: [String]
     @Binding var selectionIndex: Int
-        
+    var customizeRow: (String) -> RowView
     var body: some View {
         VStack(alignment: .leading) {
             ForEach(values.indices, id: \.self) { index in
@@ -27,7 +27,7 @@ struct RadioButtonPicker: View {
     private func row(_ text: String, index: Int) -> some View {
         HStack {
             RadioButton(isSelected: selectionIndex == index)
-            Text(text)
+            customizeRow(text)
         }
     }
     
@@ -39,7 +39,7 @@ struct RadioButtonPicker_Previews: PreviewProvider {
         @State var selectionIndex = 0
         var body: some View {
             RadioButtonPicker(values: ["first", "second", "third"],
-                              selectionIndex: $selectionIndex)
+                              selectionIndex: $selectionIndex) { Text($0) }
 
         }
     }
