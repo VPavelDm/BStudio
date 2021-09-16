@@ -21,7 +21,6 @@ struct ServiceView: View {
             .padding(.contentInset)
             Spacer()
         }
-        .background(Color.background.ignoresSafeArea())
     }
     
     @ViewBuilder
@@ -63,17 +62,4 @@ fileprivate extension Color {
 fileprivate extension Font.Weight {
     static var title: Font.Weight = .regular
     static var radioButton: Font.Weight = .regular
-}
-
-// MARK: - Preview
-struct ServiceView_Previews: PreviewProvider {
-    static var previews: some View {
-        let services = ["Написание аранжировки",
-                        "Запись вокала",
-                        "Сведение",
-                        "Мастеринг"]
-        return ServiceView(services: .constant(services)) { index in
-            
-        }
-    }
 }

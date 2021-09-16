@@ -8,9 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var services = ["Написание аранжировки",
+                                   "Запись вокала",
+                                   "Сведение",
+                                   "Мастеринг"]
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            VStack {
+                ServiceView(services: $services) { index in
+                    
+                }
+                Spacer()
+                ProvidedView()
+            }
+            .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("VOSTOK'7")
+            .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+        }
     }
 }
 
