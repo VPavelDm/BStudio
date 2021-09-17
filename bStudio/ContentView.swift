@@ -23,7 +23,6 @@ struct ContentView: View {
             .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("VOSTOK'7")
-            .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
         }
     }
 }

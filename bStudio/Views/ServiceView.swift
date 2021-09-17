@@ -21,6 +21,7 @@ struct ServiceView: View {
             .padding(.contentInset)
             Spacer()
         }
+        .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
     }
     
     @ViewBuilder

@@ -14,8 +14,8 @@ struct RoundedButton: View {
     var body: some View {
         Button(action: action) {
             Text(text)
+                .frame(maxWidth: .infinity)
                 .font(.system(size: 20, weight: .semibold))
-                .padding([.leading, .trailing], 16)
                 .padding([.top, .bottom], 10)
                 .foregroundColor(.white)
                 .overlay(
