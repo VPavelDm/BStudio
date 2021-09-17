@@ -22,6 +22,7 @@
 		4ABE819B26F45C2A00CC9C60 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE819A26F45C2A00CC9C60 /* Author.swift */; };
 		4ABE819F26F45F6600CC9C60 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE819D26F45F6600CC9C60 /* ImageLoader.swift */; };
 		4ABE81A026F45F6600CC9C60 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE819E26F45F6600CC9C60 /* AsyncImage.swift */; };
+		4ABE81A226F4629000CC9C60 /* Arrangement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE81A126F4629000CC9C60 /* Arrangement.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		4ABE819A26F45C2A00CC9C60 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		4ABE819D26F45F6600CC9C60 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		4ABE819E26F45F6600CC9C60 /* AsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
+		4ABE81A126F4629000CC9C60 /* Arrangement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrangement.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				4ABE819A26F45C2A00CC9C60 /* Author.swift */,
+				4ABE81A126F4629000CC9C60 /* Arrangement.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				4ABE819126F3C43500CC9C60 /* NavigationBarModifier.swift in Sources */,
 				4ABE818026F39B1400CC9C60 /* UIExtensions.swift in Sources */,
 				4ABE817E26F3979800CC9C60 /* ServiceView.swift in Sources */,
+				4ABE81A226F4629000CC9C60 /* Arrangement.swift in Sources */,
 				4ABE819526F45B0D00CC9C60 /* AuthorListView.swift in Sources */,
 				4ABE819B26F45C2A00CC9C60 /* Author.swift in Sources */,
 				4ABE818426F3B0D800CC9C60 /* RadioButtonPicker.swift in Sources */,
