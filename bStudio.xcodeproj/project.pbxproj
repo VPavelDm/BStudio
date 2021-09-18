@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A167D2026F467900046E32D /* MusicListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A167D1F26F467900046E32D /* MusicListView.swift */; };
+		4A167D2426F4732D0046E32D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A167D2326F4732D0046E32D /* Player.swift */; };
+		4A167D2626F4734D0046E32D /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A167D2526F4734D0046E32D /* Song.swift */; };
+		4A167D2926F473C80046E32D /* LinkinParkNumb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4A167D2826F473C80046E32D /* LinkinParkNumb.mp3 */; };
 		4ABE816F26F3970F00CC9C60 /* bStudioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE816E26F3970F00CC9C60 /* bStudioApp.swift */; };
 		4ABE817126F3970F00CC9C60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE817026F3970F00CC9C60 /* ContentView.swift */; };
 		4ABE817326F3970F00CC9C60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ABE817226F3970F00CC9C60 /* Assets.xcassets */; };
@@ -26,6 +30,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A167D1F26F467900046E32D /* MusicListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicListView.swift; sourceTree = "<group>"; };
+		4A167D2326F4732D0046E32D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		4A167D2526F4734D0046E32D /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		4A167D2826F473C80046E32D /* LinkinParkNumb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LinkinParkNumb.mp3; sourceTree = "<group>"; };
 		4ABE816B26F3970F00CC9C60 /* bStudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bStudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ABE816E26F3970F00CC9C60 /* bStudioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bStudioApp.swift; sourceTree = "<group>"; };
 		4ABE817026F3970F00CC9C60 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +65,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A167D2226F472BF0046E32D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4A167D2326F4732D0046E32D /* Player.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		4A167D2726F473C00046E32D /* Songs */ = {
+			isa = PBXGroup;
+			children = (
+				4A167D2826F473C80046E32D /* LinkinParkNumb.mp3 */,
+			);
+			path = Songs;
+			sourceTree = "<group>";
+		};
 		4ABE816226F3970F00CC9C60 = {
 			isa = PBXGroup;
 			children = (
@@ -76,10 +100,12 @@
 		4ABE816D26F3970F00CC9C60 /* bStudio */ = {
 			isa = PBXGroup;
 			children = (
+				4A167D2726F473C00046E32D /* Songs */,
 				4ABE818D26F3B9A000CC9C60 /* Supporting Files */,
 				4ABE818B26F3B98500CC9C60 /* Core */,
 				4ABE818A26F3B96C00CC9C60 /* Views */,
 				4ABE819926F45C2100CC9C60 /* Models */,
+				4A167D2226F472BF0046E32D /* ViewModels */,
 				4ABE817026F3970F00CC9C60 /* ContentView.swift */,
 			);
 			path = bStudio;
@@ -107,6 +133,7 @@
 			children = (
 				4ABE817D26F3979800CC9C60 /* ServiceView.swift */,
 				4ABE819426F45B0D00CC9C60 /* AuthorListView.swift */,
+				4A167D1F26F467900046E32D /* MusicListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -164,6 +191,7 @@
 			children = (
 				4ABE819A26F45C2A00CC9C60 /* Author.swift */,
 				4ABE81A126F4629000CC9C60 /* Arrangement.swift */,
+				4A167D2526F4734D0046E32D /* Song.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -235,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ABE817626F3970F00CC9C60 /* Preview Assets.xcassets in Resources */,
+				4A167D2926F473C80046E32D /* LinkinParkNumb.mp3 in Resources */,
 				4ABE817326F3970F00CC9C60 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,7 +279,9 @@
 				4ABE818226F39C1B00CC9C60 /* RoundedButton.swift in Sources */,
 				4ABE819F26F45F6600CC9C60 /* ImageLoader.swift in Sources */,
 				4ABE819126F3C43500CC9C60 /* NavigationBarModifier.swift in Sources */,
+				4A167D2426F4732D0046E32D /* Player.swift in Sources */,
 				4ABE818026F39B1400CC9C60 /* UIExtensions.swift in Sources */,
+				4A167D2026F467900046E32D /* MusicListView.swift in Sources */,
 				4ABE817E26F3979800CC9C60 /* ServiceView.swift in Sources */,
 				4ABE81A226F4629000CC9C60 /* Arrangement.swift in Sources */,
 				4ABE819526F45B0D00CC9C60 /* AuthorListView.swift in Sources */,
@@ -258,6 +289,7 @@
 				4ABE818426F3B0D800CC9C60 /* RadioButtonPicker.swift in Sources */,
 				4ABE819326F3C60400CC9C60 /* ProvidedView.swift in Sources */,
 				4ABE816F26F3970F00CC9C60 /* bStudioApp.swift in Sources */,
+				4A167D2626F4734D0046E32D /* Song.swift in Sources */,
 				4ABE81A026F45F6600CC9C60 /* AsyncImage.swift in Sources */,
 				4ABE818826F3B5F900CC9C60 /* RadioButton.swift in Sources */,
 			);
