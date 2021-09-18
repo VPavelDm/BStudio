@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct AudioPlayerView: View {
+    @ObservedObject var player: AudioPlayer
     var song: Song
+    
+    init(song: Song) {
+        self.song = song
+        self.player = AudioPlayer(songName: song.songName)!
+    }
     
     var body: some View {
         HStack(spacing: .cardInnerSpacing) {
@@ -34,9 +40,9 @@ struct AudioPlayerView: View {
     }
     private var controlButton: some View {
         Button {
-            
+            player.changeControlState()
         } label: {
-            Image(systemName: "play.fill")
+            Image(systemName: player.isPlaying ? "pause.fill" : "play.fill")
                 .resizable()
                 .frame(width: .controlButtonSize, height: .controlButtonSize)
                 .foregroundColor(.textColor)

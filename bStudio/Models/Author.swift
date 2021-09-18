@@ -12,10 +12,12 @@ struct Author: Identifiable {
     var name: String
     var imageURL: URL
     var arrangements: [Arrangement]
+    var songs: [Song]
     
-    init(name: String, imageURL: String, arrangements: [Arrangement]) {
+    init(name: String, imageURL: String, arrangements: [Arrangement], songs: [Song]) {
         self.name = name
         self.imageURL = URL(string: imageURL)!
         self.arrangements = arrangements
+        self.songs = songs
     }
 }

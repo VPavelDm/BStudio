@@ -44,7 +44,7 @@ struct ServiceView: View {
         }
     }
     private var next: some View {
-        NavigationLink(destination: Text("Destination"), isActive: $shouldNavigateToNextScreen) {
+        NavigationLink(destination: AuthorListView(authors: authors), isActive: $shouldNavigateToNextScreen) {
             RoundedButton(text: "Дальше") {
                 shouldNavigateToNextScreen = true
             }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MusicListView: View {
+    @State private var chosenSong: Song?
     var songs: [Song]
     
     var body: some View {
@@ -23,9 +24,13 @@ struct MusicListView: View {
                     .padding(.horizontal, 8)
                 }
                 .padding(16)
-                Color.clear.frame(height: 70)
+                if chosenSong != nil {
+                    Color.clear.frame(height: 70)
+                }
             }
-            AudioPlayerView(song: songs[0]).padding(8)
+            if let song = chosenSong {
+                AudioPlayerView(song: song).padding(8)
+            }
         }
         .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
         .navigationBarTitleDisplayMode(.inline)
@@ -48,6 +53,9 @@ struct MusicListView: View {
         }
         .background(Color.audioCardBackground)
         .cornerRadius(.cardCornerRadius)
+        .onTapGesture {
+            chosenSong = song
+        }
     }
     private func avatar(_ url: URL) -> some View {
         AsyncImage(url: url)
