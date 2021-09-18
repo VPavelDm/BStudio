@@ -55,6 +55,7 @@ extension Color {
                        startPoint: .bottomLeading,
                        endPoint: .topTrailing)
     }
+    static var audioPlayerBackground: Color = Color(hex: "#555555")
 }
 extension UIColor {
     static var textColor: UIColor = .white

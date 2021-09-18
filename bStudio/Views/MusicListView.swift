@@ -11,17 +11,21 @@ struct MusicListView: View {
     var songs: [Song]
     
     var body: some View {
-        ScrollView {
-            VStack {
-                title
-                LazyVStack(alignment: .leading, spacing: .cardsSpacing) {
-                    ForEach(songs) { song in
-                        card(for: song)
+        ZStack(alignment: .bottom) {
+            ScrollView {
+                VStack {
+                    title
+                    LazyVStack(alignment: .leading, spacing: .cardsSpacing) {
+                        ForEach(songs) { song in
+                            card(for: song)
+                        }
                     }
+                    .padding(.horizontal, 8)
                 }
-                .padding(.horizontal, 8)
+                .padding(16)
+                Color.clear.frame(height: 70)
             }
-            .padding(16)
+            AudioPlayerView(song: songs[0]).padding(8)
         }
         .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
         .navigationBarTitleDisplayMode(.inline)
@@ -57,7 +61,7 @@ struct MusicListView: View {
 }
 
 // MARK: - Drawing constants
-extension CGFloat {
+fileprivate extension CGFloat {
     static var cardCornerRadius: CGFloat = 8
     static var cardInnerSpacing: CGFloat = 16
     static var avatarSize: CGFloat = 80

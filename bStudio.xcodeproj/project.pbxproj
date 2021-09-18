@@ -11,6 +11,7 @@
 		4A167D2426F4732D0046E32D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A167D2326F4732D0046E32D /* Player.swift */; };
 		4A167D2626F4734D0046E32D /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A167D2526F4734D0046E32D /* Song.swift */; };
 		4A167D2926F473C80046E32D /* LinkinParkNumb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4A167D2826F473C80046E32D /* LinkinParkNumb.mp3 */; };
+		4A167D7B26F5C30A0046E32D /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A167D7A26F5C30A0046E32D /* AudioPlayerView.swift */; };
 		4ABE816F26F3970F00CC9C60 /* bStudioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE816E26F3970F00CC9C60 /* bStudioApp.swift */; };
 		4ABE817126F3970F00CC9C60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE817026F3970F00CC9C60 /* ContentView.swift */; };
 		4ABE817326F3970F00CC9C60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ABE817226F3970F00CC9C60 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		4A167D2326F4732D0046E32D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		4A167D2526F4734D0046E32D /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		4A167D2826F473C80046E32D /* LinkinParkNumb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LinkinParkNumb.mp3; sourceTree = "<group>"; };
+		4A167D7A26F5C30A0046E32D /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		4ABE816B26F3970F00CC9C60 /* bStudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bStudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ABE816E26F3970F00CC9C60 /* bStudioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bStudioApp.swift; sourceTree = "<group>"; };
 		4ABE817026F3970F00CC9C60 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,6 +81,14 @@
 				4A167D2826F473C80046E32D /* LinkinParkNumb.mp3 */,
 			);
 			path = Songs;
+			sourceTree = "<group>";
+		};
+		4A167D7926F5C3010046E32D /* AudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				4A167D7A26F5C30A0046E32D /* AudioPlayerView.swift */,
+			);
+			path = AudioPlayer;
 			sourceTree = "<group>";
 		};
 		4ABE816226F3970F00CC9C60 = {
@@ -151,6 +161,7 @@
 		4ABE818C26F3B99400CC9C60 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4A167D7926F5C3010046E32D /* AudioPlayer */,
 				4ABE819C26F45F6600CC9C60 /* AsyncImage */,
 				4ABE818926F3B60000CC9C60 /* RadioButtonPicker */,
 				4ABE818126F39C1B00CC9C60 /* RoundedButton.swift */,
@@ -289,6 +300,7 @@
 				4ABE818426F3B0D800CC9C60 /* RadioButtonPicker.swift in Sources */,
 				4ABE819326F3C60400CC9C60 /* ProvidedView.swift in Sources */,
 				4ABE816F26F3970F00CC9C60 /* bStudioApp.swift in Sources */,
+				4A167D7B26F5C30A0046E32D /* AudioPlayerView.swift in Sources */,
 				4A167D2626F4734D0046E32D /* Song.swift in Sources */,
 				4ABE81A026F45F6600CC9C60 /* AsyncImage.swift in Sources */,
 				4ABE818826F3B5F900CC9C60 /* RadioButton.swift in Sources */,
