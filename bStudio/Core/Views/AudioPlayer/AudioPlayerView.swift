@@ -14,20 +14,29 @@ struct AudioPlayerView: View {
     init(song: Song) {
         self.song = song
         self.player = AudioPlayer(songName: song.songName)!
-        self.player.changeControlState()
+        if !player.isPlaying {
+            player.play()
+        }
     }
     
     var body: some View {
-        HStack(spacing: .cardInnerSpacing) {
-            audioAvatar(song.imageURL)
-            audioName(song.userFriendlyName)
-            Spacer()
-            controlButton
+        ZStack(alignment: .bottom) {
+            HStack(spacing: .cardInnerSpacing) {
+                audioAvatar(song.imageURL)
+                audioName(song.userFriendlyName)
+                Spacer()
+                controlButton
+            }
+            .padding(.contentPadding)
+            ProgressView(value: player.progress)
+                .progressViewStyle(LinearProgressViewStyle(tint: .white))
+                .padding(.horizontal, .contentPadding)
         }
-        .padding(8)
         .background(Color.audioPlayerBackground)
         .cornerRadius(.playerCornerRadius)
-        .border(Color.black, width: 0.25)
+        .onDisappear {
+            player.stop()
+        }
     }
     private func audioAvatar(_ url: URL) -> some View {
         AsyncImage(url: url)
@@ -41,7 +50,11 @@ struct AudioPlayerView: View {
     }
     private var controlButton: some View {
         Button {
-            player.changeControlState()
+            if player.isPlaying {
+                player.stop()
+            } else {
+                player.play()
+            }
         } label: {
             Image(systemName: player.isPlaying ? "pause.fill" : "play.fill")
                 .resizable()
@@ -59,6 +72,7 @@ fileprivate extension CGFloat {
     static var controlButtonSize: CGFloat = avatarSize / 2.5
     static var playerCornerRadius: CGFloat = 8
     static var cardInnerSpacing: CGFloat = 12
+    static var contentPadding: CGFloat = 8
 }
 fileprivate extension Font {
     static var audioName: Font = .system(size: 20, weight: .heavy)

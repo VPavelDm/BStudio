@@ -56,12 +56,12 @@ let authors: [Author] = [
             .init(name: "exclusive", price: "100$"),
             .init(name: "на заказ", price: "от 100$")
           ],
-          songs: []),
+          songs: songs),
     .init(name: "Денис Грачёв", imageURL: "https://scontent-waw1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/c240.0.960.960a/s640x640/88994837_3307208135960166_8329418424570694165_n.jpg?_nc_ht=scontent-waw1-1.cdninstagram.com&_nc_cat=106&_nc_ohc=OCGScNeVSfAAX9Bj4Sh&edm=APU89FABAAAA&ccb=7-4&oh=5bd389ad1760e5f2c5552edaed867834&oe=614B2A07&_nc_sid=86f79a",
           arrangements: [
             .init(name: "на заказ", price: "от 100$")
           ],
-          songs: [])
+          songs: songs)
 ]
 
 struct ContentView_Previews: PreviewProvider {

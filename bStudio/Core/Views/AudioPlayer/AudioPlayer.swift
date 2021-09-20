@@ -8,28 +8,63 @@
 import SwiftUI
 import AVFoundation
 
-class AudioPlayer: ObservableObject {
+class AudioPlayer: NSObject, ObservableObject {
     
     // MARK: - Properties
     private var player: AVAudioPlayer
+    private var displayLink: CADisplayLink?
     var isPlaying: Bool {
         player.isPlaying
     }
+    
+    // MARK: - Outputs
+    @Published var progress: Double = 0
     
     // MARK: - Inits
     init?(songName: String) {
         guard let url = Bundle.main.url(forResource: songName, withExtension: "mp3") else { return nil }
         guard let player = try? AVAudioPlayer(contentsOf: url) else { return nil }
         self.player = player
+        
+        super.init()
+        
+        self.setupDisplayLink()
+        self.setupPlayer()
+    }
+    deinit {
+        displayLink?.invalidate()
+    }
+    
+    // MARK: - Setup
+    private func setupDisplayLink() {
+        displayLink = CADisplayLink(target: self, selector: #selector(updateDisplay))
+        displayLink?.add(to: .current, forMode: .default)
+        displayLink?.isPaused = true
+    }
+    @objc private func updateDisplay() {
+        progress = player.currentTime / player.duration
+    }
+    private func setupPlayer() {
+        player.delegate = self
     }
     
     // MARK: - Intents
-    func changeControlState() {
+    func play() {
+        guard !isPlaying else { return }
         objectWillChange.send()
-        if isPlaying {
-            player.stop()
-        } else {
-            player.play()
-        }
+        player.play()
+        displayLink?.isPaused = false
+    }
+    func stop() {
+        guard isPlaying else { return }
+        objectWillChange.send()
+        player.stop()
+        displayLink?.isPaused = true
+    }
+}
+
+extension AudioPlayer: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        displayLink?.isPaused = true
     }
 }
