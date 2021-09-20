@@ -14,6 +14,7 @@ struct AudioPlayerView: View {
     init(song: Song) {
         self.song = song
         self.player = AudioPlayer(songName: song.songName)!
+        self.player.changeControlState()
     }
     
     var body: some View {

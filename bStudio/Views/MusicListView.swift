@@ -29,7 +29,9 @@ struct MusicListView: View {
                 }
             }
             if let song = chosenSong {
-                AudioPlayerView(song: song).padding(8)
+                AudioPlayerView(song: song)
+                    .padding(8)
+                    .id(song.id)
             }
         }
         .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
