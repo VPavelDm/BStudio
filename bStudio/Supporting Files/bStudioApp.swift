@@ -12,6 +12,7 @@ struct bStudioApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .accentColor(.white)
         }
     }
 }
