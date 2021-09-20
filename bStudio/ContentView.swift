@@ -24,6 +24,7 @@ struct ContentView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("VOSTOK'7")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
