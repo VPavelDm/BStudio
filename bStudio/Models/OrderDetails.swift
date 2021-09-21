@@ -10,6 +10,9 @@ import SwiftUI
 class OrderDetails: ObservableObject {
     
     @Published var songs: [String] = [""]
+    @Published var comments: String = ""
+    @Published var selectedWorkTypeIndex = 0
+    let workTypes = ["На студии", "Удаленный"]
     
     // MARK: - Intents
     func addNewSong() {
