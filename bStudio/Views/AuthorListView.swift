@@ -71,7 +71,7 @@ struct AuthorListView: View {
         }
     }
     private var choose: some View {
-        NavigationLink(destination: Text("Destination"), isActive: $shouldShowNextScreen) {
+        NavigationLink(destination: DetailsView(), isActive: $shouldShowNextScreen) {
             RoundedButton(text: "Выбрать") {
                 shouldShowNextScreen = true
             }
