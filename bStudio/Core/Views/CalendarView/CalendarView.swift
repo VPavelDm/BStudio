@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CalendarView: View {
-    var availableTime: [String] = (0...12).map { String($0) }
+    @State private var calendar = StudioCalendar()
     
     var body: some View {
         HStack(alignment: .center, spacing: .contentSpacing) {
@@ -17,9 +17,26 @@ struct CalendarView: View {
             labelsColumn
         }
     }
+    private var header: some View {
+        HStack {
+            back
+            
+            forward
+        }
+    }
+    private var back: some View {
+        Button {} label: {
+            Image(systemName: "chevron.backward")
+        }
+    }
+    private var forward: some View {
+        Button {} label: {
+            Image(systemName: "chevron.forward")
+        }
+    }
     private var labelsColumn: some View {
         VStack(alignment: .trailing, spacing: .timeLabelsSpacing) {
-            ForEach(availableTime, id: \.self) { time in
+            ForEach(calendar.availableTime, id: \.self) { time in
                 labelView(time)
             }
         }
@@ -43,12 +60,14 @@ struct CalendarView: View {
                 }
             }
         }
-        .frame(height: .columnHeight(rectangesCount: availableTime.count - 1))
+        .frame(height: .columnHeight(rectangesCount: calendar.rangesCount))
     }
     private var timeRanges: some View {
         VStack(spacing: 0) {
-            ForEach(0..<availableTime.count-1, id: \.self) { index in
-                timeRange(isLast: index == availableTime.count - 2)
+            Text("пн, 31")
+                .frame(height: .dateLabelHeight)
+            ForEach(0..<calendar.rangesCount, id: \.self) { index in
+                timeRange(isLast: index == calendar.rangesCount - 1)
             }
         }
     }
@@ -72,8 +91,9 @@ fileprivate extension CGFloat {
     static var timeColumnWidth: CGFloat = 80
     static var columnsSpacing: CGFloat = 12
     static var timeRangeRectangleHeight: CGFloat = 40
+    static var dateLabelHeight: CGFloat = 60
     static func columnHeight(rectangesCount: Int) -> CGFloat {
-        CGFloat(rectangesCount) * .timeRangeRectangleHeight
+        CGFloat(rectangesCount) * .timeRangeRectangleHeight + .dateLabelHeight * 2
     }
 }
 fileprivate extension Font {
