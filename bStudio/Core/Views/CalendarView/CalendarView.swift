@@ -11,28 +11,46 @@ struct CalendarView: View {
     @State private var calendar = StudioCalendar()
     
     var body: some View {
-        HStack(alignment: .center, spacing: .contentSpacing) {
-            labelsColumn
-            timeColumns
-            labelsColumn
+        VStack {
+            header
+            HStack(alignment: .center, spacing: .contentSpacing) {
+                labelsColumn
+                timeColumns
+                labelsColumn
+            }
         }
     }
     private var header: some View {
-        HStack {
+        HStack(alignment: .center) {
             back
-            
+            dates
             forward
         }
     }
     private var back: some View {
         Button {} label: {
             Image(systemName: "chevron.backward")
+                .padding(12)
         }
     }
     private var forward: some View {
         Button {} label: {
             Image(systemName: "chevron.forward")
+                .padding(12)
         }
+    }
+    private var dates: some View {
+        GeometryReader { geometry in
+            let count = Int(geometry.size.width / .timeColumnWidth)
+            HStack(alignment: .center) {
+                ForEach(0..<count, id: \.self) { index in
+                    Text(calendar.formattedDate(offsetFromToday: index))
+                        .font(.system(size: 24, weight: .regular))
+                        .frame(width: geometry.size.width / CGFloat(count))
+                }
+            }
+        }
+        .frame(height: .dateLabelHeight)
     }
     private var labelsColumn: some View {
         VStack(alignment: .trailing, spacing: .timeLabelsSpacing) {
@@ -64,8 +82,6 @@ struct CalendarView: View {
     }
     private var timeRanges: some View {
         VStack(spacing: 0) {
-            Text("пн, 31")
-                .frame(height: .dateLabelHeight)
             ForEach(0..<calendar.rangesCount, id: \.self) { index in
                 timeRange(isLast: index == calendar.rangesCount - 1)
             }
@@ -91,9 +107,9 @@ fileprivate extension CGFloat {
     static var timeColumnWidth: CGFloat = 80
     static var columnsSpacing: CGFloat = 12
     static var timeRangeRectangleHeight: CGFloat = 40
-    static var dateLabelHeight: CGFloat = 60
+    static var dateLabelHeight: CGFloat = 30
     static func columnHeight(rectangesCount: Int) -> CGFloat {
-        CGFloat(rectangesCount) * .timeRangeRectangleHeight + .dateLabelHeight * 2
+        CGFloat(rectangesCount) * .timeRangeRectangleHeight
     }
 }
 fileprivate extension Font {

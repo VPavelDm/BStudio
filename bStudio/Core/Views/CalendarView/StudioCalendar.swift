@@ -15,4 +15,10 @@ class StudioCalendar: ObservableObject {
     func isTimeOccupied(_ time: String, in column: Int) -> Bool {
         false
     }
+    func formattedDate(offsetFromToday: Int) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E, dd"
+        let date = Calendar.current.date(byAdding: .day, value: offsetFromToday, to: Date())!
+        return formatter.string(from: date)
+    }
 }
