@@ -8,117 +8,63 @@
 import SwiftUI
 
 struct CalendarView: View {
-    @State private var calendar = StudioCalendar()
+    var calendar = StudioCalendar()
+    @State private var currentPage = 0
     
     var body: some View {
-        VStack {
-            header
-            HStack(alignment: .center, spacing: .contentSpacing) {
-                labelsColumn
-                timeColumns
-                labelsColumn
-            }
-        }
-    }
-    private var header: some View {
-        HStack(alignment: .center) {
-            back
-            dates
-            forward
-        }
-    }
-    private var back: some View {
-        Button {} label: {
-            Image(systemName: "chevron.backward")
-                .padding(12)
-        }
-    }
-    private var forward: some View {
-        Button {} label: {
-            Image(systemName: "chevron.forward")
-                .padding(12)
-        }
-    }
-    private var dates: some View {
-        GeometryReader { geometry in
-            let count = Int(geometry.size.width / .timeColumnWidth)
-            HStack(alignment: .center) {
-                ForEach(0..<count, id: \.self) { index in
-                    Text(calendar.formattedDate(offsetFromToday: index))
-                        .font(.system(size: 24, weight: .regular))
-                        .frame(width: geometry.size.width / CGFloat(count))
-                }
-            }
-        }
-        .frame(height: .dateLabelHeight)
-    }
-    private var labelsColumn: some View {
-        VStack(alignment: .trailing, spacing: .timeLabelsSpacing) {
-            ForEach(calendar.availableTime, id: \.self) { time in
-                labelView(time)
-            }
-        }
-    }
-    private func labelView(_ time: String) -> some View {
-        HStack(alignment: .top, spacing: 0) {
-            Text(time)
-                .font(.bottomTime)
-                .padding(.top, .topTimePadding)
-            Text("00")
-                .font(.upperTime)
-        }
-        .frame(height: .timeLabelHeight)
-    }
-    private var timeColumns: some View {
-        GeometryReader { geoemetry in
-            let count = Int(geoemetry.size.width / .timeColumnWidth)
-            HStack(spacing: .columnsSpacing) {
-                ForEach(0..<count, id: \.self) { index in
-                    timeRanges
-                }
-            }
-        }
-        .frame(height: .columnHeight(rectangesCount: calendar.rangesCount))
-    }
-    private var timeRanges: some View {
-        VStack(spacing: 0) {
-            ForEach(0..<calendar.rangesCount, id: \.self) { index in
-                timeRange(isLast: index == calendar.rangesCount - 1)
-            }
-        }
-    }
-    private func timeRange(isLast: Bool) -> some View {
-        VStack(spacing: 0) {
-            Rectangle().frame(height: 1)
+        VStack(spacing: .contentSpacing) {
+            days
+            fullDayView(for: calendar.pages[0][0])
             Spacer()
-            if isLast {
-                Rectangle().frame(height: 1)
+        }
+        .padding(.top)
+    }
+    private var days: some View {
+        TabView {
+            ForEach(calendar.pages.indices, id: \.self) { index in
+                HStack {
+                    ForEach(calendar.pages[index], id: \.self) { day in
+                        dayView(for: day)
+                    }
+                }
             }
         }
-        .frame(height: .timeRangeRectangleHeight)
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+        .frame(height: .daysHeight)
+        .padding(.horizontal)
+    }
+    private func dayView(for day: StudioDay) -> some View {
+        VStack {
+            Text(calendar.formattedWeekday(for: day))
+                .foregroundColor(.textColor)
+            Text(calendar.formattedDayNumber(for: day))
+                .foregroundColor(.textColor)
+                .padding(8)
+                .background(Circle().foregroundColor(calendar.isToday(day) ? .red : .clear))
+        }
+        .frame(maxWidth: .infinity)
+    }
+    private func fullDayView(for day: StudioDay) -> some View {
+        Text(calendar.formattedFullDay(for: day))
+            .foregroundColor(.textColor)
     }
 }
 
 fileprivate extension CGFloat {
-    static var contentSpacing: CGFloat = 10
-    static var timeLabelsSpacing: CGFloat = 4
-    static var topTimePadding: CGFloat = 2
-    static var timeLabelHeight: CGFloat = 36
-    static var timeColumnWidth: CGFloat = 80
-    static var columnsSpacing: CGFloat = 12
-    static var timeRangeRectangleHeight: CGFloat = 40
-    static var dateLabelHeight: CGFloat = 30
-    static func columnHeight(rectangesCount: Int) -> CGFloat {
-        CGFloat(rectangesCount) * .timeRangeRectangleHeight
-    }
+    static var contentSpacing: CGFloat = 8
+    static var daysHeight: CGFloat = 65
 }
 fileprivate extension Font {
-    static var bottomTime: Font = .system(size: 24, weight: .regular)
-    static var upperTime: Font = .system(size: 12, weight: .regular)
 }
 
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarView()
+        NavigationView {
+            CalendarView()
+                .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("VOSTOK'7")
+                .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+        }
     }
 }

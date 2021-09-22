@@ -10,6 +10,7 @@ import Foundation
 extension Date {
     static var yesterday: Date { Date().dayBefore }
     static var tomorrow:  Date { Date().dayAfter }
+    static var today: Date { Date().noon }
     var dayBefore: Date {
         Calendar.current.date(byAdding: .day, value: -1, to: noon)!
     }

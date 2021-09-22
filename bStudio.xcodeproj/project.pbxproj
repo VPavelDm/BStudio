@@ -20,6 +20,7 @@
 		4A489F6D26FA390200B428B2 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A489F6C26FA390200B428B2 /* CalendarView.swift */; };
 		4A489F7026FA484E00B428B2 /* StudioCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A489F6F26FA484E00B428B2 /* StudioCalendar.swift */; };
 		4A489F7226FA50BE00B428B2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A489F7126FA50BE00B428B2 /* Date.swift */; };
+		4A489F7426FB077500B428B2 /* StudioDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A489F7326FB077500B428B2 /* StudioDay.swift */; };
 		4ABE816F26F3970F00CC9C60 /* bStudioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE816E26F3970F00CC9C60 /* bStudioApp.swift */; };
 		4ABE817126F3970F00CC9C60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE817026F3970F00CC9C60 /* ContentView.swift */; };
 		4ABE817326F3970F00CC9C60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ABE817226F3970F00CC9C60 /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		4A489F6C26FA390200B428B2 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		4A489F6F26FA484E00B428B2 /* StudioCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioCalendar.swift; sourceTree = "<group>"; };
 		4A489F7126FA50BE00B428B2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		4A489F7326FB077500B428B2 /* StudioDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioDay.swift; sourceTree = "<group>"; };
 		4ABE816B26F3970F00CC9C60 /* bStudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bStudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ABE816E26F3970F00CC9C60 /* bStudioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bStudioApp.swift; sourceTree = "<group>"; };
 		4ABE817026F3970F00CC9C60 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			children = (
 				4A489F6C26FA390200B428B2 /* CalendarView.swift */,
 				4A489F6F26FA484E00B428B2 /* StudioCalendar.swift */,
+				4A489F7326FB077500B428B2 /* StudioDay.swift */,
 			);
 			path = CalendarView;
 			sourceTree = "<group>";
@@ -272,6 +275,8 @@
 			dependencies = (
 			);
 			name = bStudio;
+			packageProductDependencies = (
+			);
 			productName = bStudio;
 			productReference = 4ABE816B26F3970F00CC9C60 /* bStudio.app */;
 			productType = "com.apple.product-type.application";
@@ -299,6 +304,8 @@
 				Base,
 			);
 			mainGroup = 4ABE816226F3970F00CC9C60;
+			packageReferences = (
+			);
 			productRefGroup = 4ABE816C26F3970F00CC9C60 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -345,6 +352,7 @@
 				4ABE819526F45B0D00CC9C60 /* AuthorListView.swift in Sources */,
 				4ABE819B26F45C2A00CC9C60 /* Author.swift in Sources */,
 				4ABE818426F3B0D800CC9C60 /* RadioButtonPicker.swift in Sources */,
+				4A489F7426FB077500B428B2 /* StudioDay.swift in Sources */,
 				4A167D7D26F5C7CA0046E32D /* AudioPlayer.swift in Sources */,
 				4ABE819326F3C60400CC9C60 /* ProvidedView.swift in Sources */,
 				4ABE816F26F3970F00CC9C60 /* bStudioApp.swift in Sources */,
