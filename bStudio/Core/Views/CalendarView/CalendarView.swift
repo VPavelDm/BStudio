@@ -8,63 +8,50 @@
 import SwiftUI
 
 struct CalendarView: View {
-    var calendar = StudioCalendar()
-    @State private var currentPage = 0
+    @ObservedObject private var calendar: CalendarViewModel
+    @Binding var selectionDate: Date
     
-    var body: some View {
-        VStack(spacing: .contentSpacing) {
-            days
-            fullDayView(for: calendar.pages[0][0])
-            Spacer()
-        }
-        .padding(.top)
+    init(selection: Binding<Date>) {
+        _selectionDate = selection
+        calendar = CalendarViewModel(selectionDate: selection.wrappedValue)
     }
-    private var days: some View {
-        TabView {
-            ForEach(calendar.pages.indices, id: \.self) { index in
-                HStack {
-                    ForEach(calendar.pages[index], id: \.self) { day in
-                        dayView(for: day)
-                    }
-                }
+
+    private var columns: [GridItem] = (1...7).map { _ in GridItem(.flexible()) }
+    var body: some View {
+        LazyVGrid(columns: columns) {
+            ForEach(calendar.days.indices, id: \.self) { index in
+                dayView(calendar.days[index])
             }
         }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-        .frame(height: .daysHeight)
-        .padding(.horizontal)
     }
-    private func dayView(for day: StudioDay) -> some View {
-        VStack {
-            Text(calendar.formattedWeekday(for: day))
-                .foregroundColor(.textColor)
-            Text(calendar.formattedDayNumber(for: day))
-                .foregroundColor(.textColor)
-                .padding(8)
-                .background(Circle().foregroundColor(calendar.isToday(day) ? .red : .clear))
+    private func dayView(_ day: Day) -> some View {
+        ZStack {
+            Circle()
+                .foregroundColor(calendar.isSelectedDate(day.date, selection: selectionDate) ? .red : .white)
+            dayTextView(day)
+                .onTapGesture {
+                    selectionDate = day.date
+                }
         }
-        .frame(maxWidth: .infinity)
+        .aspectRatio(1.0, contentMode: .fill)
     }
-    private func fullDayView(for day: StudioDay) -> some View {
-        Text(calendar.formattedFullDay(for: day))
-            .foregroundColor(.textColor)
+    private func dayTextView(_ day: Day) -> some View {
+        Text("\(day.number)")
+            .foregroundColor(calendar.textColor(for: day.date, selection: selectionDate))
+            .font(.system(size: 18, weight: .medium))
+            .disabled(!calendar.isDateEnabled(day.date, selection: selectionDate))
     }
-}
-
-fileprivate extension CGFloat {
-    static var contentSpacing: CGFloat = 8
-    static var daysHeight: CGFloat = 65
-}
-fileprivate extension Font {
 }
 
 struct CalendarView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            CalendarView()
-                .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationTitle("VOSTOK'7")
-                .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+    struct ContentView: View {
+        @State var selection = Date()
+        var body: some View {
+            CalendarView(selection: $selection)
         }
     }
+    static var previews: some View {
+        ContentView()
+    }
 }
+
