@@ -22,7 +22,47 @@ struct CalendarView: View {
 
     // MARK: - Views
     var body: some View {
+        VStack {
+            header
+            days
+        }
+    }
+    private var header: some View {
+        HStack {
+            monthAndYear
+            Spacer()
+            monthsControl
+        }
+        .padding(.horizontal, 8)
+    }
+    
+    // MARK: Month and year chooser
+    private var monthAndYear: some View {
+        Button {} label: {
+            HStack {
+                Text(calendar.formatMonthAndYear(for: selectionDate))
+                    .foregroundColor(.black)
+                Image(systemName: "chevron.forward")
+            }
+        }
+    }
+    private var monthsControl: some View {
+        HStack {
+            Button {} label: {
+                Image(systemName: "chevron.backward")
+            }
+            Button {} label: {
+                Image(systemName: "chevron.forward")
+            }
+        }
+    }
+    
+    // MARK: Day's numbers
+    private var days: some View {
         LazyVGrid(columns: columns) {
+            ForEach(calendar.daysLetters, id: \.self) { letters in
+                Text(letters)
+            }
             ForEach(calendar.days.indices, id: \.self) { index in
                 dayView(calendar.days[index])
             }
@@ -56,6 +96,7 @@ struct CalendarView_Previews: PreviewProvider {
     }
     static var previews: some View {
         ContentView()
+            .padding()
     }
 }
 

@@ -12,6 +12,14 @@ class CalendarViewModel: ObservableObject {
     
     // MARK: - Properties
     var days: [Day]
+    // 7 строк: [Пн, Вт, Ср, ..., Вс]
+    var daysLetters: [String] {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEE"
+        return days
+            .prefix(upTo: 7)
+            .map { day in dateFormatter.string(from: day.date) }
+    }
 
     // MARK: - Inits
     init(selectionDate: Date) {
@@ -30,6 +38,13 @@ class CalendarViewModel: ObservableObject {
         guard !isSelectedDate(date, selection: selection) else { return .white }
         guard calendar.isDate(date, inSameMonthAs: selection) else { return .white }
         return calendar.isDateInPastAndNotToday(date) ? .secondary : .primary
+    }
+    func formatMonthAndYear(for selection: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = Calendar(identifier: .gregorian)
+        dateFormatter.locale = Locale.autoupdatingCurrent
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMMM y")
+        return dateFormatter.string(from: selection)
     }
 }
 
