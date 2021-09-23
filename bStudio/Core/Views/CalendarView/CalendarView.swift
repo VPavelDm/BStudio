@@ -42,12 +42,13 @@ struct CalendarView: View {
             HStack {
                 Text(calendar.formatMonthAndYear(for: selectionDate))
                     .foregroundColor(.black)
+                    .font(.system(size: 18, weight: .bold))
                 Image(systemName: "chevron.forward")
             }
         }
     }
     private var monthsControl: some View {
-        HStack {
+        HStack(spacing: 32) {
             Button {} label: {
                 Image(systemName: "chevron.backward")
             }
@@ -61,12 +62,17 @@ struct CalendarView: View {
     private var days: some View {
         LazyVGrid(columns: columns) {
             ForEach(calendar.daysLetters, id: \.self) { letters in
-                Text(letters)
+                weekdayView(letters)
             }
             ForEach(calendar.days.indices, id: \.self) { index in
                 dayView(calendar.days[index])
             }
         }
+    }
+    private func weekdayView(_ text: String) -> some View {
+        Text(text)
+            .font(.system(size: 16, weight: .bold))
+            .foregroundColor(.secondary)
     }
     private func dayView(_ day: Day) -> some View {
         ZStack {
@@ -96,6 +102,7 @@ struct CalendarView_Previews: PreviewProvider {
     }
     static var previews: some View {
         ContentView()
+            .preferredColorScheme(.dark)
             .padding()
     }
 }

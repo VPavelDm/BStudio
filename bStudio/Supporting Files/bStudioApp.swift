@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct bStudioApp: App {
+    @State var selection = Date()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CalendarView(selection: $selection).padding()
         }
     }
 }
