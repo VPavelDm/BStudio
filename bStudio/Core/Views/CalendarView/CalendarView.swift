@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct CalendarView: View {
+    
+    // MARK: - Properties
+    private let columns: [GridItem] = (1...7).map { _ in GridItem(.flexible()) }
     @ObservedObject private var calendar: CalendarViewModel
     @Binding var selectionDate: Date
     
+    // MARK: - Inits
     init(selection: Binding<Date>) {
         _selectionDate = selection
         calendar = CalendarViewModel(selectionDate: selection.wrappedValue)
     }
 
-    private var columns: [GridItem] = (1...7).map { _ in GridItem(.flexible()) }
+    // MARK: - Views
     var body: some View {
         LazyVGrid(columns: columns) {
             ForEach(calendar.days.indices, id: \.self) { index in
