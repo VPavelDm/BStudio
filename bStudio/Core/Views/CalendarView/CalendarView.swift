@@ -22,9 +22,11 @@ struct CalendarView: View {
 
     // MARK: - Views
     var body: some View {
-        VStack {
-            header
-            days
+        ScrollView([]) {
+            VStack {
+                header
+                days
+            }
         }
     }
     private var header: some View {
@@ -49,10 +51,14 @@ struct CalendarView: View {
     }
     private var monthsControl: some View {
         HStack(spacing: 32) {
-            Button {} label: {
+            Button {
+                selectionDate = calendar.sameDateInPreviousMonth(for: selectionDate)
+            } label: {
                 Image(systemName: "chevron.backward")
             }
-            Button {} label: {
+            Button {
+                selectionDate = calendar.sameDateInNextMonth(for: selectionDate)
+            } label: {
                 Image(systemName: "chevron.forward")
             }
         }
@@ -89,7 +95,7 @@ struct CalendarView: View {
     private func dayTextView(_ day: Day) -> some View {
         Text("\(day.number)")
             .foregroundColor(calendar.textColor(for: day.date, selection: selectionDate))
-            .font(.system(size: 20, weight: .regular))
+            .font(calendar.isSelectedDate(day.date, selection: selectionDate) ? .system(size: 22, weight: .semibold) : .system(size: 20, weight: .regular))
     }
 }
 

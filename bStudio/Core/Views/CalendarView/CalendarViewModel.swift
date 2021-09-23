@@ -27,6 +27,12 @@ class CalendarViewModel: ObservableObject {
     }
     
     // MARK: - Intents
+    func sameDateInNextMonth(for date: Date) -> Date {
+        calendar.date(byAdding: .month, value: 1, to: date) ?? date
+    }
+    func sameDateInPreviousMonth(for date: Date) -> Date {
+        calendar.date(byAdding: .month, value: -1, to: date) ?? date
+    }
     func isSelectedDate(_ date: Date, selection: Date) -> Bool {
         calendar.isDate(date, inSameDayAs: selection)
     }
