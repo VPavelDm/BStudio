@@ -41,14 +41,9 @@ struct CalendarView: View {
     
     // MARK: Month and year chooser
     private var monthAndYear: some View {
-        Button {} label: {
-            HStack {
-                Text(calendar.formatMonthAndYear(for: selectionDate))
-                    .foregroundColor(.primary)
-                    .font(.system(size: 17, weight: .semibold))
-                Image(systemName: "chevron.forward")
-            }
-        }
+        Text(calendar.formatMonthAndYear(for: selectionDate))
+            .foregroundColor(.primary)
+            .font(.system(size: 17, weight: .semibold))
     }
     private var monthsControl: some View {
         HStack(spacing: 32) {
