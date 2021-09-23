@@ -12,6 +12,7 @@ struct CalendarView: View {
     // MARK: - Properties
     private let columns: [GridItem] = (1...7).map { _ in GridItem(.flexible()) }
     @ObservedObject private var calendar: CalendarViewModel
+    @State private var isBackTransitionAnimation = false
     @Binding var selectionDate: Date
     
     // MARK: - Inits
@@ -23,13 +24,16 @@ struct CalendarView: View {
     // MARK: - Views
     var body: some View {
         VStack {
-            header
+            header.animation(nil)
             ScrollView([]) {
                 days
             }
             .id(selectionDate)
-            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-            .animation(.easeInOut)
+            .transition(
+                .asymmetric(
+                    insertion:.move(edge: isBackTransitionAnimation ? .leading : .trailing),
+                    removal: .move(edge: isBackTransitionAnimation ? .trailing : .leading)
+                ))
         }
         .frame(maxHeight: 354)
     }
@@ -52,6 +56,7 @@ struct CalendarView: View {
         HStack(spacing: 32) {
             Button {
                 withAnimation {
+                    isBackTransitionAnimation = true
                     selectionDate = calendar.sameDateInPreviousMonth(for: selectionDate)
                 }
             } label: {
@@ -60,6 +65,7 @@ struct CalendarView: View {
             .disabled(!calendar.couldShowPreviousMonth(for: selectionDate))
             Button {
                 withAnimation {
+                    isBackTransitionAnimation = false
                     selectionDate = calendar.sameDateInNextMonth(for: selectionDate)
                 }
             } label: {
