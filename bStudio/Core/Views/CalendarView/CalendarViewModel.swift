@@ -34,9 +34,14 @@ class CalendarViewModel: ObservableObject {
         guard calendar.isDate(date, inSameMonthAs: selection) else { return false }
         return !calendar.isDateInPastAndNotToday(date)
     }
+    func circleColor(for date: Date, selection: Date) -> Color {
+        guard !isSelectedDate(date, selection: selection) else { return .red }
+        guard calendar.isDate(date, inSameMonthAs: selection) else { return .clear }
+        return .clear
+    }
     func textColor(for date: Date, selection: Date) -> Color {
         guard !isSelectedDate(date, selection: selection) else { return .white }
-        guard calendar.isDate(date, inSameMonthAs: selection) else { return .white }
+        guard calendar.isDate(date, inSameMonthAs: selection) else { return .clear }
         return calendar.isDateInPastAndNotToday(date) ? .secondary : .primary
     }
     func formatMonthAndYear(for selection: Date) -> String {

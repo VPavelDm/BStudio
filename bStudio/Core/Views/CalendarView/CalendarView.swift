@@ -41,8 +41,8 @@ struct CalendarView: View {
         Button {} label: {
             HStack {
                 Text(calendar.formatMonthAndYear(for: selectionDate))
-                    .foregroundColor(.black)
-                    .font(.system(size: 18, weight: .bold))
+                    .foregroundColor(.primary)
+                    .font(.system(size: 17, weight: .semibold))
                 Image(systemName: "chevron.forward")
             }
         }
@@ -70,26 +70,26 @@ struct CalendarView: View {
         }
     }
     private func weekdayView(_ text: String) -> some View {
-        Text(text)
-            .font(.system(size: 16, weight: .bold))
-            .foregroundColor(.secondary)
+        Text(text.uppercased())
+            .font(.system(size: 13, weight: .semibold))
+            .foregroundColor(.tertiaryLabel)
     }
     private func dayView(_ day: Day) -> some View {
         ZStack {
             Circle()
-                .foregroundColor(calendar.isSelectedDate(day.date, selection: selectionDate) ? .red : .white)
+                .foregroundColor(calendar.circleColor(for: day.date, selection: selectionDate))
             dayTextView(day)
                 .onTapGesture {
                     selectionDate = day.date
                 }
+                .disabled(!calendar.isDateEnabled(day.date, selection: selectionDate))
         }
         .aspectRatio(1.0, contentMode: .fill)
     }
     private func dayTextView(_ day: Day) -> some View {
         Text("\(day.number)")
             .foregroundColor(calendar.textColor(for: day.date, selection: selectionDate))
-            .font(.system(size: 18, weight: .medium))
-            .disabled(!calendar.isDateEnabled(day.date, selection: selectionDate))
+            .font(.system(size: 20, weight: .regular))
     }
 }
 

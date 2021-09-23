@@ -12,6 +12,7 @@ extension Color {
     static var codeGray: Color = Color(red: 26 / 255, green: 26 / 255, blue: 26 / 255)
     static var mineShaft: Color = Color(red: 43 / 255, green: 43 / 255, blue: 43 / 255)
     static var woodsmoke: Color = Color(.woodsmoke)
+    static var tertiaryLabel: Color = Color(.tertiaryLabel)
     
     init(hex: String) {
         var cString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
