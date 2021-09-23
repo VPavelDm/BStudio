@@ -22,11 +22,14 @@ struct CalendarView: View {
 
     // MARK: - Views
     var body: some View {
-        ScrollView([]) {
-            VStack {
-                header
+        VStack {
+            header
+            ScrollView([]) {
                 days
             }
+            .id(selectionDate)
+            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+            .animation(.easeInOut)
         }
         .frame(maxHeight: 354)
     }
@@ -48,13 +51,17 @@ struct CalendarView: View {
     private var monthsControl: some View {
         HStack(spacing: 32) {
             Button {
-                selectionDate = calendar.sameDateInPreviousMonth(for: selectionDate)
+                withAnimation {
+                    selectionDate = calendar.sameDateInPreviousMonth(for: selectionDate)
+                }
             } label: {
                 Image(systemName: "chevron.backward")
             }
             .disabled(!calendar.couldShowPreviousMonth(for: selectionDate))
             Button {
-                selectionDate = calendar.sameDateInNextMonth(for: selectionDate)
+                withAnimation {
+                    selectionDate = calendar.sameDateInNextMonth(for: selectionDate)
+                }
             } label: {
                 Image(systemName: "chevron.forward")
             }
