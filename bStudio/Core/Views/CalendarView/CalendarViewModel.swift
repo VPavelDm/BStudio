@@ -27,6 +27,9 @@ class CalendarViewModel: ObservableObject {
     }
     
     // MARK: - Intents
+    func couldShowPreviousMonth(for date: Date) -> Bool {
+        !calendar.isDateInThisMonth(date)
+    }
     func sameDateInNextMonth(for date: Date) -> Date {
         calendar.date(byAdding: .month, value: 1, to: date) ?? date
     }

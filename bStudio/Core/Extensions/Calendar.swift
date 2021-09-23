@@ -13,6 +13,9 @@ extension Calendar {
         return date < Date()
     }
     func isDate(_ date1: Date, inSameMonthAs date2: Date) -> Bool {
-      isDate(date1, equalTo: date2, toGranularity: .month)
+        isDate(date1, equalTo: date2, toGranularity: .month)
+    }
+    func isDateInThisMonth(_ date: Date) -> Bool {
+        isDate(date, equalTo: Date(), toGranularity: .month)
     }
 }

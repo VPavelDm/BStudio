@@ -28,6 +28,7 @@ struct CalendarView: View {
                 days
             }
         }
+        .frame(maxHeight: 354)
     }
     private var header: some View {
         HStack {
@@ -56,6 +57,7 @@ struct CalendarView: View {
             } label: {
                 Image(systemName: "chevron.backward")
             }
+            .disabled(!calendar.couldShowPreviousMonth(for: selectionDate))
             Button {
                 selectionDate = calendar.sameDateInNextMonth(for: selectionDate)
             } label: {
@@ -108,7 +110,6 @@ struct CalendarView_Previews: PreviewProvider {
     }
     static var previews: some View {
         ContentView()
-            .preferredColorScheme(.dark)
             .padding()
     }
 }
