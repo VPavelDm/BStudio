@@ -1,16 +1,17 @@
 //
-//  DayPickerView.swift
+//  TimePickerView.swift
 //  bStudio
 //
-//  Created by Pavel Vaitsikhouski on 23.09.21.
+//  Created by Pavel Vaitsikhouski on 24.09.21.
 //
 
 import SwiftUI
 
-struct DayPickerView: View {
-    @State private var selectionDate = Date()
+struct TimePickerView: View {
     @State private var shouldNavigateToNextScreen = false
-    
+    @State private var chosenTime: String?
+    private let columns = (1...4).map { _ in GridItem(.flexible(), spacing: 8) }
+
     var body: some View {
         HStack {
             VStack {
@@ -28,8 +29,8 @@ struct DayPickerView: View {
     private var content: some View {
         VStack(alignment: .leading, spacing: 28) {
             title
-            VStack(spacing: 0) {
-                calendar
+            Group {
+                timeCalendar
                 next
             }
             .padding(.horizontal, 8)
@@ -40,8 +41,23 @@ struct DayPickerView: View {
             .font(.system(size: 34, weight: .regular))
             .foregroundColor(.white)
     }
-    private var calendar: some View {
-        CalendarView(selection: $selectionDate)
+    private var timeCalendar: some View {
+        LazyVGrid(columns: columns, spacing: 12) {
+            ForEach((1...20), id: \.self) { index in
+                timeView("\(index)")
+            }
+        }
+    }
+    private func timeView(_ time: String) -> some View {
+        Button {
+            withAnimation {
+                chosenTime = time
+            }
+        } label: {
+            Text(time)
+        }
+        .buttonStyle(TimePickButtonStyle(isSelected: chosenTime == time))
+        .cornerRadius(16)
     }
     private var next: some View {
         NavigationLink(destination: TimePickerView(), isActive: $shouldNavigateToNextScreen) {
@@ -52,11 +68,10 @@ struct DayPickerView: View {
     }
 }
 
-struct DayPickerView_Previews: PreviewProvider {
+struct TimePickerView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            DayPickerView()
-                .preferredColorScheme(.dark)
+            TimePickerView()
         }
     }
 }

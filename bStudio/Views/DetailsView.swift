@@ -81,7 +81,7 @@ struct DetailsView: View {
                 .foregroundColor(.white)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.blueSmoke, lineWidth: 2)
+                        .stroke(Color.xanadu, lineWidth: 2)
                 )
                 .opacity(orderDetails.songs.count == 3 ? 0.5 : 1)
         }

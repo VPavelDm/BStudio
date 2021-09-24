@@ -16,7 +16,7 @@ struct RadioButton: View {
                 .foregroundColor(.white)
                 .opacity(isSelected ? 1.0 : 0.0)
             Circle()
-                .strokeBorder(Color.blueSmoke, lineWidth: isSelected ? DrawingConstrants.selectedLineWidth : DrawingConstrants.lineWidth)
+                .strokeBorder(Color.xanadu, lineWidth: isSelected ? DrawingConstrants.selectedLineWidth : DrawingConstrants.lineWidth)
         }
         .frame(width: DrawingConstrants.radius, height: DrawingConstrants.radius)
     }

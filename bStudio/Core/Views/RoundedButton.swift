@@ -20,7 +20,7 @@ struct RoundedButton: View {
                 .foregroundColor(.white)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.blueSmoke, lineWidth: 2)
+                        .stroke(Color.xanadu, lineWidth: 2)
                 )
         }
     }

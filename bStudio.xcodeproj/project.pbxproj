@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4A11985726FD10E80035ABD7 /* DayPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11985626FD10E80035ABD7 /* DayPickerView.swift */; };
+		4A11985D26FDA20C0035ABD7 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11985C26FDA20C0035ABD7 /* TimePickerView.swift */; };
+		4A11985F26FDAB030035ABD7 /* TimePickButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11985E26FDAB030035ABD7 /* TimePickButtonStyle.swift */; };
 		4A167D2026F467900046E32D /* MusicListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A167D1F26F467900046E32D /* MusicListView.swift */; };
-		4A167D2426F4732D0046E32D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A167D2326F4732D0046E32D /* Player.swift */; };
 		4A167D2626F4734D0046E32D /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A167D2526F4734D0046E32D /* Song.swift */; };
 		4A167D2926F473C80046E32D /* LinkinParkNumb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4A167D2826F473C80046E32D /* LinkinParkNumb.mp3 */; };
 		4A167D7B26F5C30A0046E32D /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A167D7A26F5C30A0046E32D /* AudioPlayerView.swift */; };
@@ -44,8 +45,9 @@
 
 /* Begin PBXFileReference section */
 		4A11985626FD10E80035ABD7 /* DayPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPickerView.swift; sourceTree = "<group>"; };
+		4A11985C26FDA20C0035ABD7 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
+		4A11985E26FDAB030035ABD7 /* TimePickButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickButtonStyle.swift; sourceTree = "<group>"; };
 		4A167D1F26F467900046E32D /* MusicListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicListView.swift; sourceTree = "<group>"; };
-		4A167D2326F4732D0046E32D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		4A167D2526F4734D0046E32D /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		4A167D2826F473C80046E32D /* LinkinParkNumb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LinkinParkNumb.mp3; sourceTree = "<group>"; };
 		4A167D7A26F5C30A0046E32D /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
@@ -91,14 +93,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4A167D2226F472BF0046E32D /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				4A167D2326F4732D0046E32D /* Player.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		4A167D2726F473C00046E32D /* Songs */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				4A2EF6FE26F9B66100A45A0A /* StudioTextFieldStyle.swift */,
+				4A11985E26FDAB030035ABD7 /* TimePickButtonStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -159,7 +154,6 @@
 				4ABE818B26F3B98500CC9C60 /* Core */,
 				4ABE818A26F3B96C00CC9C60 /* Views */,
 				4ABE819926F45C2100CC9C60 /* Models */,
-				4A167D2226F472BF0046E32D /* ViewModels */,
 				4ABE817026F3970F00CC9C60 /* ContentView.swift */,
 			);
 			path = bStudio;
@@ -190,6 +184,7 @@
 				4A167D1F26F467900046E32D /* MusicListView.swift */,
 				4A2EF6F926F9ADC600A45A0A /* DetailsView.swift */,
 				4A11985626FD10E80035ABD7 /* DayPickerView.swift */,
+				4A11985C26FDA20C0035ABD7 /* TimePickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -352,7 +347,6 @@
 				4AC709F726FBCC8F0031A24F /* Day.swift in Sources */,
 				4ABE819126F3C43500CC9C60 /* NavigationBarModifier.swift in Sources */,
 				4A2EF6FF26F9B66100A45A0A /* StudioTextFieldStyle.swift in Sources */,
-				4A167D2426F4732D0046E32D /* Player.swift in Sources */,
 				4ABE818026F39B1400CC9C60 /* UIExtensions.swift in Sources */,
 				4A489F7226FA50BE00B428B2 /* Date.swift in Sources */,
 				4A11985726FD10E80035ABD7 /* DayPickerView.swift in Sources */,
@@ -365,9 +359,11 @@
 				4ABE818426F3B0D800CC9C60 /* RadioButtonPicker.swift in Sources */,
 				4A167D7D26F5C7CA0046E32D /* AudioPlayer.swift in Sources */,
 				4ABE819326F3C60400CC9C60 /* ProvidedView.swift in Sources */,
+				4A11985F26FDAB030035ABD7 /* TimePickButtonStyle.swift in Sources */,
 				4ABE816F26F3970F00CC9C60 /* bStudioApp.swift in Sources */,
 				4A167D7B26F5C30A0046E32D /* AudioPlayerView.swift in Sources */,
 				4A167D2626F4734D0046E32D /* Song.swift in Sources */,
+				4A11985D26FDA20C0035ABD7 /* TimePickerView.swift in Sources */,
 				4AC709F926FBCCD10031A24F /* CalendarViewModel.swift in Sources */,
 				4ABE81A026F45F6600CC9C60 /* AsyncImage.swift in Sources */,
 				4ABE818826F3B5F900CC9C60 /* RadioButton.swift in Sources */,

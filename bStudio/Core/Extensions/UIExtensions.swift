@@ -8,11 +8,13 @@
 import SwiftUI
 
 extension Color {
-    static var blueSmoke: Color = Color(red: 112 / 255, green: 141 / 255, blue: 129 / 255)
-    static var codeGray: Color = Color(red: 26 / 255, green: 26 / 255, blue: 26 / 255)
-    static var mineShaft: Color = Color(red: 43 / 255, green: 43 / 255, blue: 43 / 255)
+    static var xanadu: Color = Color(red: 112 / 255, green: 141 / 255, blue: 129 / 255)
+    static var eerieBlack: Color = Color(red: 26 / 255, green: 26 / 255, blue: 26 / 255)
+    static var charlestonGreen: Color = Color(red: 43 / 255, green: 43 / 255, blue: 43 / 255)
     static var woodsmoke: Color = Color(.woodsmoke)
     static var tertiaryLabel: Color = Color(.tertiaryLabel)
+    static var davysGrey: Color = Color(hex: "535353")
+    static var graniteGray: Color = Color(hex: "636363")
     
     init(hex: String) {
         var cString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
@@ -47,7 +49,7 @@ extension Font {
 extension Color {
     static var textColor: Color = .white
     static var background: LinearGradient {
-        LinearGradient(gradient: Gradient(colors: [Color.codeGray, Color.mineShaft]),
+        LinearGradient(gradient: Gradient(colors: [Color.eerieBlack, Color.charlestonGreen]),
                        startPoint: .topLeading,
                        endPoint: .bottomTrailing)
     }
@@ -57,6 +59,21 @@ extension Color {
                        endPoint: .topTrailing)
     }
     static var audioPlayerBackground: Color = Color(hex: "#555555")
+    static var timeCardBackground: LinearGradient {
+        LinearGradient(gradient: Gradient(colors: [.davysGrey, .graniteGray]),
+                       startPoint: .bottomLeading,
+                       endPoint: .topTrailing)
+    }
+    static var highlightTimeCardBackground: LinearGradient {
+        LinearGradient(gradient: Gradient(colors: [.xanadu.opacity(0.5)]),
+                       startPoint: .bottomLeading,
+                       endPoint: .topTrailing)
+    }
+    static var selectedTimeCardBackground: LinearGradient {
+        LinearGradient(gradient: Gradient(colors: [.xanadu]),
+                       startPoint: .bottomLeading,
+                       endPoint: .topTrailing)
+    }
 }
 extension UIColor {
     static var textColor: UIColor = .white

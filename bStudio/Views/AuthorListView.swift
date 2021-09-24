@@ -84,7 +84,7 @@ struct AuthorListView: View {
             } label: {
                 Text("Слушать примеры работ")
                     .frame(maxWidth: .infinity)
-                    .foregroundColor(.blueSmoke)
+                    .foregroundColor(.xanadu)
                     .font(.system(size: 20, weight: .semibold))
             }
         }
