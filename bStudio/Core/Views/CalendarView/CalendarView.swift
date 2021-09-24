@@ -25,15 +25,13 @@ struct CalendarView: View {
     var body: some View {
         VStack {
             header.animation(nil)
-            ScrollView([]) {
-                days
-            }
-            .id(selectionDate)
-            .transition(
-                .asymmetric(
-                    insertion:.move(edge: isBackTransitionAnimation ? .leading : .trailing),
-                    removal: .move(edge: isBackTransitionAnimation ? .trailing : .leading)
-                ))
+            days
+                .id(selectionDate)
+                .transition(
+                    .asymmetric(
+                        insertion:.move(edge: isBackTransitionAnimation ? .leading : .trailing),
+                        removal: .move(edge: isBackTransitionAnimation ? .trailing : .leading)
+                    ))
         }
         .frame(maxHeight: 354)
     }

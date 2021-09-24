@@ -12,13 +12,12 @@ struct DayPickerView: View {
     @State private var shouldNavigateToNextScreen = false
     
     var body: some View {
-        HStack {
-            VStack {
+        VStack(alignment: .leading) {
+            title.padding([.horizontal, .top], 16)
+            ScrollView {
                 content
-                Spacer()
+                    .padding([.horizontal, .bottom], 16)
             }
-            .padding(16)
-            Spacer()
         }
         .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
         .navigationBarTitleDisplayMode(.inline)
@@ -26,14 +25,12 @@ struct DayPickerView: View {
         .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
     }
     private var content: some View {
-        VStack(alignment: .leading, spacing: 28) {
-            title
-            VStack(spacing: 0) {
-                calendar
-                next
-            }
-            .padding(.horizontal, 8)
+        VStack(spacing: 24) {
+            calendar
+            timePicker
+            next
         }
+        .padding(.horizontal, 8)
     }
     private var title: some View {
         Text("Выберите дату")
@@ -42,6 +39,9 @@ struct DayPickerView: View {
     }
     private var calendar: some View {
         CalendarView(selection: $selectionDate)
+    }
+    private var timePicker: some View {
+        TimePickerView()
     }
     private var next: some View {
         NavigationLink(destination: TimePickerView(), isActive: $shouldNavigateToNextScreen) {
