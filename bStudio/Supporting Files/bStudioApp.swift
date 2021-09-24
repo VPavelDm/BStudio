@@ -12,7 +12,10 @@ struct bStudioApp: App {
     @State var selection = Date()
     var body: some Scene {
         WindowGroup {
-            CalendarView(selection: $selection).padding()
+            NavigationView {
+                DayPickerView()
+                    .preferredColorScheme(.dark)
+            }
         }
     }
 }

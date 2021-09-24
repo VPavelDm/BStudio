@@ -41,10 +41,10 @@ struct DayPickerView: View {
         CalendarView(selection: $selectionDate)
     }
     private var timePicker: some View {
-        TimePickerView()
+        TimePickerView(selectionDate: $selectionDate)
     }
     private var next: some View {
-        NavigationLink(destination: TimePickerView(), isActive: $shouldNavigateToNextScreen) {
+        NavigationLink(destination: Text("Hello"), isActive: $shouldNavigateToNextScreen) {
             RoundedButton(text: "Дальше") {
                 shouldNavigateToNextScreen = true
             }
