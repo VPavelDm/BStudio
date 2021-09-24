@@ -11,6 +11,8 @@ struct TimePickerView: View {
     @State private var shouldNavigateToNextScreen = false
     @State private var chosenTime: String?
     private let columns = (1...4).map { _ in GridItem(.flexible(), spacing: 8) }
+    private var times = (8...23)
+        .flatMap { number in ["\(number):00", "\(number):30"] }
 
     var body: some View {
         HStack {
@@ -37,14 +39,18 @@ struct TimePickerView: View {
         }
     }
     private var title: some View {
-        Text("Выберите дату")
+        Text("Выберите время")
             .font(.system(size: 34, weight: .regular))
-            .foregroundColor(.white)
+            .foregroundColor(.textColor)
     }
     private var timeCalendar: some View {
-        LazyVGrid(columns: columns, spacing: 12) {
-            ForEach((1...20), id: \.self) { index in
-                timeView("\(index)")
+        VStack(alignment: .leading) {
+            Text("Выберите промежуток времени")
+                .foregroundColor(.textColor)
+            LazyVGrid(columns: columns, spacing: 12) {
+                ForEach(times, id: \.self) { time in
+                    timeView(time)
+                }
             }
         }
     }
