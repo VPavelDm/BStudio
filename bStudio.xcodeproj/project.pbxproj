@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A11985726FD10E80035ABD7 /* DayPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11985626FD10E80035ABD7 /* DayPickerView.swift */; };
 		4A167D2026F467900046E32D /* MusicListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A167D1F26F467900046E32D /* MusicListView.swift */; };
 		4A167D2426F4732D0046E32D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A167D2326F4732D0046E32D /* Player.swift */; };
 		4A167D2626F4734D0046E32D /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A167D2526F4734D0046E32D /* Song.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A11985626FD10E80035ABD7 /* DayPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPickerView.swift; sourceTree = "<group>"; };
 		4A167D1F26F467900046E32D /* MusicListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicListView.swift; sourceTree = "<group>"; };
 		4A167D2326F4732D0046E32D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		4A167D2526F4734D0046E32D /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				4ABE819426F45B0D00CC9C60 /* AuthorListView.swift */,
 				4A167D1F26F467900046E32D /* MusicListView.swift */,
 				4A2EF6F926F9ADC600A45A0A /* DetailsView.swift */,
+				4A11985626FD10E80035ABD7 /* DayPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				4A167D2426F4732D0046E32D /* Player.swift in Sources */,
 				4ABE818026F39B1400CC9C60 /* UIExtensions.swift in Sources */,
 				4A489F7226FA50BE00B428B2 /* Date.swift in Sources */,
+				4A11985726FD10E80035ABD7 /* DayPickerView.swift in Sources */,
 				4A167D2026F467900046E32D /* MusicListView.swift in Sources */,
 				4ABE817E26F3979800CC9C60 /* ServiceView.swift in Sources */,
 				4A2EF6FC26F9B37700A45A0A /* TextField+placeholder.swift in Sources */,
