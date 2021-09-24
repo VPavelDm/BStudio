@@ -21,6 +21,7 @@
 		4A2EF70126F9C10000A45A0A /* OrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2EF70026F9C10000A45A0A /* OrderDetails.swift */; };
 		4A489F6D26FA390200B428B2 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A489F6C26FA390200B428B2 /* CalendarView.swift */; };
 		4A489F7226FA50BE00B428B2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A489F7126FA50BE00B428B2 /* Date.swift */; };
+		4A6A0F1F26FE626100BC9CCD /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A0F1E26FE626100BC9CCD /* AuthenticationView.swift */; };
 		4ABE816F26F3970F00CC9C60 /* bStudioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE816E26F3970F00CC9C60 /* bStudioApp.swift */; };
 		4ABE817126F3970F00CC9C60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE817026F3970F00CC9C60 /* ContentView.swift */; };
 		4ABE817326F3970F00CC9C60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ABE817226F3970F00CC9C60 /* Assets.xcassets */; };
@@ -58,6 +59,7 @@
 		4A2EF70026F9C10000A45A0A /* OrderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetails.swift; sourceTree = "<group>"; };
 		4A489F6C26FA390200B428B2 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		4A489F7126FA50BE00B428B2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		4A6A0F1E26FE626100BC9CCD /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		4ABE816B26F3970F00CC9C60 /* bStudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bStudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ABE816E26F3970F00CC9C60 /* bStudioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bStudioApp.swift; sourceTree = "<group>"; };
 		4ABE817026F3970F00CC9C60 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				4A167D1F26F467900046E32D /* MusicListView.swift */,
 				4A2EF6F926F9ADC600A45A0A /* DetailsView.swift */,
 				4A11985626FD10E80035ABD7 /* DayPickerView.swift */,
+				4A6A0F1E26FE626100BC9CCD /* AuthenticationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				4A489F7226FA50BE00B428B2 /* Date.swift in Sources */,
 				4A11985726FD10E80035ABD7 /* DayPickerView.swift in Sources */,
 				4A167D2026F467900046E32D /* MusicListView.swift in Sources */,
+				4A6A0F1F26FE626100BC9CCD /* AuthenticationView.swift in Sources */,
 				4ABE817E26F3979800CC9C60 /* ServiceView.swift in Sources */,
 				4A2EF6FC26F9B37700A45A0A /* TextField+placeholder.swift in Sources */,
 				4ABE81A226F4629000CC9C60 /* Arrangement.swift in Sources */,
