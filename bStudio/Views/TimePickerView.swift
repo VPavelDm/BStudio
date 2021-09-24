@@ -57,7 +57,11 @@ struct TimePickerView: View {
     private func timeView(_ time: String) -> some View {
         Button {
             withAnimation {
-                chosenTime = time
+                if chosenTime == time {
+                    chosenTime = nil
+                } else {
+                    chosenTime = time
+                }
             }
         } label: {
             Text(time)
