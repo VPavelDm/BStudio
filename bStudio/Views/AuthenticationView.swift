@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AuthenticationView: View {
     @EnvironmentObject private var orderDetails: OrderDetails
+    @State private var notFilledFieldErrorMessage: IdentifiableString?
     
     var body: some View {
         VStack(alignment: .leading){
@@ -22,6 +23,11 @@ struct AuthenticationView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("VOSTOK'7")
         .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+        .alert(item: $notFilledFieldErrorMessage) { message in
+            Alert(title: Text("Вы не заполнили обязательные поля"),
+                  message: Text(message.text),
+                  dismissButton: .cancel(Text("Понятно")))
+        }
     }
     private var title: some View {
         Text("Личные данные")
@@ -51,15 +57,21 @@ struct AuthenticationView: View {
             })
     }
     private var commentsTextField: some View {
-        TextField("Напишите любые комментарии*", text: $orderDetails.comments)
+        TextField("Напишите любые комментарии", text: $orderDetails.comments)
             .textFieldStyle(StudioTextFieldStyle(when: orderDetails.comments.isEmpty) {
-                Text("Напишите любые комментарии*")
+                Text("Напишите любые комментарии")
                     .foregroundColor(.white.opacity(0.6))
             })
     }
     private var makeOrder: some View {
         RoundedButton(text: "Записаться") {
-            print(orderDetails)
+            if orderDetails.clientName.isEmpty {
+                notFilledFieldErrorMessage = .init(text: "Для того, чтобы продолжить, Вам необходимо ввести Ваше имя")
+            } else if orderDetails.clientPhoneNumber.isEmpty {
+                notFilledFieldErrorMessage = .init(text: "Для того, чтобы продолжить, Вам необходимо ввести Ваш номер телефона")
+            } else {
+                print("Success")
+            }
         }
     }
 }

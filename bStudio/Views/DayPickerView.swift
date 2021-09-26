@@ -11,6 +11,7 @@ struct DayPickerView: View {
     @EnvironmentObject private var studio: Studio
     @EnvironmentObject var orderDetails: OrderDetails
     @State private var shouldNavigateToNextScreen = false
+    @State private var notFilledFieldErrorMessage: IdentifiableString?
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -24,6 +25,11 @@ struct DayPickerView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("VOSTOK'7")
         .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+        .alert(item: $notFilledFieldErrorMessage) { message in
+            Alert(title: Text("Вы не заполнили обязательные поля"),
+                  message: Text(message.text),
+                  dismissButton: .cancel(Text("Понятно")))
+        }
     }
     private var content: some View {
         VStack(spacing: 24) {
@@ -50,7 +56,13 @@ struct DayPickerView: View {
     private var next: some View {
         NavigationLink(destination: AuthenticationView(), isActive: $shouldNavigateToNextScreen) {
             RoundedButton(text: "Дальше") {
-                shouldNavigateToNextScreen = true
+                if orderDetails.startTime == nil {
+                    notFilledFieldErrorMessage = IdentifiableString(text: "Для того, чтобы продолжить, Вам необходимо выбрать время, когда Вы придете в студию")
+                } else if orderDetails.endTime == nil {
+                    notFilledFieldErrorMessage = IdentifiableString(text: "Для того, чтобы продолжить, Вам необходимо выбрать время, когда Вы закончите работу в студии")
+                } else {
+                    shouldNavigateToNextScreen = true
+                }
             }
         }
     }

@@ -10,6 +10,7 @@ import SwiftUI
 struct DetailsView: View {
     @EnvironmentObject private var orderDetails: OrderDetails
     @State private var shouldNavigateToNextScreen = false
+    @State private var shouldShowNotFilledAlert = false
     
     var body: some View {
         content
@@ -18,6 +19,12 @@ struct DetailsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("VOSTOK'7")
             .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+            .alert(isPresented: $shouldShowNotFilledAlert) {
+                Alert(title: Text("Вы не заполнили обязательные поля"),
+                      message: Text("Для того, чтобы продолжить, Вам необходимо ввести хотя бы 1 название песни"),
+                      dismissButton: .cancel(Text("Понятно")))
+            }
+
     }
     private var content: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -54,7 +61,7 @@ struct DetailsView: View {
         }
     }
     private var referenceTitle: some View {
-        Text("Выберите референс")
+        Text("Выберите референс*")
             .font(.system(size: 20, weight: .semibold))
             .foregroundColor(.white)
     }
@@ -130,7 +137,11 @@ struct DetailsView: View {
     private var next: some View {
         NavigationLink(destination: calendarView, isActive: $shouldNavigateToNextScreen) {
             RoundedButton(text: "Дальше") {
-                shouldNavigateToNextScreen = true
+                if orderDetails.songs.first?.isEmpty ?? true {
+                    shouldShowNotFilledAlert = true
+                } else {
+                    shouldNavigateToNextScreen = true
+                }
             }
         }
     }
@@ -144,6 +155,7 @@ struct DetailsView_Previews: PreviewProvider {
         NavigationView {
             DetailsView()
                 .environmentObject(OrderDetails())
+                .environmentObject(Studio())
         }
     }
 }

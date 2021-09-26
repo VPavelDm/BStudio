@@ -10,6 +10,7 @@
 		4A036B4C2700900A00451518 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B4B2700900A00451518 /* Service.swift */; };
 		4A036B532700E7D200451518 /* Studio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B522700E7D200451518 /* Studio.swift */; };
 		4A036B552700E7F500451518 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B542700E7F500451518 /* Reservation.swift */; };
+		4A036B5727010A8300451518 /* IdentifiableString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B5627010A8300451518 /* IdentifiableString.swift */; };
 		4A11985726FD10E80035ABD7 /* DayPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11985626FD10E80035ABD7 /* DayPickerView.swift */; };
 		4A11985F26FDAB030035ABD7 /* TimePickButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11985E26FDAB030035ABD7 /* TimePickButtonStyle.swift */; };
 		4A11986226FDB54F0035ABD7 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11986126FDB54F0035ABD7 /* TimePickerView.swift */; };
@@ -51,6 +52,7 @@
 		4A036B4B2700900A00451518 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		4A036B522700E7D200451518 /* Studio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Studio.swift; sourceTree = "<group>"; };
 		4A036B542700E7F500451518 /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
+		4A036B5627010A8300451518 /* IdentifiableString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableString.swift; sourceTree = "<group>"; };
 		4A11985626FD10E80035ABD7 /* DayPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPickerView.swift; sourceTree = "<group>"; };
 		4A11985E26FDAB030035ABD7 /* TimePickButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickButtonStyle.swift; sourceTree = "<group>"; };
 		4A11986126FDB54F0035ABD7 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				4ABE818F26F3C42E00CC9C60 /* Modifiers */,
 				4ABE818E26F3B9B200CC9C60 /* Extensions */,
 				4ABE818C26F3B99400CC9C60 /* Views */,
+				4A036B5627010A8300451518 /* IdentifiableString.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				4ABE81A226F4629000CC9C60 /* Arrangement.swift in Sources */,
 				4ABE819526F45B0D00CC9C60 /* AuthorListView.swift in Sources */,
 				4ABE819B26F45C2A00CC9C60 /* Author.swift in Sources */,
+				4A036B5727010A8300451518 /* IdentifiableString.swift in Sources */,
 				4ABE818426F3B0D800CC9C60 /* RadioButtonPicker.swift in Sources */,
 				4A167D7D26F5C7CA0046E32D /* AudioPlayer.swift in Sources */,
 				4ABE819326F3C60400CC9C60 /* ProvidedView.swift in Sources */,
