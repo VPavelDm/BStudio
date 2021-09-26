@@ -8,24 +8,19 @@
 import SwiftUI
 
 struct ServiceView: View {
-    @StateObject var viewModel: ServicesViewModel = ServicesViewModel()
+    private let services = ["Написание аранжировки",
+                            "Запись вокала",
+                            "Сведение",
+                            "Мастеринг"]
     @State private var shouldNavigateToNextScreen = false
     @State private var selectionIndex = 0
     
     var body: some View {
         Group {
-            if viewModel.isServicesLoaded {
-                content
-            } else {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .xanadu))
-            }
+            content
         }
         .padding(16)
         .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
-        .onAppear {
-            viewModel.loadServices()
-        }
     }
     
     @ViewBuilder
@@ -44,10 +39,7 @@ struct ServiceView: View {
             .foregroundColor(.text)
     }
     private var servicesView: some View {
-        RadioButtonPicker(
-            values: viewModel.services.map { $0.name },
-            selectionIndex: $selectionIndex
-        ) { text in
+        RadioButtonPicker(values: services, selectionIndex: $selectionIndex) { text in
             Text(text)
                 .font(.system(size: .radioButtonFontSize, weight: .radioButton))
                 .foregroundColor(.text)
