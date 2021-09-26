@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DayPickerView: View {
+    @EnvironmentObject private var studio: Studio
     @State private var selectionDate = Date()
     @State private var shouldNavigateToNextScreen = false
     
@@ -38,9 +39,8 @@ struct DayPickerView: View {
             .foregroundColor(.white)
     }
     private var calendar: some View {
-//        DatePicker("", selection: $selectionDate, in: Date()..., displayedComponents: .date)
-//            .datePickerStyle(GraphicalDatePickerStyle())
-        CalendarView(selection: $selectionDate)
+        CalendarView(selection: $selectionDate,
+                     unavailableDateRanges: studio.reservations.map { $0.timeInterval })
     }
     private var timePicker: some View {
         TimePickerView(selectionDate: $selectionDate)

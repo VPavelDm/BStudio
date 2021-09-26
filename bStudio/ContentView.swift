@@ -10,14 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         NavigationView {
-            VStack {
-                ServiceView()
-                Spacer()
-                ProvidedView()
-            }
-            .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("VOSTOK'7")
+            ServiceView()
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

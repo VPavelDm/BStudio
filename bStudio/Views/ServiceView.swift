@@ -8,26 +8,43 @@
 import SwiftUI
 
 struct ServiceView: View {
-    private let services: [Service] = Service.allCases
+    @EnvironmentObject private var studio: Studio
     @State private var shouldNavigateToNextScreen = false
     @State private var selectionIndex = 0
+    @State private var shouldShowProgressView = true
     
     var body: some View {
-        Group {
-            content
-        }
-        .padding(16)
-        .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+        content
+            .padding(16)
+            .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+            .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("VOSTOK'7")
+            .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+            .onAppear {
+                studio.loadStudio()
+            }
+            .onReceive(studio.$authors) { authors in
+                withAnimation {
+                    shouldShowProgressView = authors.isEmpty
+                }
+            }
     }
     
-    @ViewBuilder
     private var content: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            title
-            servicesView
-                .padding(.leading, .radioButtonsInset)
-            next
-            Spacer()
+        ZStack {
+            if shouldShowProgressView {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .xanadu))
+            } else {
+                VStack(alignment: .leading, spacing: 16) {
+                    title
+                    servicesView
+                        .padding(.leading, .radioButtonsInset)
+                    next
+                    Spacer()
+                }
+            }
         }
     }
     private var title: some View {
@@ -36,7 +53,7 @@ struct ServiceView: View {
             .foregroundColor(.text)
     }
     private var servicesView: some View {
-        RadioButtonPicker(values: services.map { $0.title }, selectionIndex: $selectionIndex) { text in
+        RadioButtonPicker(values: studio.services.map { $0.title }, selectionIndex: $selectionIndex) { text in
             Text(text)
                 .font(.system(size: .radioButtonFontSize, weight: .radioButton))
                 .foregroundColor(.text)
@@ -52,7 +69,7 @@ struct ServiceView: View {
     
     @ViewBuilder
     private var nextScreen: some View {
-        switch services[selectionIndex] {
+        switch studio.services[selectionIndex] {
         case .arrangement:
             AuthorListView()
         case .vocalRecording:
@@ -84,6 +101,7 @@ fileprivate extension Font.Weight {
 struct ServiceView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(Studio())
     }
 }
 

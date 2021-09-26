@@ -9,13 +9,11 @@ import SwiftUI
 
 @main
 struct bStudioApp: App {
-    @State var selection = Date()
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                ContentView()
-                    .preferredColorScheme(.dark)
-            }
+            ContentView()
+                .preferredColorScheme(.dark)
+                .environmentObject(Studio())
         }
     }
 }

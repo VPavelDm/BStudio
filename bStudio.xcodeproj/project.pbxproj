@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4A036B4C2700900A00451518 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B4B2700900A00451518 /* Service.swift */; };
-		4A036B51270091A900451518 /* AuthorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B50270091A900451518 /* AuthorList.swift */; };
+		4A036B532700E7D200451518 /* Studio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B522700E7D200451518 /* Studio.swift */; };
+		4A036B552700E7F500451518 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B542700E7F500451518 /* Reservation.swift */; };
 		4A11985726FD10E80035ABD7 /* DayPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11985626FD10E80035ABD7 /* DayPickerView.swift */; };
 		4A11985F26FDAB030035ABD7 /* TimePickButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11985E26FDAB030035ABD7 /* TimePickButtonStyle.swift */; };
 		4A11986226FDB54F0035ABD7 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11986126FDB54F0035ABD7 /* TimePickerView.swift */; };
@@ -48,7 +49,8 @@
 
 /* Begin PBXFileReference section */
 		4A036B4B2700900A00451518 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		4A036B50270091A900451518 /* AuthorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorList.swift; sourceTree = "<group>"; };
+		4A036B522700E7D200451518 /* Studio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Studio.swift; sourceTree = "<group>"; };
+		4A036B542700E7F500451518 /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		4A11985626FD10E80035ABD7 /* DayPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPickerView.swift; sourceTree = "<group>"; };
 		4A11985E26FDAB030035ABD7 /* TimePickButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickButtonStyle.swift; sourceTree = "<group>"; };
 		4A11986126FDB54F0035ABD7 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -282,7 +284,8 @@
 				4A167D2526F4734D0046E32D /* Song.swift */,
 				4A2EF70026F9C10000A45A0A /* OrderDetails.swift */,
 				4A036B4B2700900A00451518 /* Service.swift */,
-				4A036B50270091A900451518 /* AuthorList.swift */,
+				4A036B522700E7D200451518 /* Studio.swift */,
+				4A036B542700E7F500451518 /* Reservation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 			files = (
 				4ABE817126F3970F00CC9C60 /* ContentView.swift in Sources */,
 				4AC709FB26FBCD000031A24F /* MonthMetadata.swift in Sources */,
+				4A036B552700E7F500451518 /* Reservation.swift in Sources */,
 				4A2EF6FA26F9ADC600A45A0A /* DetailsView.swift in Sources */,
 				4A489F6D26FA390200B428B2 /* CalendarView.swift in Sources */,
 				4ABE818226F39C1B00CC9C60 /* RoundedButton.swift in Sources */,
@@ -398,7 +402,7 @@
 				4AC709F926FBCCD10031A24F /* CalendarViewModel.swift in Sources */,
 				4ABE81A026F45F6600CC9C60 /* AsyncImage.swift in Sources */,
 				4ABE818826F3B5F900CC9C60 /* RadioButton.swift in Sources */,
-				4A036B51270091A900451518 /* AuthorList.swift in Sources */,
+				4A036B532700E7D200451518 /* Studio.swift in Sources */,
 				4AC709FD26FBD8330031A24F /* Calendar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

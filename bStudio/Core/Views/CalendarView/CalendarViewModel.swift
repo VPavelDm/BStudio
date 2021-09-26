@@ -11,6 +11,7 @@ class CalendarViewModel: ObservableObject {
     private var calendar: Calendar { CalendarViewModel.calendar }
     
     // MARK: - Properties
+    private let unavailableDateRanges: [ClosedRange<Date>]
     var days: [Day] = CalendarViewModel.generateDaysInMonth(for: Date())
     // 7 строк: [Пн, Вт, Ср, ..., Вс]
     var daysLetters: [String] {
@@ -19,6 +20,11 @@ class CalendarViewModel: ObservableObject {
         return days
             .prefix(upTo: 7)
             .map { day in dateFormatter.string(from: day.date) }
+    }
+    
+    // MARK: - Inits
+    init(unavailableDateRanges: [ClosedRange<Date>]) {
+        self.unavailableDateRanges = unavailableDateRanges
     }
     
     // MARK: - Intents
@@ -37,14 +43,16 @@ class CalendarViewModel: ObservableObject {
     func isDateEnabled(_ date: Date, selectionPage: Int) -> Bool {
         let anyDateForMonthWithinPage = calendar.date(byAdding: .month, value: selectionPage, to: Date()) ?? Date()
         guard calendar.isDate(date, inSameMonthAs: anyDateForMonthWithinPage) else { return false }
-        return !calendar.isDateInPastAndNotToday(date)
+        guard !calendar.isDateInPastAndNotToday(date) else { return false }
+        return !unavailableDateRanges.contains(where: { $0.contains(date) })
     }
     func textColor(for date: Date, selection: Date, selectionPage: Int) -> Color {
         let anyDateForMonthWithinPage = calendar.date(byAdding: .month, value: selectionPage, to: Date()) ?? Date()
         guard calendar.isDate(date, inSameMonthAs: anyDateForMonthWithinPage) else { return .clear }
         guard !isTheSameDate(date, selection: selection) else { return .white }
         guard !isTheSameDate(date, selection: Date()) else { return .red }
-        return calendar.isDateInPastAndNotToday(date) ? .secondary : .primary
+        guard !calendar.isDateInPastAndNotToday(date) else { return .secondary }
+        return unavailableDateRanges.contains(where: { $0.contains(date) }) ? .secondary : .primary
     }
     func textFont(for date: Date, selectionDate: Date) -> Font {
         if isTheSameDate(date, selection: selectionDate) {

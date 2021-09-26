@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Author: Identifiable {
+struct Author: Identifiable, Equatable {
     var id: UUID = UUID()
     var name: String
     var imageURL: URL
@@ -19,5 +19,9 @@ struct Author: Identifiable {
         self.imageURL = URL(string: imageURL)!
         self.arrangements = arrangements
         self.songs = songs
+    }
+    
+    static func ==(lhs: Author, rhs: Author) -> Bool {
+        lhs.id == rhs.id
     }
 }

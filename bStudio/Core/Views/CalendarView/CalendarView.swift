@@ -11,14 +11,15 @@ struct CalendarView: View {
     
     // MARK: - Properties
     private let columns: [GridItem] = (1...7).map { _ in GridItem(.flexible()) }
-    @StateObject private var calendar: CalendarViewModel = CalendarViewModel()
+    @ObservedObject private var calendar: CalendarViewModel
     @State private var isBackTransitionAnimation = false
     @Binding var selectionDate: Date
     @State private var selectionPage = 0
     
     // MARK: - Inits
-    init(selection: Binding<Date>) {
+    init(selection: Binding<Date>, unavailableDateRanges: [ClosedRange<Date>]) {
         _selectionDate = selection
+        calendar = CalendarViewModel(unavailableDateRanges: unavailableDateRanges)
     }
 
     // MARK: - Views
@@ -115,7 +116,7 @@ struct CalendarView_Previews: PreviewProvider {
     struct ContentView: View {
         @State var selection = Date()
         var body: some View {
-            CalendarView(selection: $selection)
+            CalendarView(selection: $selection, unavailableDateRanges: [])
         }
     }
     static var previews: some View {
