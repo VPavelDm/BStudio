@@ -11,7 +11,7 @@ class CalendarViewModel: ObservableObject {
     private var calendar: Calendar { CalendarViewModel.calendar }
     
     // MARK: - Properties
-    var days: [Day]
+    var days: [Day] = CalendarViewModel.generateDaysInMonth(for: Date())
     // 7 строк: [Пн, Вт, Ср, ..., Вс]
     var daysLetters: [String] {
         let dateFormatter = DateFormatter()
@@ -20,15 +20,11 @@ class CalendarViewModel: ObservableObject {
             .prefix(upTo: 7)
             .map { day in dateFormatter.string(from: day.date) }
     }
-
-    // MARK: - Inits
-    init(selectionDate: Date) {
-        days = CalendarViewModel.generateDaysInMonth(for: selectionDate)
-    }
     
     // MARK: - Intents
-    func couldShowPreviousMonth(for date: Date) -> Bool {
-        !calendar.isDateInThisMonth(date)
+    func updateDays(for page: Int) {
+        let dateInMonth = calendar.date(byAdding: .month, value: page, to: Date()) ?? Date()
+        days = CalendarViewModel.generateDaysInMonth(for: dateInMonth)
     }
     func sameDateInNextMonth(for date: Date) -> Date {
         calendar.date(byAdding: .month, value: 1, to: date) ?? date
@@ -36,29 +32,26 @@ class CalendarViewModel: ObservableObject {
     func sameDateInPreviousMonth(for date: Date) -> Date {
         calendar.date(byAdding: .month, value: -1, to: date) ?? date
     }
-    func isSelectedDate(_ date: Date, selection: Date) -> Bool {
+    func isTheSameDate(_ date: Date, selection: Date) -> Bool {
         calendar.isDate(date, inSameDayAs: selection)
     }
     func isDateEnabled(_ date: Date, selection: Date) -> Bool {
         guard calendar.isDate(date, inSameMonthAs: selection) else { return false }
         return !calendar.isDateInPastAndNotToday(date)
     }
-    func circleColor(for date: Date, selection: Date) -> Color {
-        guard !isSelectedDate(date, selection: selection) else { return .red }
-        guard calendar.isDate(date, inSameMonthAs: selection) else { return .clear }
-        return .clear
-    }
     func textColor(for date: Date, selection: Date) -> Color {
-        guard !isSelectedDate(date, selection: selection) else { return .white }
+        guard !isTheSameDate(date, selection: selection) else { return .white }
+        guard !isTheSameDate(date, selection: Date()) else { return .red }
         guard calendar.isDate(date, inSameMonthAs: selection) else { return .clear }
         return calendar.isDateInPastAndNotToday(date) ? .secondary : .primary
     }
-    func formatMonthAndYear(for selection: Date) -> String {
+    func formatMonthAndYear(for page: Int) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = Calendar(identifier: .gregorian)
         dateFormatter.locale = Locale.autoupdatingCurrent
         dateFormatter.setLocalizedDateFormatFromTemplate("MMMM y")
-        return dateFormatter.string(from: selection)
+        let date = calendar.date(byAdding: .month, value: page, to: Date()) ?? Date()
+        return dateFormatter.string(from: date)
     }
 }
 

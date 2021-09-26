@@ -11,14 +11,14 @@ struct CalendarView: View {
     
     // MARK: - Properties
     private let columns: [GridItem] = (1...7).map { _ in GridItem(.flexible()) }
-    @ObservedObject private var calendar: CalendarViewModel
+    @StateObject private var calendar: CalendarViewModel = CalendarViewModel()
     @State private var isBackTransitionAnimation = false
     @Binding var selectionDate: Date
+    @State private var selectionPage = 0
     
     // MARK: - Inits
     init(selection: Binding<Date>) {
         _selectionDate = selection
-        calendar = CalendarViewModel(selectionDate: selection.wrappedValue)
     }
 
     // MARK: - Views
@@ -26,7 +26,7 @@ struct CalendarView: View {
         VStack {
             header.animation(nil)
             days
-                .id(selectionDate)
+                .id(selectionPage)
                 .transition(
                     .asymmetric(
                         insertion:.move(edge: isBackTransitionAnimation ? .leading : .trailing),
@@ -46,7 +46,7 @@ struct CalendarView: View {
     
     // MARK: Month and year chooser
     private var monthAndYear: some View {
-        Text(calendar.formatMonthAndYear(for: selectionDate))
+        Text(calendar.formatMonthAndYear(for: selectionPage))
             .foregroundColor(.primary)
             .font(.system(size: 17, weight: .semibold))
     }
@@ -55,16 +55,18 @@ struct CalendarView: View {
             Button {
                 withAnimation {
                     isBackTransitionAnimation = true
-                    selectionDate = calendar.sameDateInPreviousMonth(for: selectionDate)
+                    selectionPage -= 1
+                    calendar.updateDays(for: selectionPage)
                 }
             } label: {
                 Image(systemName: "chevron.backward")
             }
-            .disabled(!calendar.couldShowPreviousMonth(for: selectionDate))
+            .disabled(selectionPage == 0)
             Button {
                 withAnimation {
                     isBackTransitionAnimation = false
-                    selectionDate = calendar.sameDateInNextMonth(for: selectionDate)
+                    selectionPage += 1
+                    calendar.updateDays(for: selectionPage)
                 }
             } label: {
                 Image(systemName: "chevron.forward")
@@ -91,7 +93,7 @@ struct CalendarView: View {
     private func dayView(_ day: Day) -> some View {
         ZStack {
             Circle()
-                .foregroundColor(calendar.circleColor(for: day.date, selection: selectionDate))
+                .foregroundColor(calendar.isTheSameDate(day.date, selection: selectionDate) ? .xanadu : .clear)
             dayTextView(day)
                 .onTapGesture {
                     selectionDate = day.date
@@ -103,7 +105,7 @@ struct CalendarView: View {
     private func dayTextView(_ day: Day) -> some View {
         Text("\(day.number)")
             .foregroundColor(calendar.textColor(for: day.date, selection: selectionDate))
-            .font(calendar.isSelectedDate(day.date, selection: selectionDate) ? .system(size: 22, weight: .semibold) : .system(size: 20, weight: .regular))
+            .font(calendar.isTheSameDate(day.date, selection: selectionDate) ? .system(size: 22, weight: .semibold) : .system(size: 20, weight: .regular))
     }
 }
 
