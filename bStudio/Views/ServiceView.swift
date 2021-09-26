@@ -8,28 +8,35 @@
 import SwiftUI
 
 struct ServiceView: View {
-    @Binding var services: [String]
+    @StateObject var viewModel: ServicesViewModel = ServicesViewModel()
     @State private var shouldNavigateToNextScreen = false
     @State private var selectionIndex = 0
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: .contentInset) {
+        Group {
+            if viewModel.isServicesLoaded {
                 content
-                Spacer()
+            } else {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .xanadu))
             }
-            .padding(.contentInset)
-            Spacer()
         }
+        .padding(16)
         .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+        .onAppear {
+            viewModel.loadServices()
+        }
     }
     
     @ViewBuilder
     private var content: some View {
-        title
-        servicesView
-            .padding(.leading, .radioButtonsInset)
-        next
+        VStack(alignment: .leading, spacing: 16) {
+            title
+            servicesView
+                .padding(.leading, .radioButtonsInset)
+            next
+            Spacer()
+        }
     }
     private var title: some View {
         Text("Выберите услугу")
@@ -37,7 +44,10 @@ struct ServiceView: View {
             .foregroundColor(.text)
     }
     private var servicesView: some View {
-        RadioButtonPicker(values: services, selectionIndex: $selectionIndex) { text in
+        RadioButtonPicker(
+            values: viewModel.services.map { $0.name },
+            selectionIndex: $selectionIndex
+        ) { text in
             Text(text)
                 .font(.system(size: .radioButtonFontSize, weight: .radioButton))
                 .foregroundColor(.text)
@@ -66,3 +76,11 @@ fileprivate extension Font.Weight {
     static var title: Font.Weight = .regular
     static var radioButton: Font.Weight = .regular
 }
+
+// MARK: - Previews
+struct ServiceView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+

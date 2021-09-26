@@ -8,15 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var services = ["Написание аранжировки",
-                                   "Запись вокала",
-                                   "Сведение",
-                                   "Мастеринг"]
-    
     var body: some View {
         NavigationView {
             VStack {
-                ServiceView(services: $services)
+                ServiceView()
                 Spacer()
                 ProvidedView()
             }

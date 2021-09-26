@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A036B432700866D00451518 /* ServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B422700866D00451518 /* ServicesViewModel.swift */; };
+		4A036B452700868E00451518 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B442700868E00451518 /* Step.swift */; };
+		4A036B47270088AF00451518 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B46270088AF00451518 /* Service.swift */; };
 		4A11985726FD10E80035ABD7 /* DayPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11985626FD10E80035ABD7 /* DayPickerView.swift */; };
 		4A11985F26FDAB030035ABD7 /* TimePickButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11985E26FDAB030035ABD7 /* TimePickButtonStyle.swift */; };
 		4A11986226FDB54F0035ABD7 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11986126FDB54F0035ABD7 /* TimePickerView.swift */; };
@@ -45,6 +48,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A036B422700866D00451518 /* ServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewModel.swift; sourceTree = "<group>"; };
+		4A036B442700868E00451518 /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
+		4A036B46270088AF00451518 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		4A11985626FD10E80035ABD7 /* DayPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPickerView.swift; sourceTree = "<group>"; };
 		4A11985E26FDAB030035ABD7 /* TimePickButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickButtonStyle.swift; sourceTree = "<group>"; };
 		4A11986126FDB54F0035ABD7 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -95,6 +101,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A036B3E2700862000451518 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				4A036B412700863B00451518 /* Models */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		4A036B412700863B00451518 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4A036B482700891900451518 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4A036B422700866D00451518 /* ServicesViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		4A11986026FDB5430035ABD7 /* TimePickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,9 +190,11 @@
 			children = (
 				4A167D2726F473C00046E32D /* Songs */,
 				4ABE818D26F3B9A000CC9C60 /* Supporting Files */,
+				4A036B3E2700862000451518 /* Network */,
 				4ABE818B26F3B98500CC9C60 /* Core */,
 				4ABE818A26F3B96C00CC9C60 /* Views */,
 				4ABE819926F45C2100CC9C60 /* Models */,
+				4A036B482700891900451518 /* ViewModels */,
 				4ABE817026F3970F00CC9C60 /* ContentView.swift */,
 			);
 			path = bStudio;
@@ -217,9 +248,9 @@
 				4A167D7926F5C3010046E32D /* AudioPlayer */,
 				4ABE819C26F45F6600CC9C60 /* AsyncImage */,
 				4ABE818926F3B60000CC9C60 /* RadioButtonPicker */,
+				4A489F6E26FA484700B428B2 /* CalendarView */,
 				4ABE818126F39C1B00CC9C60 /* RoundedButton.swift */,
 				4ABE819226F3C60400CC9C60 /* ProvidedView.swift */,
-				4A489F6E26FA484700B428B2 /* CalendarView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -261,6 +292,8 @@
 				4ABE81A126F4629000CC9C60 /* Arrangement.swift */,
 				4A167D2526F4734D0046E32D /* Song.swift */,
 				4A2EF70026F9C10000A45A0A /* OrderDetails.swift */,
+				4A036B442700868E00451518 /* Step.swift */,
+				4A036B46270088AF00451518 /* Service.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -352,6 +385,7 @@
 				4ABE819F26F45F6600CC9C60 /* ImageLoader.swift in Sources */,
 				4A2EF70126F9C10000A45A0A /* OrderDetails.swift in Sources */,
 				4AC709F726FBCC8F0031A24F /* Day.swift in Sources */,
+				4A036B432700866D00451518 /* ServicesViewModel.swift in Sources */,
 				4ABE819126F3C43500CC9C60 /* NavigationBarModifier.swift in Sources */,
 				4A2EF6FF26F9B66100A45A0A /* StudioTextFieldStyle.swift in Sources */,
 				4ABE818026F39B1400CC9C60 /* UIExtensions.swift in Sources */,
@@ -362,8 +396,10 @@
 				4ABE817E26F3979800CC9C60 /* ServiceView.swift in Sources */,
 				4A2EF6FC26F9B37700A45A0A /* TextField+placeholder.swift in Sources */,
 				4ABE81A226F4629000CC9C60 /* Arrangement.swift in Sources */,
+				4A036B452700868E00451518 /* Step.swift in Sources */,
 				4ABE819526F45B0D00CC9C60 /* AuthorListView.swift in Sources */,
 				4ABE819B26F45C2A00CC9C60 /* Author.swift in Sources */,
+				4A036B47270088AF00451518 /* Service.swift in Sources */,
 				4ABE818426F3B0D800CC9C60 /* RadioButtonPicker.swift in Sources */,
 				4A167D7D26F5C7CA0046E32D /* AudioPlayer.swift in Sources */,
 				4ABE819326F3C60400CC9C60 /* ProvidedView.swift in Sources */,
