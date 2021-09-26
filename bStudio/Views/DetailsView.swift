@@ -12,18 +12,12 @@ struct DetailsView: View {
     @State private var shouldNavigateToNextScreen = false
     
     var body: some View {
-        HStack {
-            VStack {
-                content
-                Spacer()
-            }
-            .padding(16)
-            Spacer()
-        }
-        .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("VOSTOK'7")
-        .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+        content
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("VOSTOK'7")
+            .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
     }
     private var content: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -33,8 +27,11 @@ struct DetailsView: View {
                 commentsContent
                 workTypeContent
                 next
-            }.padding(.horizontal, 8)
+            }
+            .padding(.horizontal, 8)
+            Spacer()
         }
+        .padding(16)
     }
     private var title: some View {
         Text("Детали заказа")

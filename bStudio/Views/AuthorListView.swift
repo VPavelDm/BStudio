@@ -92,11 +92,15 @@ struct AuthorListView: View {
         }
     }
     private var choose: some View {
-        NavigationLink(destination: DetailsView(), isActive: $shouldShowNextScreen) {
+        NavigationLink(destination: detailsView, isActive: $shouldShowNextScreen) {
             RoundedButton(text: "Выбрать") {
                 shouldShowNextScreen = true
             }
         }
+    }
+    private var detailsView: some View {
+        DetailsView()
+            .environmentObject(OrderDetails())
     }
     private func listen(author: Author) -> some View {
         NavigationLink(destination: MusicListView(songs: author.songs), isActive: $shouldShowMusicExamplesScreen) {
