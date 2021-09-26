@@ -93,7 +93,9 @@ struct CalendarView: View {
     private func dayView(_ day: Day) -> some View {
         ZStack {
             Circle()
-                .foregroundColor(calendar.shouldHighlightDay(day.date, selectionDate: selectionDate, selectionPage: selectionPage) ? .xanadu : .clear)
+                .foregroundColor(calendar.circleColor(day.date,
+                                                      selectionDate: selectionDate,
+                                                      selectionPage: selectionPage))
             dayTextView(day)
                 .onTapGesture {
                     selectionDate = day.date
@@ -105,7 +107,7 @@ struct CalendarView: View {
     private func dayTextView(_ day: Day) -> some View {
         Text("\(day.number)")
             .foregroundColor(calendar.textColor(for: day.date, selection: selectionDate, selectionPage: selectionPage))
-            .font(calendar.isTheSameDate(day.date, selection: selectionDate) ? .system(size: 22, weight: .semibold) : .system(size: 20, weight: .regular))
+            .font(calendar.textFont(for: day.date, selectionDate: selectionDate))
     }
 }
 
@@ -118,6 +120,7 @@ struct CalendarView_Previews: PreviewProvider {
     }
     static var previews: some View {
         ContentView()
+            .preferredColorScheme(.dark)
             .padding()
     }
 }

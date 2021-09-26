@@ -26,15 +26,10 @@ class CalendarViewModel: ObservableObject {
         let dateInMonth = calendar.date(byAdding: .month, value: page, to: Date()) ?? Date()
         days = CalendarViewModel.generateDaysInMonth(for: dateInMonth)
     }
-    func shouldHighlightDay(_ date: Date, selectionDate: Date, selectionPage: Int) -> Bool {
+    func circleColor(_ date: Date, selectionDate: Date, selectionPage: Int) -> Color {
         let anyDateForMonthWithinPage = calendar.date(byAdding: .month, value: selectionPage, to: Date()) ?? Date()
-        return isTheSameDate(date, selection: selectionDate) && calendar.isDate(selectionDate, inSameMonthAs: anyDateForMonthWithinPage)
-    }
-    func sameDateInNextMonth(for date: Date) -> Date {
-        calendar.date(byAdding: .month, value: 1, to: date) ?? date
-    }
-    func sameDateInPreviousMonth(for date: Date) -> Date {
-        calendar.date(byAdding: .month, value: -1, to: date) ?? date
+        guard calendar.isDate(selectionDate, inSameMonthAs: anyDateForMonthWithinPage) else { return .clear }
+        return isTheSameDate(date, selection: selectionDate) ? .xanadu : .clear
     }
     func isTheSameDate(_ date: Date, selection: Date) -> Bool {
         calendar.isDate(date, inSameDayAs: selection)
@@ -45,11 +40,18 @@ class CalendarViewModel: ObservableObject {
         return !calendar.isDateInPastAndNotToday(date)
     }
     func textColor(for date: Date, selection: Date, selectionPage: Int) -> Color {
-        guard !isTheSameDate(date, selection: selection) else { return .white }
         let anyDateForMonthWithinPage = calendar.date(byAdding: .month, value: selectionPage, to: Date()) ?? Date()
         guard calendar.isDate(date, inSameMonthAs: anyDateForMonthWithinPage) else { return .clear }
+        guard !isTheSameDate(date, selection: selection) else { return .white }
         guard !isTheSameDate(date, selection: Date()) else { return .red }
         return calendar.isDateInPastAndNotToday(date) ? .secondary : .primary
+    }
+    func textFont(for date: Date, selectionDate: Date) -> Font {
+        if isTheSameDate(date, selection: selectionDate) {
+            return .system(size: 22, weight: .semibold)
+        } else {
+            return .system(size: 20, weight: .regular)
+        }
     }
     func formatMonthAndYear(for page: Int) -> String {
         let dateFormatter = DateFormatter()
