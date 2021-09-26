@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct AuthenticationView: View {
-    @State private var name = ""
-    
+    @EnvironmentObject private var orderDetails: OrderDetails
     
     var body: some View {
         VStack(alignment: .leading){
@@ -38,28 +37,29 @@ struct AuthenticationView: View {
         }
     }
     private var nameTextField: some View {
-        TextField("Введите имя*", text: $name)
-            .textFieldStyle(StudioTextFieldStyle(when: name.isEmpty) {
+        TextField("Введите имя*", text: $orderDetails.clientName)
+            .textFieldStyle(StudioTextFieldStyle(when: orderDetails.clientName.isEmpty) {
                 Text("Введите имя*")
                     .foregroundColor(.white.opacity(0.6))
             })
     }
     private var phoneNumberTextField: some View {
-        TextField("Введите номер телефона*", text: $name)
-            .textFieldStyle(StudioTextFieldStyle(when: name.isEmpty) {
+        TextField("Введите номер телефона*", text: $orderDetails.clientPhoneNumber)
+            .textFieldStyle(StudioTextFieldStyle(when: orderDetails.clientPhoneNumber.isEmpty) {
                 Text("Введите номер телефона*")
                     .foregroundColor(.white.opacity(0.6))
             })
     }
     private var commentsTextField: some View {
-        TextField("Напишите любые комментарии*", text: $name)
-            .textFieldStyle(StudioTextFieldStyle(when: name.isEmpty) {
+        TextField("Напишите любые комментарии*", text: $orderDetails.comments)
+            .textFieldStyle(StudioTextFieldStyle(when: orderDetails.comments.isEmpty) {
                 Text("Напишите любые комментарии*")
                     .foregroundColor(.white.opacity(0.6))
             })
     }
     private var makeOrder: some View {
         RoundedButton(text: "Записаться") {
+            print(orderDetails)
         }
     }
 }
@@ -68,6 +68,7 @@ struct AuthenticationView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             AuthenticationView()
+                .environmentObject(OrderDetails())
         }
     }
 }

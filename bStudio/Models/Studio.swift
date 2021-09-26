@@ -9,8 +9,9 @@ import Foundation
 
 class Studio: ObservableObject {
     var services: [Service] { Service.allCases }
-    var reservations: [Reservation] = []
+    @Published var reservations: [Reservation] = []
     @Published var authors: [Author] = []
+    @Published var workTimes: [String] = (6...23).map { "\($0):00" }
     var isStudioLoaded: Bool { !authors.isEmpty }
     
     func loadStudio() {

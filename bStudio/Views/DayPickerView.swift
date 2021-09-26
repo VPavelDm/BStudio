@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DayPickerView: View {
     @EnvironmentObject private var studio: Studio
-    @State private var selectionDate = Date()
+    @EnvironmentObject var orderDetails: OrderDetails
     @State private var shouldNavigateToNextScreen = false
     
     var body: some View {
@@ -39,14 +39,16 @@ struct DayPickerView: View {
             .foregroundColor(.white)
     }
     private var calendar: some View {
-        CalendarView(selection: $selectionDate,
+        CalendarView(selection: $orderDetails.selectionDate,
                      unavailableDateRanges: studio.reservations.map { $0.timeInterval })
     }
     private var timePicker: some View {
-        TimePickerView(selectionDate: $selectionDate)
+        TimePickerView(startTime: $orderDetails.startTime,
+                       endTime: $orderDetails.endTime,
+                       times: studio.workTimes)
     }
     private var next: some View {
-        NavigationLink(destination: Text("Hello"), isActive: $shouldNavigateToNextScreen) {
+        NavigationLink(destination: AuthenticationView(), isActive: $shouldNavigateToNextScreen) {
             RoundedButton(text: "Дальше") {
                 shouldNavigateToNextScreen = true
             }
@@ -59,6 +61,8 @@ struct DayPickerView_Previews: PreviewProvider {
         NavigationView {
             DayPickerView()
                 .preferredColorScheme(.dark)
+                .environmentObject(Studio())
+                .environmentObject(OrderDetails())
         }
     }
 }

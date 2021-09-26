@@ -84,7 +84,6 @@ struct AuthorListView: View {
     }
     private var detailsView: some View {
         DetailsView()
-            .environmentObject(OrderDetails())
     }
     private func listen(author: Author) -> some View {
         NavigationLink(destination: MusicListView(songs: author.songs), isActive: $shouldShowMusicExamplesScreen) {

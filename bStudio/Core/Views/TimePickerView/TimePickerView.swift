@@ -8,19 +8,11 @@
 import SwiftUI
 
 struct TimePickerView: View {
-    @Binding var selectionDate: Date
-    @State private var startTime: String?
-    @State private var endTime: String?
     private let columns = (1...4).map { _ in GridItem(.flexible(), spacing: 8) }
-    private var times: [String] {
-        (selectionDate.noon == Date().noon ? (6...10) : (8...23))
-            .flatMap { number in ["\(number):00", "\(number):30"] }
-    }
+    @Binding var startTime: String?
+    @Binding var endTime: String?
+    var times: [String]
     
-    init(selectionDate: Binding<Date>) {
-        self._selectionDate = selectionDate
-    }
-
     var body: some View {
         timeCalendar
     }
@@ -59,6 +51,6 @@ struct TimePickerView: View {
 
 struct TimePickerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimePickerView(selectionDate: .constant(Date()))
+        TimePickerView(startTime: .constant(nil), endTime: .constant(nil), times: ["9:00", "10:00"])
     }
 }

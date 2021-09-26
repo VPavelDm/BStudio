@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DetailsView: View {
-    @EnvironmentObject var orderDetails: OrderDetails
+    @EnvironmentObject private var orderDetails: OrderDetails
     @State private var shouldNavigateToNextScreen = false
     
     var body: some View {
@@ -89,7 +89,7 @@ struct DetailsView: View {
     private var commentsContent: some View {
         VStack(alignment: .leading, spacing: 8) {
             commentsTitle
-            commentsInput(text: $orderDetails.comments)
+            commentsInput(text: $orderDetails.suggestionsForWork)
         }
     }
     private var commentsTitle: some View {
