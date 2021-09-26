@@ -128,11 +128,14 @@ struct DetailsView: View {
     
     // MARK: Next button
     private var next: some View {
-        NavigationLink(destination: Text("Hello"), isActive: $shouldNavigateToNextScreen) {
+        NavigationLink(destination: calendarView, isActive: $shouldNavigateToNextScreen) {
             RoundedButton(text: "Дальше") {
                 shouldNavigateToNextScreen = true
             }
         }
+    }
+    private var calendarView: some View {
+        DayPickerView()
     }
 }
 

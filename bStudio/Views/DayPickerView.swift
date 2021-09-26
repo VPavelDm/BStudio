@@ -38,6 +38,8 @@ struct DayPickerView: View {
             .foregroundColor(.white)
     }
     private var calendar: some View {
+//        DatePicker("", selection: $selectionDate, in: Date()..., displayedComponents: .date)
+//            .datePickerStyle(GraphicalDatePickerStyle())
         CalendarView(selection: $selectionDate)
     }
     private var timePicker: some View {
