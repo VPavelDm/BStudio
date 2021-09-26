@@ -54,7 +54,7 @@ struct ServiceView: View {
     private var nextScreen: some View {
         switch services[selectionIndex] {
         case .arrangement:
-            AuthorListView(authors: [])
+            AuthorListView()
         case .vocalRecording:
             MusicListView(songs: [])
         case .mixing:

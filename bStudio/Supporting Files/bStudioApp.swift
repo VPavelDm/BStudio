@@ -13,7 +13,7 @@ struct bStudioApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                DayPickerView()
+                AuthorListView()
                     .preferredColorScheme(.dark)
             }
         }

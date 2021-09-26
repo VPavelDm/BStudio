@@ -34,6 +34,7 @@ struct AsyncImage: View {
             ZStack {
                 Color.clear
                 ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .xanadu))
             }
         }
     }

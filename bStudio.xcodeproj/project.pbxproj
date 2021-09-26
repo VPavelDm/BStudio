@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4A036B4C2700900A00451518 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B4B2700900A00451518 /* Service.swift */; };
+		4A036B51270091A900451518 /* AuthorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B50270091A900451518 /* AuthorList.swift */; };
 		4A11985726FD10E80035ABD7 /* DayPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11985626FD10E80035ABD7 /* DayPickerView.swift */; };
 		4A11985F26FDAB030035ABD7 /* TimePickButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11985E26FDAB030035ABD7 /* TimePickButtonStyle.swift */; };
 		4A11986226FDB54F0035ABD7 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11986126FDB54F0035ABD7 /* TimePickerView.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		4A036B4B2700900A00451518 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		4A036B50270091A900451518 /* AuthorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorList.swift; sourceTree = "<group>"; };
 		4A11985626FD10E80035ABD7 /* DayPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPickerView.swift; sourceTree = "<group>"; };
 		4A11985E26FDAB030035ABD7 /* TimePickButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickButtonStyle.swift; sourceTree = "<group>"; };
 		4A11986126FDB54F0035ABD7 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				4A167D2526F4734D0046E32D /* Song.swift */,
 				4A2EF70026F9C10000A45A0A /* OrderDetails.swift */,
 				4A036B4B2700900A00451518 /* Service.swift */,
+				4A036B50270091A900451518 /* AuthorList.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				4AC709F926FBCCD10031A24F /* CalendarViewModel.swift in Sources */,
 				4ABE81A026F45F6600CC9C60 /* AsyncImage.swift in Sources */,
 				4ABE818826F3B5F900CC9C60 /* RadioButton.swift in Sources */,
+				4A036B51270091A900451518 /* AuthorList.swift in Sources */,
 				4AC709FD26FBD8330031A24F /* Calendar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

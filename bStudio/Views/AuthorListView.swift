@@ -8,29 +8,56 @@
 import SwiftUI
 
 struct AuthorListView: View {
-    var authors: [Author]
+    @StateObject private var authorList = AuthorList()
     @State private var shouldShowMusicExamplesScreen = false
     @State private var shouldShowNextScreen = false
     
     var body: some View {
-        ScrollView {
-            LazyVStack(alignment: .leading, spacing: 16) {
-                title
-                ForEach(authors) { author in
-                    card(for: author).padding(.leading, 8)
+        content
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("VOSTOK'7")
+            .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+            .onAppear {
+                withAnimation {
+                    authorList.loadAuthorList()
                 }
             }
-            .padding(16)
+    }
+    
+    private var content: some View {
+        Group {
+            if authorList.isAuthorListLoaded {
+                ScrollView {
+                    LazyVStack(alignment: .leading, spacing: 16) {
+                        title
+                        ForEach(authorList.authors) { author in
+                            card(for: author).padding(.leading, 8)
+                        }
+                    }
+                    .padding(16)
+                }
+            } else {
+                ZStack {
+                    title
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .xanadu))
+                }
+            }
         }
-        .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("VOSTOK'7")
-        .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
     }
     private var title: some View {
-        Text("Выберите автора")
-            .font(.system(size: 34, weight: .regular))
-            .foregroundColor(.white)
+        VStack {
+            HStack {
+                Text("Выберите автора")
+                    .font(.system(size: 34, weight: .regular))
+                    .foregroundColor(.white)
+                Spacer()
+            }
+            Spacer()
+        }
+        .padding([.horizontal, .top], 16)
     }
     private func card(for author: Author) -> some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -94,7 +121,7 @@ struct AuthorListView: View {
 struct AuthorListView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            AuthorListView(authors: authors)
+            AuthorListView()
         }
     }
 }
