@@ -11,6 +11,8 @@
 		4A036B532700E7D200451518 /* Studio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B522700E7D200451518 /* Studio.swift */; };
 		4A036B552700E7F500451518 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B542700E7F500451518 /* Reservation.swift */; };
 		4A036B5727010A8300451518 /* IdentifiableString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B5627010A8300451518 /* IdentifiableString.swift */; };
+		4A036B5927010B9E00451518 /* VocalRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B5827010B9E00451518 /* VocalRecordingView.swift */; };
+		4A036B5B27010C3500451518 /* VocalRecordingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B5A27010C3500451518 /* VocalRecordingType.swift */; };
 		4A11985726FD10E80035ABD7 /* DayPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11985626FD10E80035ABD7 /* DayPickerView.swift */; };
 		4A11985F26FDAB030035ABD7 /* TimePickButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11985E26FDAB030035ABD7 /* TimePickButtonStyle.swift */; };
 		4A11986226FDB54F0035ABD7 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11986126FDB54F0035ABD7 /* TimePickerView.swift */; };
@@ -53,6 +55,8 @@
 		4A036B522700E7D200451518 /* Studio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Studio.swift; sourceTree = "<group>"; };
 		4A036B542700E7F500451518 /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		4A036B5627010A8300451518 /* IdentifiableString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableString.swift; sourceTree = "<group>"; };
+		4A036B5827010B9E00451518 /* VocalRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalRecordingView.swift; sourceTree = "<group>"; };
+		4A036B5A27010C3500451518 /* VocalRecordingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalRecordingType.swift; sourceTree = "<group>"; };
 		4A11985626FD10E80035ABD7 /* DayPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPickerView.swift; sourceTree = "<group>"; };
 		4A11985E26FDAB030035ABD7 /* TimePickButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickButtonStyle.swift; sourceTree = "<group>"; };
 		4A11986126FDB54F0035ABD7 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -219,6 +223,7 @@
 				4A2EF6F926F9ADC600A45A0A /* DetailsView.swift */,
 				4A11985626FD10E80035ABD7 /* DayPickerView.swift */,
 				4A6A0F1E26FE626100BC9CCD /* AuthenticationView.swift */,
+				4A036B5827010B9E00451518 /* VocalRecordingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				4A036B4B2700900A00451518 /* Service.swift */,
 				4A036B522700E7D200451518 /* Studio.swift */,
 				4A036B542700E7F500451518 /* Reservation.swift */,
+				4A036B5A27010C3500451518 /* VocalRecordingType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -373,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ABE817126F3970F00CC9C60 /* ContentView.swift in Sources */,
+				4A036B5927010B9E00451518 /* VocalRecordingView.swift in Sources */,
 				4AC709FB26FBCD000031A24F /* MonthMetadata.swift in Sources */,
 				4A036B552700E7F500451518 /* Reservation.swift in Sources */,
 				4A2EF6FA26F9ADC600A45A0A /* DetailsView.swift in Sources */,
@@ -400,6 +407,7 @@
 				4ABE819326F3C60400CC9C60 /* ProvidedView.swift in Sources */,
 				4A11985F26FDAB030035ABD7 /* TimePickButtonStyle.swift in Sources */,
 				4A11986226FDB54F0035ABD7 /* TimePickerView.swift in Sources */,
+				4A036B5B27010C3500451518 /* VocalRecordingType.swift in Sources */,
 				4ABE816F26F3970F00CC9C60 /* bStudioApp.swift in Sources */,
 				4A167D7B26F5C30A0046E32D /* AudioPlayerView.swift in Sources */,
 				4A167D2626F4734D0046E32D /* Song.swift in Sources */,

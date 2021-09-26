@@ -9,6 +9,7 @@ import Foundation
 
 class Studio: ObservableObject {
     var services: [Service] { Service.allCases }
+    var vocalRecordingTypes: [VocalRecordingType] { VocalRecordingType.allCases }
     @Published var reservations: [Reservation] = []
     @Published var authors: [Author] = []
     @Published var workTimes: [String] = (6...23).map { "\($0):00" }
