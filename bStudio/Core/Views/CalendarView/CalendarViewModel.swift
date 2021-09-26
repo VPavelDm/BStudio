@@ -26,6 +26,10 @@ class CalendarViewModel: ObservableObject {
         let dateInMonth = calendar.date(byAdding: .month, value: page, to: Date()) ?? Date()
         days = CalendarViewModel.generateDaysInMonth(for: dateInMonth)
     }
+    func shouldHighlightDay(_ date: Date, selectionDate: Date, selectionPage: Int) -> Bool {
+        let anyDateForMonthWithinPage = calendar.date(byAdding: .month, value: selectionPage, to: Date()) ?? Date()
+        return isTheSameDate(date, selection: selectionDate) && calendar.isDate(selectionDate, inSameMonthAs: anyDateForMonthWithinPage)
+    }
     func sameDateInNextMonth(for date: Date) -> Date {
         calendar.date(byAdding: .month, value: 1, to: date) ?? date
     }
@@ -35,14 +39,16 @@ class CalendarViewModel: ObservableObject {
     func isTheSameDate(_ date: Date, selection: Date) -> Bool {
         calendar.isDate(date, inSameDayAs: selection)
     }
-    func isDateEnabled(_ date: Date, selection: Date) -> Bool {
-        guard calendar.isDate(date, inSameMonthAs: selection) else { return false }
+    func isDateEnabled(_ date: Date, selectionPage: Int) -> Bool {
+        let anyDateForMonthWithinPage = calendar.date(byAdding: .month, value: selectionPage, to: Date()) ?? Date()
+        guard calendar.isDate(date, inSameMonthAs: anyDateForMonthWithinPage) else { return false }
         return !calendar.isDateInPastAndNotToday(date)
     }
-    func textColor(for date: Date, selection: Date) -> Color {
+    func textColor(for date: Date, selection: Date, selectionPage: Int) -> Color {
         guard !isTheSameDate(date, selection: selection) else { return .white }
+        let anyDateForMonthWithinPage = calendar.date(byAdding: .month, value: selectionPage, to: Date()) ?? Date()
+        guard calendar.isDate(date, inSameMonthAs: anyDateForMonthWithinPage) else { return .clear }
         guard !isTheSameDate(date, selection: Date()) else { return .red }
-        guard calendar.isDate(date, inSameMonthAs: selection) else { return .clear }
         return calendar.isDateInPastAndNotToday(date) ? .secondary : .primary
     }
     func formatMonthAndYear(for page: Int) -> String {
