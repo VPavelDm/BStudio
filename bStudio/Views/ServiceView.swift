@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct ServiceView: View {
-    private let services = ["Написание аранжировки",
-                            "Запись вокала",
-                            "Сведение",
-                            "Мастеринг"]
+    private let services: [Service] = Service.allCases
     @State private var shouldNavigateToNextScreen = false
     @State private var selectionIndex = 0
     
@@ -39,17 +36,31 @@ struct ServiceView: View {
             .foregroundColor(.text)
     }
     private var servicesView: some View {
-        RadioButtonPicker(values: services, selectionIndex: $selectionIndex) { text in
+        RadioButtonPicker(values: services.map { $0.title }, selectionIndex: $selectionIndex) { text in
             Text(text)
                 .font(.system(size: .radioButtonFontSize, weight: .radioButton))
                 .foregroundColor(.text)
         }
     }
     private var next: some View {
-        NavigationLink(destination: AuthorListView(authors: authors), isActive: $shouldNavigateToNextScreen) {
+        NavigationLink(destination: nextScreen, isActive: $shouldNavigateToNextScreen) {
             RoundedButton(text: "Дальше") {
                 shouldNavigateToNextScreen = true
             }
+        }
+    }
+    
+    @ViewBuilder
+    private var nextScreen: some View {
+        switch services[selectionIndex] {
+        case .arrangement:
+            AuthorListView(authors: [])
+        case .vocalRecording:
+            MusicListView(songs: [])
+        case .mixing:
+            MusicListView(songs: [])
+        case .mastering:
+            DayPickerView()
         }
     }
 }
