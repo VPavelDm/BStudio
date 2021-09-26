@@ -290,8 +290,6 @@
 			dependencies = (
 			);
 			name = bStudio;
-			packageProductDependencies = (
-			);
 			productName = bStudio;
 			productReference = 4ABE816B26F3970F00CC9C60 /* bStudio.app */;
 			productType = "com.apple.product-type.application";
@@ -319,8 +317,6 @@
 				Base,
 			);
 			mainGroup = 4ABE816226F3970F00CC9C60;
-			packageReferences = (
-			);
 			productRefGroup = 4ABE816C26F3970F00CC9C60 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
