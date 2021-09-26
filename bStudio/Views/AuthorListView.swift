@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AuthorListView: View {
     @StateObject private var authorList = AuthorList()
+    @State private var isAuthorListLoaded = false
     @State private var shouldShowMusicExamplesScreen = false
     @State private var shouldShowNextScreen = false
     
@@ -20,15 +21,18 @@ struct AuthorListView: View {
             .navigationTitle("VOSTOK'7")
             .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
             .onAppear {
+                authorList.loadAuthorList()
+            }
+            .onReceive(authorList.$authors) { authorList in
                 withAnimation {
-                    authorList.loadAuthorList()
+                    isAuthorListLoaded = !authorList.isEmpty
                 }
             }
     }
     
     private var content: some View {
-        Group {
-            if authorList.isAuthorListLoaded {
+        ZStack {
+            if isAuthorListLoaded {
                 ScrollView {
                     LazyVStack(alignment: .leading, spacing: 16) {
                         title
@@ -39,25 +43,15 @@ struct AuthorListView: View {
                     .padding(16)
                 }
             } else {
-                ZStack {
-                    title
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .xanadu))
-                }
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .xanadu))
             }
         }
     }
     private var title: some View {
-        VStack {
-            HStack {
-                Text("Выберите автора")
-                    .font(.system(size: 34, weight: .regular))
-                    .foregroundColor(.white)
-                Spacer()
-            }
-            Spacer()
-        }
-        .padding([.horizontal, .top], 16)
+        Text("Выберите автора")
+            .font(.system(size: 34, weight: .regular))
+            .foregroundColor(.white)
     }
     private func card(for author: Author) -> some View {
         VStack(alignment: .leading, spacing: 16) {
