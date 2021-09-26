@@ -77,7 +77,7 @@ struct ServiceView: View {
         case .mixing:
             MusicListView(songs: [])
         case .mastering:
-            DayPickerView()
+            MusicListView(songs: [])
         }
     }
 }

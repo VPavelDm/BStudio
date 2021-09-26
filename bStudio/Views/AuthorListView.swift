@@ -83,7 +83,7 @@ struct AuthorListView: View {
         }
     }
     private var detailsView: some View {
-        DetailsView()
+        DetailsView<ArrangementOrderDetails>()
     }
     private func listen(author: Author) -> some View {
         NavigationLink(destination: MusicListView(songs: author.songs), isActive: $shouldShowMusicExamplesScreen) {

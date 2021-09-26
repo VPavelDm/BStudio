@@ -7,8 +7,17 @@
 
 import SwiftUI
 
-struct DetailsView: View {
-    @EnvironmentObject private var orderDetails: OrderDetails
+protocol ArrangementDetails: ObservableObject {
+    var songs: [String] { get set }
+    var suggestionsForWork: String { get set }
+    var workTypes: [String] { get }
+    var selectedWorkTypeIndex: Int { get set }
+    
+    func addNewSong()
+}
+
+struct DetailsView<ViewModel>: View where ViewModel: ArrangementDetails {
+    @EnvironmentObject private var arrangementDetails: ViewModel
     @State private var shouldNavigateToNextScreen = false
     @State private var shouldShowNotFilledAlert = false
     
@@ -52,8 +61,8 @@ struct DetailsView: View {
             referenceTitle
             HStack(alignment: .top, spacing: 8) {
                 VStack {
-                    ForEach(orderDetails.songs.indices, id: \.self) { index in
-                        referenceInputs(text: $orderDetails.songs[index])
+                    ForEach(arrangementDetails.songs.indices, id: \.self) { index in
+                        referenceInputs(text: $arrangementDetails.songs[index])
                     }
                 }
                 moreSongs
@@ -75,7 +84,7 @@ struct DetailsView: View {
     private var moreSongs: some View {
         Button {
             withAnimation {
-                orderDetails.addNewSong()
+                arrangementDetails.addNewSong()
             }
         } label: {
             Text("Ещё")
@@ -87,16 +96,16 @@ struct DetailsView: View {
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.xanadu, lineWidth: 2)
                 )
-                .opacity(orderDetails.songs.count == 3 ? 0.5 : 1)
+                .opacity(arrangementDetails.songs.count == 3 ? 0.5 : 1)
         }
-        .disabled(orderDetails.songs.count == 3)
+        .disabled(arrangementDetails.songs.count == 3)
     }
     
     // MARK: Comments
     private var commentsContent: some View {
         VStack(alignment: .leading, spacing: 8) {
             commentsTitle
-            commentsInput(text: $orderDetails.suggestionsForWork)
+            commentsInput(text: $arrangementDetails.suggestionsForWork)
         }
     }
     private var commentsTitle: some View {
@@ -125,8 +134,8 @@ struct DetailsView: View {
             .foregroundColor(.white)
     }
     private var workTypePicker: some View {
-        RadioButtonPicker(values: orderDetails.workTypes,
-                          selectionIndex: $orderDetails.selectedWorkTypeIndex) { text in
+        RadioButtonPicker(values: arrangementDetails.workTypes,
+                          selectionIndex: $arrangementDetails.selectedWorkTypeIndex) { text in
             Text(text)
                 .font(.system(size: 20, weight: .regular))
                 .foregroundColor(.textColor)
@@ -137,7 +146,7 @@ struct DetailsView: View {
     private var next: some View {
         NavigationLink(destination: calendarView, isActive: $shouldNavigateToNextScreen) {
             RoundedButton(text: "Дальше") {
-                if orderDetails.songs.first?.isEmpty ?? true {
+                if arrangementDetails.songs.first?.isEmpty ?? true {
                     shouldShowNotFilledAlert = true
                 } else {
                     shouldNavigateToNextScreen = true
@@ -146,15 +155,15 @@ struct DetailsView: View {
         }
     }
     private var calendarView: some View {
-        DayPickerView()
+        DayPickerView<ArrangementOrderDetails>()
     }
 }
 
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            DetailsView()
-                .environmentObject(OrderDetails())
+            DetailsView<ArrangementOrderDetails>()
+                .environmentObject(ArrangementOrderDetails())
                 .environmentObject(Studio())
         }
     }

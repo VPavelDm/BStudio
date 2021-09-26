@@ -7,9 +7,15 @@
 
 import SwiftUI
 
-struct DayPickerView: View {
+protocol DateDetails: ObservableObject {
+    var selectionDate: Date { get set }
+    var startTime: String? { get set }
+    var endTime: String? { get set }
+}
+
+struct DayPickerView<ViewModel>: View where ViewModel: DateDetails {
     @EnvironmentObject private var studio: Studio
-    @EnvironmentObject var orderDetails: OrderDetails
+    @EnvironmentObject var dateDetails: ViewModel
     @State private var shouldNavigateToNextScreen = false
     @State private var notFilledFieldErrorMessage: IdentifiableString?
     
@@ -45,20 +51,20 @@ struct DayPickerView: View {
             .foregroundColor(.white)
     }
     private var calendar: some View {
-        CalendarView(selection: $orderDetails.selectionDate,
+        CalendarView(selection: $dateDetails.selectionDate,
                      unavailableDateRanges: studio.reservations.map { $0.timeInterval })
     }
     private var timePicker: some View {
-        TimePickerView(startTime: $orderDetails.startTime,
-                       endTime: $orderDetails.endTime,
+        TimePickerView(startTime: $dateDetails.startTime,
+                       endTime: $dateDetails.endTime,
                        times: studio.workTimes)
     }
     private var next: some View {
-        NavigationLink(destination: AuthenticationView(), isActive: $shouldNavigateToNextScreen) {
+        NavigationLink(destination: nextScreen, isActive: $shouldNavigateToNextScreen) {
             RoundedButton(text: "Дальше") {
-                if orderDetails.startTime == nil {
+                if dateDetails.startTime == nil {
                     notFilledFieldErrorMessage = IdentifiableString(text: "Для того, чтобы продолжить, Вам необходимо выбрать время, когда Вы придете в студию")
-                } else if orderDetails.endTime == nil {
+                } else if dateDetails.endTime == nil {
                     notFilledFieldErrorMessage = IdentifiableString(text: "Для того, чтобы продолжить, Вам необходимо выбрать время, когда Вы закончите работу в студии")
                 } else {
                     shouldNavigateToNextScreen = true
@@ -66,15 +72,18 @@ struct DayPickerView: View {
             }
         }
     }
+    private var nextScreen: some View {
+        AuthenticationView<ArrangementOrderDetails>()
+    }
 }
 
 struct DayPickerView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            DayPickerView()
+            DayPickerView<ArrangementOrderDetails>()
                 .preferredColorScheme(.dark)
                 .environmentObject(Studio())
-                .environmentObject(OrderDetails())
+                .environmentObject(ArrangementOrderDetails())
         }
     }
 }

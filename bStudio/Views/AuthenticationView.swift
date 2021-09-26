@@ -7,8 +7,14 @@
 
 import SwiftUI
 
-struct AuthenticationView: View {
-    @EnvironmentObject private var orderDetails: OrderDetails
+protocol AuthenticationDetails: ObservableObject {
+    var clientName: String { get set }
+    var clientPhoneNumber: String { get set }
+    var comments: String { get set }
+}
+
+struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetails {
+    @EnvironmentObject private var authenticationDetails: ViewModel
     @State private var notFilledFieldErrorMessage: IdentifiableString?
     
     var body: some View {
@@ -43,34 +49,33 @@ struct AuthenticationView: View {
         }
     }
     private var nameTextField: some View {
-        TextField("Введите имя*", text: $orderDetails.clientName)
-            .textFieldStyle(StudioTextFieldStyle(when: orderDetails.clientName.isEmpty) {
+        TextField("Введите имя*", text: $authenticationDetails.clientName)
+            .textFieldStyle(StudioTextFieldStyle(when: authenticationDetails.clientName.isEmpty) {
                 Text("Введите имя*")
                     .foregroundColor(.white.opacity(0.6))
             })
     }
     private var phoneNumberTextField: some View {
-        TextField("Введите номер телефона*", text: $orderDetails.clientPhoneNumber)
-            .textFieldStyle(StudioTextFieldStyle(when: orderDetails.clientPhoneNumber.isEmpty) {
+        TextField("Введите номер телефона*", text: $authenticationDetails.clientPhoneNumber)
+            .textFieldStyle(StudioTextFieldStyle(when: authenticationDetails.clientPhoneNumber.isEmpty) {
                 Text("Введите номер телефона*")
                     .foregroundColor(.white.opacity(0.6))
             })
     }
     private var commentsTextField: some View {
-        TextField("Напишите любые комментарии", text: $orderDetails.comments)
-            .textFieldStyle(StudioTextFieldStyle(when: orderDetails.comments.isEmpty) {
+        TextField("Напишите любые комментарии", text: $authenticationDetails.comments)
+            .textFieldStyle(StudioTextFieldStyle(when: authenticationDetails.comments.isEmpty) {
                 Text("Напишите любые комментарии")
                     .foregroundColor(.white.opacity(0.6))
             })
     }
     private var makeOrder: some View {
         RoundedButton(text: "Записаться") {
-            if orderDetails.clientName.isEmpty {
+            if authenticationDetails.clientName.isEmpty {
                 notFilledFieldErrorMessage = .init(text: "Для того, чтобы продолжить, Вам необходимо ввести Ваше имя")
-            } else if orderDetails.clientPhoneNumber.isEmpty {
+            } else if authenticationDetails.clientPhoneNumber.isEmpty {
                 notFilledFieldErrorMessage = .init(text: "Для того, чтобы продолжить, Вам необходимо ввести Ваш номер телефона")
             } else {
-                print("Success")
             }
         }
     }
@@ -79,8 +84,8 @@ struct AuthenticationView: View {
 struct AuthenticationView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            AuthenticationView()
-                .environmentObject(OrderDetails())
+            AuthenticationView<ArrangementOrderDetails>()
+                .environmentObject(ArrangementOrderDetails())
         }
     }
 }

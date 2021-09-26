@@ -1,5 +1,5 @@
 //
-//  OrderDetails.swift
+//  ArrangementOrderDetails.swift
 //  bStudio
 //
 //  Created by Pavel Vaitsikhouski on 21.09.21.
@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-class OrderDetails: ObservableObject {
-    
+class ArrangementOrderDetails: ObservableObject, DateDetails, ArrangementDetails, AuthenticationDetails {
     @Published var songs: [String] = [""]
     @Published var suggestionsForWork: String = ""
     @Published var selectedWorkTypeIndex = 0

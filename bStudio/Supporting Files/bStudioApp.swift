@@ -14,7 +14,7 @@ struct bStudioApp: App {
             ContentView()
                 .preferredColorScheme(.dark)
                 .environmentObject(Studio())
-                .environmentObject(OrderDetails())
+                .environmentObject(ArrangementOrderDetails())
         }
     }
 }
