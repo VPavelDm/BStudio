@@ -13,7 +13,7 @@ protocol DateDetails: ObservableObject {
     var endTime: String? { get set }
 }
 
-struct DayPickerView<ViewModel>: View where ViewModel: DateDetails {
+struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: AuthenticationDetails {
     @EnvironmentObject private var studio: Studio
     @EnvironmentObject var dateDetails: ViewModel
     @State private var shouldNavigateToNextScreen = false
@@ -73,7 +73,7 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails {
         }
     }
     private var nextScreen: some View {
-        AuthenticationView<ArrangementOrderDetails>()
+        AuthenticationView<ViewModel>()
     }
 }
 

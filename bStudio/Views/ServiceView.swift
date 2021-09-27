@@ -73,7 +73,7 @@ struct ServiceView: View {
         case .arrangement:
             AuthorListView()
         case .vocalRecording:
-            MusicListView(songs: [])
+            VocalRecordingTypeView<VocalRecordingDetails>()
         case .mixing:
             MusicListView(songs: [])
         case .mastering:

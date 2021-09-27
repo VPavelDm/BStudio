@@ -1,5 +1,5 @@
 //
-//  DetailsView.swift
+//  ArrangementDetailsView.swift
 //  bStudio
 //
 //  Created by Pavel Vaitsikhouski on 21.09.21.
@@ -16,7 +16,7 @@ protocol ArrangementDetails: ObservableObject {
     func addNewSong()
 }
 
-struct DetailsView<ViewModel>: View where ViewModel: ArrangementDetails {
+struct ArrangementDetailsView<ViewModel>: View where ViewModel: ArrangementDetails {
     @EnvironmentObject private var arrangementDetails: ViewModel
     @State private var shouldNavigateToNextScreen = false
     @State private var shouldShowNotFilledAlert = false
@@ -162,7 +162,7 @@ struct DetailsView<ViewModel>: View where ViewModel: ArrangementDetails {
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            DetailsView<ArrangementOrderDetails>()
+            ArrangementDetailsView<ArrangementOrderDetails>()
                 .environmentObject(ArrangementOrderDetails())
                 .environmentObject(Studio())
         }

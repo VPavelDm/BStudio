@@ -11,6 +11,8 @@ protocol AuthenticationDetails: ObservableObject {
     var clientName: String { get set }
     var clientPhoneNumber: String { get set }
     var comments: String { get set }
+    
+    func createParamsForRequest() -> [String: Any]
 }
 
 struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetails {
@@ -76,6 +78,7 @@ struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetail
             } else if authenticationDetails.clientPhoneNumber.isEmpty {
                 notFilledFieldErrorMessage = .init(text: "Для того, чтобы продолжить, Вам необходимо ввести Ваш номер телефона")
             } else {
+                print(authenticationDetails.createParamsForRequest())
             }
         }
     }

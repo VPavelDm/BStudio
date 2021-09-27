@@ -1,5 +1,5 @@
 //
-//  VocalRecordingView.swift
+//  VocalRecordingTypeView.swift
 //  bStudio
 //
 //  Created by Pavel Vaitsikhouski on 26.09.21.
@@ -7,9 +7,13 @@
 
 import SwiftUI
 
-struct VocalRecordingView: View {
+protocol VocalRecordingTypeDetails: ObservableObject {
+    var selectionIndex: Int { get set }
+}
+
+struct VocalRecordingTypeView<ViewModel>: View where ViewModel: VocalRecordingTypeDetails {
     @EnvironmentObject private var studio: Studio
-    @State private var selectionIndex: Int = 0
+    @EnvironmentObject private var vocalRecordingTypeDetails: ViewModel
     @State private var shouldNavigateToNextScreen = false
     
     var body: some View {
@@ -43,7 +47,7 @@ struct VocalRecordingView: View {
     private var servicesView: some View {
         RadioButtonPicker(
             values: studio.vocalRecordingTypes.map { $0.title },
-            selectionIndex: $selectionIndex
+            selectionIndex: $vocalRecordingTypeDetails.selectionIndex
         ) { text in
             Text(text)
                 .font(.system(size: 20, weight: .regular))
@@ -51,22 +55,22 @@ struct VocalRecordingView: View {
         }
     }
     private var next: some View {
-        NavigationLink(destination: Text("Hello"), isActive: $shouldNavigateToNextScreen) {
+        NavigationLink(destination: calendarView, isActive: $shouldNavigateToNextScreen) {
             RoundedButton(text: "Дальше") {
-//                if orderDetails.songs.first?.isEmpty ?? true {
-//                    shouldShowNotFilledAlert = true
-//                } else {
-//                    shouldNavigateToNextScreen = true
-//                }
+                shouldNavigateToNextScreen = true
             }
         }
+    }
+    private var calendarView: some View {
+        DayPickerView<VocalRecordingDetails>()
     }
 
 }
 
 struct VocalRecordingView_Previews: PreviewProvider {
     static var previews: some View {
-        VocalRecordingView()
+        VocalRecordingTypeView<VocalRecordingDetails>()
             .environmentObject(Studio())
+            .environmentObject(VocalRecordingDetails())
     }
 }
