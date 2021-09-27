@@ -72,15 +72,15 @@ struct VocalRecordingTypeView<ViewModel>: View where ViewModel: VocalRecordingTy
         }
     }
     private var calendarView: some View {
-        DayPickerView<VocalRecordingDetails>()
+        DayPickerView<VocalRecordingOrderDetails>()
     }
 
 }
 
 struct VocalRecordingView_Previews: PreviewProvider {
     static var previews: some View {
-        VocalRecordingTypeView<VocalRecordingDetails>()
+        VocalRecordingTypeView<VocalRecordingOrderDetails>()
             .environmentObject(Studio())
-            .environmentObject(VocalRecordingDetails())
+            .environmentObject(VocalRecordingOrderDetails())
     }
 }

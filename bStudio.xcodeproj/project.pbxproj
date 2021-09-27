@@ -13,7 +13,9 @@
 		4A036B5727010A8300451518 /* IdentifiableString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B5627010A8300451518 /* IdentifiableString.swift */; };
 		4A036B5927010B9E00451518 /* VocalRecordingTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B5827010B9E00451518 /* VocalRecordingTypeView.swift */; };
 		4A036B5B27010C3500451518 /* VocalRecordingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B5A27010C3500451518 /* VocalRecordingType.swift */; };
-		4A036B5D27011D6D00451518 /* VocalRecordingDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B5C27011D6D00451518 /* VocalRecordingDetails.swift */; };
+		4A036B5D27011D6D00451518 /* VocalRecordingOrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B5C27011D6D00451518 /* VocalRecordingOrderDetails.swift */; };
+		4A036B5F2701911100451518 /* MixingDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B5E2701911100451518 /* MixingDetailsView.swift */; };
+		4A036B612701917C00451518 /* MixingOrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A036B602701917C00451518 /* MixingOrderDetails.swift */; };
 		4A11985726FD10E80035ABD7 /* DayPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11985626FD10E80035ABD7 /* DayPickerView.swift */; };
 		4A11985F26FDAB030035ABD7 /* TimePickButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11985E26FDAB030035ABD7 /* TimePickButtonStyle.swift */; };
 		4A11986226FDB54F0035ABD7 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A11986126FDB54F0035ABD7 /* TimePickerView.swift */; };
@@ -58,7 +60,9 @@
 		4A036B5627010A8300451518 /* IdentifiableString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableString.swift; sourceTree = "<group>"; };
 		4A036B5827010B9E00451518 /* VocalRecordingTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalRecordingTypeView.swift; sourceTree = "<group>"; };
 		4A036B5A27010C3500451518 /* VocalRecordingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalRecordingType.swift; sourceTree = "<group>"; };
-		4A036B5C27011D6D00451518 /* VocalRecordingDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalRecordingDetails.swift; sourceTree = "<group>"; };
+		4A036B5C27011D6D00451518 /* VocalRecordingOrderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalRecordingOrderDetails.swift; sourceTree = "<group>"; };
+		4A036B5E2701911100451518 /* MixingDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixingDetailsView.swift; sourceTree = "<group>"; };
+		4A036B602701917C00451518 /* MixingOrderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixingOrderDetails.swift; sourceTree = "<group>"; };
 		4A11985626FD10E80035ABD7 /* DayPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPickerView.swift; sourceTree = "<group>"; };
 		4A11985E26FDAB030035ABD7 /* TimePickButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickButtonStyle.swift; sourceTree = "<group>"; };
 		4A11986126FDB54F0035ABD7 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -226,6 +230,7 @@
 				4A11985626FD10E80035ABD7 /* DayPickerView.swift */,
 				4A6A0F1E26FE626100BC9CCD /* AuthenticationView.swift */,
 				4A036B5827010B9E00451518 /* VocalRecordingTypeView.swift */,
+				4A036B5E2701911100451518 /* MixingDetailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -296,8 +301,9 @@
 				4A036B522700E7D200451518 /* Studio.swift */,
 				4A036B542700E7F500451518 /* Reservation.swift */,
 				4A036B5A27010C3500451518 /* VocalRecordingType.swift */,
-				4A036B5C27011D6D00451518 /* VocalRecordingDetails.swift */,
+				4A036B5C27011D6D00451518 /* VocalRecordingOrderDetails.swift */,
 				4A2EF70026F9C10000A45A0A /* ArrangementOrderDetails.swift */,
+				4A036B602701917C00451518 /* MixingOrderDetails.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -395,7 +401,8 @@
 				4ABE819126F3C43500CC9C60 /* NavigationBarModifier.swift in Sources */,
 				4A2EF6FF26F9B66100A45A0A /* StudioTextFieldStyle.swift in Sources */,
 				4ABE818026F39B1400CC9C60 /* UIExtensions.swift in Sources */,
-				4A036B5D27011D6D00451518 /* VocalRecordingDetails.swift in Sources */,
+				4A036B5D27011D6D00451518 /* VocalRecordingOrderDetails.swift in Sources */,
+				4A036B5F2701911100451518 /* MixingDetailsView.swift in Sources */,
 				4A489F7226FA50BE00B428B2 /* Date.swift in Sources */,
 				4A11985726FD10E80035ABD7 /* DayPickerView.swift in Sources */,
 				4A167D2026F467900046E32D /* MusicListView.swift in Sources */,
@@ -418,6 +425,7 @@
 				4AC709F926FBCCD10031A24F /* CalendarViewModel.swift in Sources */,
 				4ABE81A026F45F6600CC9C60 /* AsyncImage.swift in Sources */,
 				4ABE818826F3B5F900CC9C60 /* RadioButton.swift in Sources */,
+				4A036B612701917C00451518 /* MixingOrderDetails.swift in Sources */,
 				4A036B532700E7D200451518 /* Studio.swift in Sources */,
 				4AC709FD26FBD8330031A24F /* Calendar.swift in Sources */,
 			);

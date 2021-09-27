@@ -15,7 +15,8 @@ struct bStudioApp: App {
                 .preferredColorScheme(.dark)
                 .environmentObject(Studio())
                 .environmentObject(ArrangementOrderDetails())
-                .environmentObject(VocalRecordingDetails())
+                .environmentObject(VocalRecordingOrderDetails())
+                .environmentObject(MixingOrderDetails())
         }
     }
 }

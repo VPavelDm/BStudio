@@ -1,5 +1,5 @@
 //
-//  VocalRecordingDetails.swift
+//  VocalRecordingOrderDetails.swift
 //  bStudio
 //
 //  Created by Pavel Vaitsikhouski on 27.09.21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class VocalRecordingDetails: ObservableObject, VocalRecordingTypeDetails, DateDetails, AuthenticationDetails {
+class VocalRecordingOrderDetails: ObservableObject, VocalRecordingTypeDetails, DateDetails, AuthenticationDetails {
     @Published var clientName: String = ""
     @Published var clientPhoneNumber: String = ""
     @Published var comments: String = ""

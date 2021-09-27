@@ -71,13 +71,13 @@ struct ServiceView: View {
     private var nextScreen: some View {
         switch studio.services[selectionIndex] {
         case .arrangement:
-            AuthorListView()
+            AuthorListView(service: .arrangement)
         case .vocalRecording:
-            VocalRecordingTypeView<VocalRecordingDetails>()
+            VocalRecordingTypeView<VocalRecordingOrderDetails>()
         case .mixing:
-            MusicListView(songs: [])
+            AuthorListView(service: .mixing)
         case .mastering:
-            MusicListView(songs: [])
+            AuthorListView(service: .mastering)
         }
     }
 }
