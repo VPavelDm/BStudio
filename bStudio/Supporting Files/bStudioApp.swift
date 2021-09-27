@@ -13,6 +13,7 @@ struct bStudioApp: App {
         WindowGroup {
             ContentView()
                 .preferredColorScheme(.dark)
+                .accentColor(.white)
                 .environmentObject(Studio())
                 .environmentObject(ArrangementOrderDetails())
                 .environmentObject(VocalRecordingOrderDetails())
