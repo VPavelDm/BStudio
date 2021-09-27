@@ -14,19 +14,19 @@ struct Author: Identifiable, Equatable {
     var arrangements: [Arrangement]
     var masteringAndMixing: String?
     var songs: [Song]
-    var service: Service
+    var services: [Service]
     
     init(name: String,
          imageURL: String,
          arrangements: [Arrangement] = [],
          masteringAndMixing: String? = nil,
          songs: [Song],
-         service: Service) {
+         services: [Service]) {
         self.name = name
         self.imageURL = URL(string: imageURL)!
         self.arrangements = arrangements
         self.songs = songs
-        self.service = service
+        self.services = services
         self.masteringAndMixing = masteringAndMixing
     }
     
