@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AuthorListView: View {
     @EnvironmentObject private var studio: Studio
-    @State private var shouldShowMusicExamplesScreen = false
+    @State private var shouldShowMusicExamplesScreen: String?
     @State private var shouldShowNextScreen = false
     var service: Service
     
@@ -115,9 +115,11 @@ struct AuthorListView: View {
         }
     }
     private func listen(author: Author) -> some View {
-        NavigationLink(destination: MusicListView(songs: author.songs), isActive: $shouldShowMusicExamplesScreen) {
+        NavigationLink(tag: author.id.uuidString, selection: $shouldShowMusicExamplesScreen) {
+            MusicListView(songs: author.songs)
+        } label: {
             Button {
-                shouldShowMusicExamplesScreen = true
+                shouldShowMusicExamplesScreen = author.id.uuidString
             } label: {
                 Text("Слушать примеры работ")
                     .frame(maxWidth: .infinity)
