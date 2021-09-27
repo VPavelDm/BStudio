@@ -11,7 +11,6 @@ class CalendarViewModel: ObservableObject {
     private var calendar: Calendar { CalendarViewModel.calendar }
     
     // MARK: - Properties
-    private let unavailableDateRanges: [ClosedRange<Date>]
     var days: [Day] = CalendarViewModel.generateDaysInMonth(for: Date())
     // 7 строк: [Пн, Вт, Ср, ..., Вс]
     var daysLetters: [String] {
@@ -20,11 +19,6 @@ class CalendarViewModel: ObservableObject {
         return days
             .prefix(upTo: 7)
             .map { day in dateFormatter.string(from: day.date) }
-    }
-    
-    // MARK: - Inits
-    init(unavailableDateRanges: [ClosedRange<Date>]) {
-        self.unavailableDateRanges = unavailableDateRanges
     }
     
     // MARK: - Intents
@@ -40,13 +34,13 @@ class CalendarViewModel: ObservableObject {
     func isTheSameDate(_ date: Date, selection: Date) -> Bool {
         calendar.isDate(date, inSameDayAs: selection)
     }
-    func isDateEnabled(_ date: Date, selectionPage: Int) -> Bool {
+    func isDateEnabled(_ date: Date, selectionPage: Int, unavailableDateRanges: [ClosedRange<Date>]) -> Bool {
         let anyDateForMonthWithinPage = calendar.date(byAdding: .month, value: selectionPage, to: Date()) ?? Date()
         guard calendar.isDate(date, inSameMonthAs: anyDateForMonthWithinPage) else { return false }
         guard !calendar.isDateInPastAndNotToday(date) else { return false }
         return !unavailableDateRanges.contains(where: { $0.contains(date) })
     }
-    func textColor(for date: Date, selection: Date, selectionPage: Int) -> Color {
+    func textColor(for date: Date, selection: Date, selectionPage: Int, unavailableDateRanges: [ClosedRange<Date>]) -> Color {
         let anyDateForMonthWithinPage = calendar.date(byAdding: .month, value: selectionPage, to: Date()) ?? Date()
         guard calendar.isDate(date, inSameMonthAs: anyDateForMonthWithinPage) else { return .clear }
         guard !isTheSameDate(date, selection: selection) else { return .white }

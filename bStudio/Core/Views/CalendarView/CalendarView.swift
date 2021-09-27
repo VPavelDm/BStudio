@@ -11,17 +11,18 @@ struct CalendarView: View {
     
     // MARK: - Properties
     private let columns: [GridItem] = (1...7).map { _ in GridItem(.flexible()) }
-    @ObservedObject private var calendar: CalendarViewModel
+    private var unavailableDateRanges: [ClosedRange<Date>]
+    @StateObject private var calendar = CalendarViewModel()
     @State private var isBackTransitionAnimation = false
     @Binding var selectionDate: Date
     @State private var selectionPage = 0
     
     // MARK: - Inits
     init(selection: Binding<Date>, unavailableDateRanges: [ClosedRange<Date>]) {
-        _selectionDate = selection
-        calendar = CalendarViewModel(unavailableDateRanges: unavailableDateRanges)
+        self.unavailableDateRanges = unavailableDateRanges
+        self._selectionDate = selection
     }
-
+    
     // MARK: - Views
     var body: some View {
         VStack {
@@ -101,13 +102,13 @@ struct CalendarView: View {
                 .onTapGesture {
                     selectionDate = day.date
                 }
-                .disabled(!calendar.isDateEnabled(day.date, selectionPage: selectionPage))
+                .disabled(!calendar.isDateEnabled(day.date, selectionPage: selectionPage, unavailableDateRanges: unavailableDateRanges))
         }
         .aspectRatio(1.0, contentMode: .fill)
     }
     private func dayTextView(_ day: Day) -> some View {
         Text("\(day.number)")
-            .foregroundColor(calendar.textColor(for: day.date, selection: selectionDate, selectionPage: selectionPage))
+            .foregroundColor(calendar.textColor(for: day.date, selection: selectionDate, selectionPage: selectionPage, unavailableDateRanges: unavailableDateRanges))
             .font(calendar.textFont(for: day.date, selectionDate: selectionDate))
     }
 }
