@@ -15,6 +15,7 @@ class VocalRecordingDetails: ObservableObject, VocalRecordingTypeDetails, DateDe
     @Published var startTime: String?
     @Published var endTime: String?
     @Published var selectionIndex: Int = 0
+    @Published var otherText: String = ""
     
     func createParamsForRequest() -> [String : Any] {
         ["client_name": clientName,

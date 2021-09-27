@@ -9,6 +9,7 @@ import SwiftUI
 
 protocol VocalRecordingTypeDetails: ObservableObject {
     var selectionIndex: Int { get set }
+    var otherText: String { get set }
 }
 
 struct VocalRecordingTypeView<ViewModel>: View where ViewModel: VocalRecordingTypeDetails {
@@ -22,6 +23,9 @@ struct VocalRecordingTypeView<ViewModel>: View where ViewModel: VocalRecordingTy
             Group {
                 description
                 servicesView
+                if vocalRecordingTypeDetails.selectionIndex == 2 {
+                    otherField
+                }
                 next
             }
             .padding(.horizontal, 8)
@@ -54,11 +58,17 @@ struct VocalRecordingTypeView<ViewModel>: View where ViewModel: VocalRecordingTy
                 .foregroundColor(.textColor)
         }
     }
+    private var otherField: some View {
+        TextField("", text: $vocalRecordingTypeDetails.otherText)
+            .textFieldStyle(StudioTextFieldStyle(when: false) { Text("") })
+            .transition(.move(edge: .top))
+    }
     private var next: some View {
         NavigationLink(destination: calendarView, isActive: $shouldNavigateToNextScreen) {
             RoundedButton(text: "Дальше") {
                 shouldNavigateToNextScreen = true
             }
+            .background(Color.eerieBlack)
         }
     }
     private var calendarView: some View {
