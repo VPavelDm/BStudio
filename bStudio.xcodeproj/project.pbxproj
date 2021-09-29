@@ -28,6 +28,14 @@
 		4A2EF6FC26F9B37700A45A0A /* TextField+placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2EF6FB26F9B37700A45A0A /* TextField+placeholder.swift */; };
 		4A2EF6FF26F9B66100A45A0A /* StudioTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2EF6FE26F9B66100A45A0A /* StudioTextFieldStyle.swift */; };
 		4A2EF70126F9C10000A45A0A /* ArrangementOrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2EF70026F9C10000A45A0A /* ArrangementOrderDetails.swift */; };
+		4A3E7CEE2704491B0086D578 /* StudioRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E7CED2704491B0086D578 /* StudioRepository.swift */; };
+		4A3E7D192704CCE60086D578 /* StudioTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E7D182704CCE60086D578 /* StudioTO.swift */; };
+		4A3E7D1B2704CCF50086D578 /* AuthorTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E7D1A2704CCF50086D578 /* AuthorTO.swift */; };
+		4A3E7D1D2704CCFE0086D578 /* ReservationTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E7D1C2704CCFE0086D578 /* ReservationTO.swift */; };
+		4A3E7D1F2704CD100086D578 /* StudioMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E7D1E2704CD100086D578 /* StudioMapper.swift */; };
+		4A3E7D212704CD740086D578 /* ArrangementTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E7D202704CD740086D578 /* ArrangementTO.swift */; };
+		4A3E7D252704CDDC0086D578 /* SongTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E7D242704CDDC0086D578 /* SongTO.swift */; };
+		4A3E7D272704D2710086D578 /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E7D262704D2710086D578 /* ServerError.swift */; };
 		4A489F6D26FA390200B428B2 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A489F6C26FA390200B428B2 /* CalendarView.swift */; };
 		4A489F7226FA50BE00B428B2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A489F7126FA50BE00B428B2 /* Date.swift */; };
 		4A6A0F1F26FE626100BC9CCD /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A0F1E26FE626100BC9CCD /* AuthenticationView.swift */; };
@@ -75,6 +83,14 @@
 		4A2EF6FB26F9B37700A45A0A /* TextField+placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+placeholder.swift"; sourceTree = "<group>"; };
 		4A2EF6FE26F9B66100A45A0A /* StudioTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioTextFieldStyle.swift; sourceTree = "<group>"; };
 		4A2EF70026F9C10000A45A0A /* ArrangementOrderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrangementOrderDetails.swift; sourceTree = "<group>"; };
+		4A3E7CED2704491B0086D578 /* StudioRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioRepository.swift; sourceTree = "<group>"; };
+		4A3E7D182704CCE60086D578 /* StudioTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioTO.swift; sourceTree = "<group>"; };
+		4A3E7D1A2704CCF50086D578 /* AuthorTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorTO.swift; sourceTree = "<group>"; };
+		4A3E7D1C2704CCFE0086D578 /* ReservationTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationTO.swift; sourceTree = "<group>"; };
+		4A3E7D1E2704CD100086D578 /* StudioMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudioMapper.swift; sourceTree = "<group>"; };
+		4A3E7D202704CD740086D578 /* ArrangementTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrangementTO.swift; sourceTree = "<group>"; };
+		4A3E7D242704CDDC0086D578 /* SongTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTO.swift; sourceTree = "<group>"; };
+		4A3E7D262704D2710086D578 /* ServerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
 		4A489F6C26FA390200B428B2 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		4A489F7126FA50BE00B428B2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		4A6A0F1E26FE626100BC9CCD /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
@@ -117,6 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				4A036B412700863B00451518 /* Models */,
+				4A3E7CED2704491B0086D578 /* StudioRepository.swift */,
+				4A3E7D1E2704CD100086D578 /* StudioMapper.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -124,6 +142,12 @@
 		4A036B412700863B00451518 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4A3E7D182704CCE60086D578 /* StudioTO.swift */,
+				4A3E7D1A2704CCF50086D578 /* AuthorTO.swift */,
+				4A3E7D1C2704CCFE0086D578 /* ReservationTO.swift */,
+				4A3E7D202704CD740086D578 /* ArrangementTO.swift */,
+				4A3E7D242704CDDC0086D578 /* SongTO.swift */,
+				4A3E7D262704D2710086D578 /* ServerError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -400,17 +424,22 @@
 				4A036B4C2700900A00451518 /* Service.swift in Sources */,
 				4ABE819126F3C43500CC9C60 /* NavigationBarModifier.swift in Sources */,
 				4A2EF6FF26F9B66100A45A0A /* StudioTextFieldStyle.swift in Sources */,
+				4A3E7D272704D2710086D578 /* ServerError.swift in Sources */,
+				4A3E7D1D2704CCFE0086D578 /* ReservationTO.swift in Sources */,
 				4ABE818026F39B1400CC9C60 /* UIExtensions.swift in Sources */,
 				4A036B5D27011D6D00451518 /* VocalRecordingOrderDetails.swift in Sources */,
 				4A036B5F2701911100451518 /* MixingDetailsView.swift in Sources */,
+				4A3E7D252704CDDC0086D578 /* SongTO.swift in Sources */,
 				4A489F7226FA50BE00B428B2 /* Date.swift in Sources */,
 				4A11985726FD10E80035ABD7 /* DayPickerView.swift in Sources */,
 				4A167D2026F467900046E32D /* MusicListView.swift in Sources */,
 				4A6A0F1F26FE626100BC9CCD /* AuthenticationView.swift in Sources */,
 				4ABE817E26F3979800CC9C60 /* ServiceView.swift in Sources */,
+				4A3E7D1F2704CD100086D578 /* StudioMapper.swift in Sources */,
 				4A2EF6FC26F9B37700A45A0A /* TextField+placeholder.swift in Sources */,
 				4ABE81A226F4629000CC9C60 /* Arrangement.swift in Sources */,
 				4ABE819526F45B0D00CC9C60 /* AuthorListView.swift in Sources */,
+				4A3E7D192704CCE60086D578 /* StudioTO.swift in Sources */,
 				4ABE819B26F45C2A00CC9C60 /* Author.swift in Sources */,
 				4A036B5727010A8300451518 /* IdentifiableString.swift in Sources */,
 				4ABE818426F3B0D800CC9C60 /* RadioButtonPicker.swift in Sources */,
@@ -420,6 +449,9 @@
 				4A11986226FDB54F0035ABD7 /* TimePickerView.swift in Sources */,
 				4A036B5B27010C3500451518 /* VocalRecordingType.swift in Sources */,
 				4ABE816F26F3970F00CC9C60 /* bStudioApp.swift in Sources */,
+				4A3E7CEE2704491B0086D578 /* StudioRepository.swift in Sources */,
+				4A3E7D1B2704CCF50086D578 /* AuthorTO.swift in Sources */,
+				4A3E7D212704CD740086D578 /* ArrangementTO.swift in Sources */,
 				4A167D7B26F5C30A0046E32D /* AudioPlayerView.swift in Sources */,
 				4A167D2626F4734D0046E32D /* Song.swift in Sources */,
 				4AC709F926FBCCD10031A24F /* CalendarViewModel.swift in Sources */,
