@@ -17,7 +17,7 @@ class ArrangementOrderDetails: ObservableObject, DateDetails, ArrangementDetails
     @Published var clientName: String = ""
     @Published var clientPhoneNumber: String = ""
     @Published var comments: String = ""
-    @Published var chosenAuthorID: String?
+    @Published var chosenAuthorID: Int?
     let workTypes = ["На студии", "Удаленный"]
     
     // MARK: - Intents
@@ -27,13 +27,12 @@ class ArrangementOrderDetails: ObservableObject, DateDetails, ArrangementDetails
     func updateSong(at index: Int, with text: String) {
         songs[index] = text
     }
-    #warning("Set correct authorID")
     func createParamsForRequest() -> MakeReservationParams {
         .init(phoneNumber: clientPhoneNumber,
               clientName: clientName,
               startTime: startTime!,
               endTime: endTime!,
               date: selectionDate,
-              authorID: 1)
+              authorID: chosenAuthorID!)
     }
 }

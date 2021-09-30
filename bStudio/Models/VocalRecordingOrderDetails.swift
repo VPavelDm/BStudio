@@ -16,7 +16,6 @@ class VocalRecordingOrderDetails: ObservableObject, VocalRecordingTypeDetails, D
     @Published var endTime: String?
     @Published var selectionIndex: Int = 0
     @Published var otherText: String = ""
-    #warning("Set correct authorID")
     func createParamsForRequest() -> MakeReservationParams {
         .init(phoneNumber: clientPhoneNumber,
               clientName: clientName,

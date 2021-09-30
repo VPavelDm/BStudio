@@ -8,7 +8,7 @@
 import Foundation
 
 struct Author: Identifiable, Equatable {
-    var id: UUID = UUID()
+    var id: Int
     var name: String
     var imageURL: URL
     var arrangements: [Arrangement]
@@ -16,12 +16,14 @@ struct Author: Identifiable, Equatable {
     var songs: [Song]
     var services: [Service]
     
-    init(name: String,
+    init(id: Int,
+         name: String,
          imageURL: String,
          arrangements: [Arrangement] = [],
          masteringAndMixing: String? = nil,
          songs: [Song],
          services: [Service]) {
+        self.id = id
         self.name = name
         self.imageURL = URL(string: imageURL)!
         self.arrangements = arrangements

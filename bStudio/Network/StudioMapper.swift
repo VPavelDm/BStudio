@@ -9,7 +9,8 @@ import Foundation
 
 class StudioMapper {
     func map(from author: AuthorTO) -> Author {
-        .init(name: author.name,
+        .init(id: author.id,
+              name: author.name,
               imageURL: author.imageURL,
               arrangements: map(from: author.arrangements),
               masteringAndMixing: author.masteringAndMixing,
