@@ -7,10 +7,14 @@
 
 import SwiftUI
 
-struct AuthorListView: View {
+protocol AuthorListDetails: ObservableObject {
+    var chosenAuthorID: String? { get set }
+}
+
+struct AuthorListView<ViewModel>: View where ViewModel: AuthorListDetails {
     @EnvironmentObject private var studio: Studio
+    @EnvironmentObject private var viewModel: ViewModel
     @State private var shouldShowMusicExamplesScreen: String?
-    @State private var shouldShowNextScreen = false
     var service: Service
     
     var body: some View {
@@ -59,7 +63,7 @@ struct AuthorListView: View {
                     }
                 }
             }
-            choose
+            choose(author: author)
             listen(author: author)
         }
     }
@@ -96,10 +100,12 @@ struct AuthorListView: View {
             .foregroundColor(.white)
             .font(.system(size: 20, weight: .regular))
     }
-    private var choose: some View {
-        NavigationLink(destination: detailsView, isActive: $shouldShowNextScreen) {
+    private func choose(author: Author) -> some View {
+        NavigationLink(tag: author.id.uuidString, selection: $viewModel.chosenAuthorID) {
+            detailsView
+        } label: {
             RoundedButton(text: "Выбрать") {
-                shouldShowNextScreen = true
+                viewModel.chosenAuthorID = author.id.uuidString
             }
         }
     }
@@ -178,7 +184,7 @@ struct AuthorListView_Previews: PreviewProvider {
     }
     static var previews: some View {
         NavigationView {
-            AuthorListView(service: .mixing)
+            AuthorListView<ArrangementOrderDetails>(service: .mixing)
                 .environmentObject(studio)
         }
     }

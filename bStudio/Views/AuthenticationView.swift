@@ -12,11 +12,12 @@ protocol AuthenticationDetails: ObservableObject {
     var clientPhoneNumber: String { get set }
     var comments: String { get set }
     
-    func createParamsForRequest() -> [String: Any]
+    func createParamsForRequest() -> MakeReservationParams
 }
 
 struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetails {
     @EnvironmentObject private var authenticationDetails: ViewModel
+    @EnvironmentObject private var studio: Studio
     @State private var notFilledFieldErrorMessage: IdentifiableString?
     
     var body: some View {
@@ -78,7 +79,7 @@ struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetail
             } else if authenticationDetails.clientPhoneNumber.isEmpty {
                 notFilledFieldErrorMessage = .init(text: "Для того, чтобы продолжить, Вам необходимо ввести Ваш номер телефона")
             } else {
-                print(authenticationDetails.createParamsForRequest())
+                studio.makeReservation(params: authenticationDetails.createParamsForRequest())
             }
         }
     }

@@ -36,6 +36,7 @@
 		4A3E7D212704CD740086D578 /* ArrangementTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E7D202704CD740086D578 /* ArrangementTO.swift */; };
 		4A3E7D252704CDDC0086D578 /* SongTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E7D242704CDDC0086D578 /* SongTO.swift */; };
 		4A3E7D272704D2710086D578 /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E7D262704D2710086D578 /* ServerError.swift */; };
+		4A3E7D29270596DE0086D578 /* ReservationParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3E7D28270596DE0086D578 /* ReservationParams.swift */; };
 		4A489F6D26FA390200B428B2 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A489F6C26FA390200B428B2 /* CalendarView.swift */; };
 		4A489F7226FA50BE00B428B2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A489F7126FA50BE00B428B2 /* Date.swift */; };
 		4A6A0F1F26FE626100BC9CCD /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A0F1E26FE626100BC9CCD /* AuthenticationView.swift */; };
@@ -91,6 +92,7 @@
 		4A3E7D202704CD740086D578 /* ArrangementTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrangementTO.swift; sourceTree = "<group>"; };
 		4A3E7D242704CDDC0086D578 /* SongTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTO.swift; sourceTree = "<group>"; };
 		4A3E7D262704D2710086D578 /* ServerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
+		4A3E7D28270596DE0086D578 /* ReservationParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationParams.swift; sourceTree = "<group>"; };
 		4A489F6C26FA390200B428B2 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		4A489F7126FA50BE00B428B2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		4A6A0F1E26FE626100BC9CCD /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				4A3E7D202704CD740086D578 /* ArrangementTO.swift */,
 				4A3E7D242704CDDC0086D578 /* SongTO.swift */,
 				4A3E7D262704D2710086D578 /* ServerError.swift */,
+				4A3E7D28270596DE0086D578 /* ReservationParams.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				4A11986226FDB54F0035ABD7 /* TimePickerView.swift in Sources */,
 				4A036B5B27010C3500451518 /* VocalRecordingType.swift in Sources */,
 				4ABE816F26F3970F00CC9C60 /* bStudioApp.swift in Sources */,
+				4A3E7D29270596DE0086D578 /* ReservationParams.swift in Sources */,
 				4A3E7CEE2704491B0086D578 /* StudioRepository.swift in Sources */,
 				4A3E7D1B2704CCF50086D578 /* AuthorTO.swift in Sources */,
 				4A3E7D212704CD740086D578 /* ArrangementTO.swift in Sources */,
