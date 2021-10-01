@@ -16,13 +16,7 @@ class VocalRecordingOrderDetails: ObservableObject, VocalRecordingTypeDetails, D
     @Published var endTime: String?
     @Published var selectionIndex: Int = 0
     @Published var otherText: String = ""
-    func createParamsForRequest() -> MakeReservationParams {
-        .init(phoneNumber: clientPhoneNumber,
-              clientName: clientName,
-              startTime: startTime!,
-              endTime: endTime!,
-              date: selectionDate,
-              authorID: 1)
-
+    func createParamsForRequest() -> [String: Any] {
+        [:]
     }
 }

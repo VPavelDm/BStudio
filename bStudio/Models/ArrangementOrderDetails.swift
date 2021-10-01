@@ -27,12 +27,14 @@ class ArrangementOrderDetails: ObservableObject, DateDetails, ArrangementDetails
     func updateSong(at index: Int, with text: String) {
         songs[index] = text
     }
-    func createParamsForRequest() -> MakeReservationParams {
-        .init(phoneNumber: clientPhoneNumber,
-              clientName: clientName,
-              startTime: startTime!,
-              endTime: endTime!,
-              date: selectionDate,
-              authorID: chosenAuthorID!)
+    func createParamsForRequest() -> [String: Any] {
+        ["client_name": clientName,
+         "phone_number": clientPhoneNumber,
+         "start_time": DateMapper(time: startTime!, date: selectionDate).serverTime,
+         "end_time": DateMapper(time: endTime!, date: selectionDate).serverTime,
+         "work_type": workTypes[selectedWorkTypeIndex],
+         "suggestions_for_work": suggestionsForWork,
+         "comments": comments,
+         "author_id": chosenAuthorID!]
     }
 }

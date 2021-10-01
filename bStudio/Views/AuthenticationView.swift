@@ -12,7 +12,7 @@ protocol AuthenticationDetails: ObservableObject {
     var clientPhoneNumber: String { get set }
     var comments: String { get set }
     
-    func createParamsForRequest() -> MakeReservationParams
+    func createParamsForRequest() -> [String: Any]
 }
 
 struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetails {

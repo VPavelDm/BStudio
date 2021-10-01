@@ -9,6 +9,4 @@ import Foundation
 
 struct Reservation {
     var timeInterval: ClosedRange<Date>
-    var phoneNumber: String
-    var clientName: String
 }

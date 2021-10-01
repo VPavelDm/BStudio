@@ -27,13 +27,7 @@ class MixingOrderDetails: ObservableObject, DateDetails, MixingDetails, Authenti
     func updateSong(at index: Int, with text: String) {
         songs[index] = text
     }
-    func createParamsForRequest() -> MakeReservationParams {
-        .init(phoneNumber: clientPhoneNumber,
-              clientName: clientName,
-              startTime: startTime!,
-              endTime: endTime!,
-              date: selectionDate,
-              authorID: chosenAuthorID!)
-
+    func createParamsForRequest() -> [String: Any] {
+        [:]
     }
 }

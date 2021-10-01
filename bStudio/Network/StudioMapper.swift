@@ -23,9 +23,7 @@ class StudioMapper {
     
     
     func map(from reservation: ReservationTO) -> Reservation {
-        .init(timeInterval: map(startTime: reservation.startTime, endTime: reservation.endTime),
-              phoneNumber: reservation.phoneNumber,
-              clientName: reservation.clientName)
+        .init(timeInterval: map(startTime: reservation.startTime, endTime: reservation.endTime))
     }
     func map(from reservations: [ReservationTO]) -> [Reservation] {
         reservations.map(map(from:))

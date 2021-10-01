@@ -32,7 +32,7 @@ class Studio: ObservableObject {
             }
         }
     }
-    func makeReservation(params: MakeReservationParams) {
+    func makeReservation(params: [String: Any]) {
         repository.makeReservation(params: params)
     }
 }
