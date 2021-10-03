@@ -20,6 +20,7 @@ struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetail
     @EnvironmentObject private var studio: Studio
     @State private var notFilledFieldErrorMessage: IdentifiableString?
     @State private var makeOrderError = false
+    @State private var makeOrderRequestIsWorking = false
     
     var body: some View {
         VStack(alignment: .leading){
@@ -46,6 +47,10 @@ struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetail
                   secondaryButton: .cancel(Text("Понятно")))
         }
     }
+    private var activityIndicator: some View {
+        ProgressView()
+            .progressViewStyle(CircularProgressViewStyle(tint: .xanadu))
+    }
     private var title: some View {
         Text("Личные данные")
             .font(.system(size: 34, weight: .regular))
@@ -56,7 +61,10 @@ struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetail
             nameTextField
             phoneNumberTextField
             commentsTextField
-            makeOrderButton
+            ZStack {
+                makeOrderButton.opacity(makeOrderRequestIsWorking ? 0 : 1)
+                activityIndicator.opacity(makeOrderRequestIsWorking ? 1 : 0)
+            }
         }
     }
     private var nameTextField: some View {
@@ -91,7 +99,9 @@ struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetail
         } else if authenticationDetails.clientPhoneNumber.isEmpty {
             notFilledFieldErrorMessage = .init(text: "Для того, чтобы продолжить, Вам необходимо ввести Ваш номер телефона")
         } else {
+            makeOrderRequestIsWorking = true
             studio.makeReservation(params: authenticationDetails.createParamsForRequest()) { result in
+                makeOrderRequestIsWorking = false
                 switch result {
                 case .success:
                     print("Success")
