@@ -56,16 +56,19 @@ class StudioMapper {
         songs.map(map(from:))
     }
     
-    
+    private let arrangementKey = "arrangement"
+    private let vocalRecordingKey = "vocal_recording"
+    private let mixingKey = "mixing"
+    private let masteringKey = "mastering"
     func map(from service: String) -> Service? {
         switch service {
-        case "arrangement":
+        case arrangementKey:
             return .arrangement
-        case "vocal_recording":
+        case vocalRecordingKey:
             return .vocalRecording
-        case "mixing":
+        case mixingKey:
             return .mixing
-        case "mastering":
+        case masteringKey:
             return .mastering
         default:
             return nil
@@ -73,6 +76,18 @@ class StudioMapper {
     }
     func map(from services: [String]) -> [Service] {
         services.compactMap(map(from:))
+    }
+    func map(from service: Service) -> String {
+        switch service {
+        case .arrangement:
+            return arrangementKey
+        case .vocalRecording:
+            return vocalRecordingKey
+        case .mixing:
+            return mixingKey
+        case .mastering:
+            return masteringKey
+        }
     }
     
 }

@@ -28,7 +28,9 @@ class ArrangementOrderDetails: ObservableObject, DateDetails, ArrangementDetails
         songs[index] = text
     }
     func createParamsForRequest() -> [String: Any] {
-        ["client_name": clientName,
+        ["service": StudioMapper().map(from: .arrangement),
+         "studio_id": 1,
+         "client_name": clientName,
          "phone_number": clientPhoneNumber,
          "start_time": DateMapper(time: startTime!, date: selectionDate).serverTime,
          "end_time": DateMapper(time: endTime!, date: selectionDate).serverTime,

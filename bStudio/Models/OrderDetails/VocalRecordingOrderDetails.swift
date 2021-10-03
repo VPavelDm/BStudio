@@ -17,6 +17,9 @@ class VocalRecordingOrderDetails: ObservableObject, VocalRecordingTypeDetails, D
     @Published var selectionIndex: Int = 0
     @Published var otherText: String = ""
     func createParamsForRequest() -> [String: Any] {
-        [:]
+        ["service": StudioMapper().map(from: .vocalRecording),
+         "studio_id": 1,
+         "start_time": DateMapper(time: startTime!, date: selectionDate).serverTime,
+         "end_time": DateMapper(time: endTime!, date: selectionDate).serverTime]
     }
 }

@@ -115,7 +115,7 @@ struct AuthorListView<ViewModel>: View where ViewModel: AuthorListDetails {
         case .arrangement:
             ArrangementDetailsView<ArrangementOrderDetails>()
         case .mixing, .mastering:
-            MixingDetailsView<MixingOrderDetails>()
+            MixingDetailsView<MixingOrderDetails>(service: service)
         case .vocalRecording:
             Text("Something went wrong")
         }

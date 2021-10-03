@@ -18,6 +18,7 @@ class MixingOrderDetails: ObservableObject, DateDetails, MixingDetails, Authenti
     @Published var clientPhoneNumber: String = ""
     @Published var comments: String = ""
     @Published var chosenAuthorID: Int?
+    var service: Service?
     let workTypes = ["На студии", "Удаленный"]
     
     // MARK: - Intents
@@ -28,6 +29,9 @@ class MixingOrderDetails: ObservableObject, DateDetails, MixingDetails, Authenti
         songs[index] = text
     }
     func createParamsForRequest() -> [String: Any] {
-        [:]
+        ["service": StudioMapper().map(from: service!),
+         "studio_id": 1,
+         "start_time": DateMapper(time: startTime!, date: selectionDate).serverTime,
+         "end_time": DateMapper(time: endTime!, date: selectionDate).serverTime]
     }
 }

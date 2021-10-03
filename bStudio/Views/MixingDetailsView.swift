@@ -12,6 +12,7 @@ protocol MixingDetails: ObservableObject {
     var suggestionsForWork: String { get set }
     var workTypes: [String] { get }
     var selectedWorkTypeIndex: Int { get set }
+    var service: Service? { get set }
     
     func addNewSong()
 }
@@ -20,6 +21,7 @@ struct MixingDetailsView<ViewModel>: View where ViewModel: MixingDetails {
     @EnvironmentObject private var mixingDetails: ViewModel
     @State private var shouldNavigateToNextScreen = false
     @State private var shouldShowNotFilledAlert = false
+    var service: Service
     
     var body: some View {
         content
@@ -32,6 +34,9 @@ struct MixingDetailsView<ViewModel>: View where ViewModel: MixingDetails {
                 Alert(title: Text("Вы не заполнили обязательные поля"),
                       message: Text("Для того, чтобы продолжить, Вам необходимо ввести хотя бы 1 название песни"),
                       dismissButton: .cancel(Text("Понятно")))
+            }
+            .onAppear {
+                mixingDetails.service = service
             }
 
     }
@@ -162,7 +167,7 @@ struct MixingDetailsView<ViewModel>: View where ViewModel: MixingDetails {
 struct MixingDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            MixingDetailsView<MixingOrderDetails>()
+            MixingDetailsView<MixingOrderDetails>(service: .mixing)
                 .environmentObject(MixingOrderDetails())
                 .environmentObject(Studio())
         }
