@@ -32,7 +32,7 @@ class Studio: ObservableObject {
             }
         }
     }
-    func makeReservation(params: [String: Any]) {
-        repository.makeReservation(params: params)
+    func makeReservation(params: [String: Any], completion: @escaping (Result<Void, Error>) -> Void) {
+        repository.makeReservation(params: params, completion: completion)
     }
 }

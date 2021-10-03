@@ -19,6 +19,7 @@ struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetail
     @EnvironmentObject private var authenticationDetails: ViewModel
     @EnvironmentObject private var studio: Studio
     @State private var notFilledFieldErrorMessage: IdentifiableString?
+    @State private var makeOrderError = false
     
     var body: some View {
         VStack(alignment: .leading){
@@ -37,6 +38,13 @@ struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetail
                   message: Text(message.text),
                   dismissButton: .cancel(Text("Понятно")))
         }
+        .alert(isPresented: $makeOrderError) {
+            Alert(title: Text("Что-то пошло не так :c"),
+                  message: Text("Мы уже работаем над тем, чтобы исправить ошибку! Попробуйте осуществить запись снова позже"),
+                  primaryButton: .default(Text("Попробовать еще раз"),
+                                          action: tryToMakeOrder),
+                  secondaryButton: .cancel(Text("Понятно")))
+        }
     }
     private var title: some View {
         Text("Личные данные")
@@ -48,7 +56,7 @@ struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetail
             nameTextField
             phoneNumberTextField
             commentsTextField
-            makeOrder
+            makeOrderButton
         }
     }
     private var nameTextField: some View {
@@ -72,14 +80,24 @@ struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetail
                     .foregroundColor(.white.opacity(0.6))
             })
     }
-    private var makeOrder: some View {
+    private var makeOrderButton: some View {
         RoundedButton(text: "Записаться") {
-            if authenticationDetails.clientName.isEmpty {
-                notFilledFieldErrorMessage = .init(text: "Для того, чтобы продолжить, Вам необходимо ввести Ваше имя")
-            } else if authenticationDetails.clientPhoneNumber.isEmpty {
-                notFilledFieldErrorMessage = .init(text: "Для того, чтобы продолжить, Вам необходимо ввести Ваш номер телефона")
-            } else {
-                studio.makeReservation(params: authenticationDetails.createParamsForRequest())
+            tryToMakeOrder()
+        }
+    }
+    private func tryToMakeOrder() {
+        if authenticationDetails.clientName.isEmpty {
+            notFilledFieldErrorMessage = .init(text: "Для того, чтобы продолжить, Вам необходимо ввести Ваше имя")
+        } else if authenticationDetails.clientPhoneNumber.isEmpty {
+            notFilledFieldErrorMessage = .init(text: "Для того, чтобы продолжить, Вам необходимо ввести Ваш номер телефона")
+        } else {
+            studio.makeReservation(params: authenticationDetails.createParamsForRequest()) { result in
+                switch result {
+                case .success:
+                    print("Success")
+                case .failure:
+                    makeOrderError = true
+                }
             }
         }
     }
