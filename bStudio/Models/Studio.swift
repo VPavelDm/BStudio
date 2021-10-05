@@ -13,11 +13,18 @@ class Studio: ObservableObject {
     var vocalRecordingTypes: [VocalRecordingType] { VocalRecordingType.allCases }
     @Published var reservations: [Reservation] = []
     @Published var authors: [Author] = []
-    @Published var workTimes: [String] = []
+    private var _workTimes: [String] = []
     var isStudioLoaded: Bool { !authors.isEmpty }
     var unavailableDateRanges: [ClosedRange<Date>] {
         reservations.map { $0.timeInterval }
     }
+    private let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = Calendar(identifier: .gregorian)
+        dateFormatter.locale = Locale.autoupdatingCurrent
+        dateFormatter.setLocalizedDateFormatFromTemplate("H:mm")
+        return dateFormatter
+    }()
     
     // MARK: - Intents
     func getAuthors(for service: Service) -> [Author] {
@@ -28,7 +35,7 @@ class Studio: ObservableObject {
             switch response {
             case let .success((authors, workTimes, reservations)):
                 self?.authors = authors
-                self?.workTimes = workTimes
+                self?._workTimes = workTimes
                 self?.reservations = reservations
             case .failure(let error):
                 print(error.localizedDescription)
@@ -37,5 +44,20 @@ class Studio: ObservableObject {
     }
     func makeReservation(params: [String: Any], completion: @escaping (Result<Void, Error>) -> Void) {
         repository.makeReservation(params: params, completion: completion)
+    }
+    func workTimes(for date: Date) -> [String] {
+        _workTimes
+            .map { time in
+                DateMapper(time: time, date: date).serverTime
+            }
+            .map { time in
+                Date(timeIntervalSince1970: time)
+            }
+            .filter { time in
+                !unavailableDateRanges.contains(where: { $0.contains(time) })
+            }
+            .map { time in
+                dateFormatter.string(from: time)
+            }
     }
 }

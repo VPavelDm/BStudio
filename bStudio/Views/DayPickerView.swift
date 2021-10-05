@@ -52,10 +52,10 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
         VStack {
             TimePickerView(title: "Выберите время начала",
                            selection: $dateDetails.startTime,
-                           times: studio.workTimes)
+                           times: studio.workTimes(for: dateDetails.selectionDate))
             TimePickerView(title: "Выберите время окончания",
                            selection: $dateDetails.endTime,
-                           times: studio.workTimes)
+                           times: studio.workTimes(for: dateDetails.selectionDate))
         }
     }
     private var next: some View {
