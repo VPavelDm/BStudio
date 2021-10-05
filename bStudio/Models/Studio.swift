@@ -13,8 +13,11 @@ class Studio: ObservableObject {
     var vocalRecordingTypes: [VocalRecordingType] { VocalRecordingType.allCases }
     @Published var reservations: [Reservation] = []
     @Published var authors: [Author] = []
-    @Published var workTimes: [String] = (6...23).map { "\($0):00" }
+    @Published var workTimes: [String] = []
     var isStudioLoaded: Bool { !authors.isEmpty }
+    var unavailableDateRanges: [ClosedRange<Date>] {
+        reservations.map { $0.timeInterval }
+    }
     
     // MARK: - Intents
     func getAuthors(for service: Service) -> [Author] {

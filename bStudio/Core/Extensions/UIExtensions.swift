@@ -13,8 +13,10 @@ extension Color {
     static var charlestonGreen: Color = Color(red: 43 / 255, green: 43 / 255, blue: 43 / 255)
     static var woodsmoke: Color = Color(.woodsmoke)
     static var tertiaryLabel: Color = Color(.tertiaryLabel)
+    static var tertiarySystemFill: Color = Color(.tertiarySystemFill)
     static var davysGrey: Color = Color(hex: "535353")
     static var graniteGray: Color = Color(hex: "636363")
+    static var whiteSmoke: Color = Color(hex: "f8f8f8")
     
     init(hex: String) {
         var cString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

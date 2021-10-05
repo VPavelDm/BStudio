@@ -52,11 +52,11 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
     }
     private var calendar: some View {
         CalendarView(selection: $dateDetails.selectionDate,
-                     unavailableDateRanges: studio.reservations.map { $0.timeInterval })
+                     unavailableDateRanges: studio.unavailableDateRanges)
     }
     private var timePicker: some View {
-        TimePickerView(startTime: $dateDetails.startTime,
-                       endTime: $dateDetails.endTime,
+        TimePickerView(title: "Выберите время начала",
+                       selectedTime: $dateDetails.startTime,
                        times: studio.workTimes)
     }
     private var next: some View {
