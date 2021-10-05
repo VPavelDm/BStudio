@@ -30,8 +30,8 @@ class StudioMapper {
     }
     
     
-    private func map(startTime: Double, endTime: Double) -> ClosedRange<Date> {
-        map(time: startTime)...map(time: endTime)
+    private func map(startTime: Double, endTime: Double) -> Range<Date> {
+        map(time: startTime)..<map(time: endTime)
     }
     private func map(time: Double) -> Date {
         Date(timeIntervalSince1970: time)

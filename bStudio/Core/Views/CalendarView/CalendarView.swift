@@ -11,14 +11,14 @@ struct CalendarView: View {
     
     // MARK: - Properties
     private let columns: [GridItem] = (1...7).map { _ in GridItem(.flexible()) }
-    private var unavailableDateRanges: [ClosedRange<Date>]
+    private var unavailableDateRanges: [Range<Date>]
     @StateObject private var calendar = CalendarViewModel()
     @State private var isBackTransitionAnimation = false
     @Binding var selectionDate: Date
     @State private var selectionPage = 0
     
     // MARK: - Inits
-    init(selection: Binding<Date>, unavailableDateRanges: [ClosedRange<Date>]) {
+    init(selection: Binding<Date>, unavailableDateRanges: [Range<Date>]) {
         self.unavailableDateRanges = unavailableDateRanges
         self._selectionDate = selection
     }

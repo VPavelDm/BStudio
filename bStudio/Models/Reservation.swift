@@ -8,5 +8,5 @@
 import Foundation
 
 struct Reservation {
-    var timeInterval: ClosedRange<Date>
+    var timeInterval: Range<Date>
 }

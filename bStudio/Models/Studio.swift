@@ -15,7 +15,7 @@ class Studio: ObservableObject {
     @Published var authors: [Author] = []
     private var _workTimes: [String] = []
     var isStudioLoaded: Bool { !authors.isEmpty }
-    var unavailableDateRanges: [ClosedRange<Date>] {
+    var unavailableDateRanges: [Range<Date>] {
         reservations.map { $0.timeInterval }
     }
     private let dateFormatter: DateFormatter = {
