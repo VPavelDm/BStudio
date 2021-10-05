@@ -55,9 +55,14 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
                      unavailableDateRanges: studio.unavailableDateRanges)
     }
     private var timePicker: some View {
-        TimePickerView(title: "Выберите время начала",
-                       selectedTime: $dateDetails.startTime,
-                       times: studio.workTimes)
+        VStack {
+            TimePickerView(title: "Выберите время начала",
+                           selection: $dateDetails.startTime,
+                           times: studio.workTimes)
+            TimePickerView(title: "Выберите время окончания",
+                           selection: $dateDetails.endTime,
+                           times: studio.workTimes)
+        }
     }
     private var next: some View {
         NavigationLink(destination: nextScreen, isActive: $shouldNavigateToNextScreen) {

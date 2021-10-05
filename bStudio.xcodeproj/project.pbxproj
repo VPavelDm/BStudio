@@ -40,6 +40,8 @@
 		4A489F6D26FA390200B428B2 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A489F6C26FA390200B428B2 /* CalendarView.swift */; };
 		4A489F7226FA50BE00B428B2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A489F7126FA50BE00B428B2 /* Date.swift */; };
 		4A5BBDE8270C278700DAFB18 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5BBDE7270C278700DAFB18 /* Blur.swift */; };
+		4A5BBE46270CCCB300DAFB18 /* TimePickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5BBE45270CCCB300DAFB18 /* TimePickerField.swift */; };
+		4A5BBE48270CCFD600DAFB18 /* DoneToolbarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5BBE47270CCFD600DAFB18 /* DoneToolbarButton.swift */; };
 		4A6A0F1F26FE626100BC9CCD /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A0F1E26FE626100BC9CCD /* AuthenticationView.swift */; };
 		4ABE816F26F3970F00CC9C60 /* bStudioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE816E26F3970F00CC9C60 /* bStudioApp.swift */; };
 		4ABE817126F3970F00CC9C60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE817026F3970F00CC9C60 /* ContentView.swift */; };
@@ -97,6 +99,8 @@
 		4A489F6C26FA390200B428B2 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		4A489F7126FA50BE00B428B2 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		4A5BBDE7270C278700DAFB18 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
+		4A5BBE45270CCCB300DAFB18 /* TimePickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerField.swift; sourceTree = "<group>"; };
+		4A5BBE47270CCFD600DAFB18 /* DoneToolbarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneToolbarButton.swift; sourceTree = "<group>"; };
 		4A6A0F1E26FE626100BC9CCD /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		4ABE816B26F3970F00CC9C60 /* bStudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bStudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ABE816E26F3970F00CC9C60 /* bStudioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bStudioApp.swift; sourceTree = "<group>"; };
@@ -297,6 +301,8 @@
 				4ABE818126F39C1B00CC9C60 /* RoundedButton.swift */,
 				4ABE819226F3C60400CC9C60 /* ProvidedView.swift */,
 				4A5BBDE7270C278700DAFB18 /* Blur.swift */,
+				4A5BBE45270CCCB300DAFB18 /* TimePickerField.swift */,
+				4A5BBE47270CCFD600DAFB18 /* DoneToolbarButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -426,6 +432,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ABE817126F3970F00CC9C60 /* ContentView.swift in Sources */,
+				4A5BBE46270CCCB300DAFB18 /* TimePickerField.swift in Sources */,
 				4A036B5927010B9E00451518 /* VocalRecordingTypeView.swift in Sources */,
 				4AC709FB26FBCD000031A24F /* MonthMetadata.swift in Sources */,
 				4A036B552700E7F500451518 /* Reservation.swift in Sources */,
@@ -441,6 +448,7 @@
 				4ABE819126F3C43500CC9C60 /* NavigationBarModifier.swift in Sources */,
 				4A2EF6FF26F9B66100A45A0A /* StudioTextFieldStyle.swift in Sources */,
 				4A3E7D272704D2710086D578 /* ServerError.swift in Sources */,
+				4A5BBE48270CCFD600DAFB18 /* DoneToolbarButton.swift in Sources */,
 				4A3E7D1D2704CCFE0086D578 /* ReservationTO.swift in Sources */,
 				4ABE818026F39B1400CC9C60 /* UIExtensions.swift in Sources */,
 				4A036B5D27011D6D00451518 /* VocalRecordingOrderDetails.swift in Sources */,
