@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TimePickerField: UIViewRepresentable {
     
-    private let textField = UITextField()
+    private let textField = TextField()
     private let pickerView = UIPickerView()
     
     var data: [String]
@@ -21,11 +21,7 @@ struct TimePickerField: UIViewRepresentable {
         pickerView.dataSource = context.coordinator
         
         textField.inputView = pickerView
-        textField.setContentHuggingPriority(.required, for: .horizontal)
-        textField.inputAccessoryView = DoneToolbarButton {
-            textField.resignFirstResponder()
-        }
-        
+
         return textField
     }
     func updateUIView(_ uiView: UIViewType, context: Context) {
@@ -58,5 +54,28 @@ struct TimePickerField: UIViewRepresentable {
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
             didSelectItemAt(row)
         }
+    }
+}
+
+fileprivate class TextField: UITextField {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+    private func commonInit() {
+        setContentHuggingPriority(.required, for: .horizontal)
+        inputAccessoryView = DoneToolbarButton { [weak self] in
+            self?.resignFirstResponder()
+        }
+        borderStyle = .roundedRect
+        backgroundColor = .tertiarySystemFill
+        textAlignment = .center
+    }
+    override func caretRect(for position: UITextPosition) -> CGRect {
+        .zero
     }
 }
