@@ -65,7 +65,24 @@ struct TimePickerField: UIViewRepresentable {
             return label
         }
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            didSelectItemAt(row)
+            if times[row].isEnabled {
+                didSelectItemAt(row)
+            } else {
+                for index in row..<times.count {
+                    if times[index].isEnabled {
+                        didSelectItemAt(index)
+                        pickerView.selectRow(index, inComponent: 0, animated: true)
+                        return
+                    }
+                }
+                for index in stride(from: row, to: 0, by: -1) {
+                    if times[index].isEnabled {
+                        didSelectItemAt(index)
+                        pickerView.selectRow(index, inComponent: 0, animated: true)
+                        return
+                    }
+                }
+            }
         }
     }
 }
