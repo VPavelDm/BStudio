@@ -57,6 +57,7 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
                            selection: $dateDetails.endTime,
                            times: studio.workTimes(for: dateDetails.selectionDate))
         }
+        .id(dateDetails.selectionDate)
     }
     private var next: some View {
         NavigationLink(destination: nextScreen, isActive: $shouldNavigateToNextScreen) {
