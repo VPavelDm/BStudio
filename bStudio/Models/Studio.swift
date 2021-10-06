@@ -60,4 +60,17 @@ class Studio: ObservableObject {
                 dateFormatter.string(from: time)
             }
     }
+    func isDateRangeContinuous(startTime: String, endTime: String, date: Date) -> Bool {
+        let startTime = DateMapper(time: startTime, date: date).serverTime
+        let startDate = Date(timeIntervalSince1970: startTime)
+        let endTime = DateMapper(time: endTime, date: date).serverTime
+        let endDate = Date(timeIntervalSince1970: endTime)
+        
+        let chosenDateRange = startDate..<endDate
+        return unavailableDateRanges
+            .filter { range in
+                chosenDateRange.overlaps(range)
+            }
+            .isEmpty
+    }
 }

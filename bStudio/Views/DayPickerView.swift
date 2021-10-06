@@ -17,6 +17,7 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
     @EnvironmentObject private var studio: Studio
     @EnvironmentObject var dateDetails: ViewModel
     @State private var shouldNavigateToNextScreen = false
+    @State private var showDiscontinuousWarning = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -30,6 +31,11 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("VOSTOK'7")
         .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+        .alert(isPresented: $showDiscontinuousWarning) {
+            Alert(title: Text("Обратите внимание"),
+                  message: Text("Выбранный Вами диапазон времени прерывен, т.е. Вам необходимо будет прерваться, так как студия уже забронирована на промежуток времени внутри Вашего выбора."),
+                  dismissButton: .cancel(Text("Понятно")))
+        }
     }
     private var content: some View {
         VStack(spacing: 24) {
@@ -58,6 +64,12 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
                            times: studio.workTimes(for: dateDetails.selectionDate))
         }
         .id(dateDetails.selectionDate)
+        .onChange(of: dateDetails.startTime) { newValue in
+            validateTimeRange()
+        }
+        .onChange(of: dateDetails.endTime) { newValue in
+            validateTimeRange()
+        }
     }
     private var next: some View {
         NavigationLink(destination: nextScreen, isActive: $shouldNavigateToNextScreen) {
@@ -68,6 +80,16 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
     }
     private var nextScreen: some View {
         AuthenticationView<ViewModel>()
+    }
+    
+    // MARK: - Utils
+    private func validateTimeRange() {
+        guard let startTime = dateDetails.startTime else { return }
+        guard let endTime = dateDetails.endTime else { return }
+        let date = dateDetails.selectionDate
+        if !studio.isDateRangeContinuous(startTime: startTime, endTime: endTime, date: date) {
+            showDiscontinuousWarning = true
+        }
     }
 }
 

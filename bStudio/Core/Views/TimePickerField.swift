@@ -15,6 +15,14 @@ struct TimePickerField: UIViewRepresentable {
     
     var data: [String]
     @Binding var lastSelectedIndex: Int
+    var timeIsChosen: () -> ()
+    
+    init(data: [String], lastSelectedIndex: Binding<Int>, timeIsChosen: @escaping () -> ()) {
+        self.data = data
+        self._lastSelectedIndex = lastSelectedIndex
+        self.timeIsChosen = timeIsChosen
+        self.textField.timeIsChosen = timeIsChosen
+    }
     
     func makeUIView(context: Context) -> some UITextField {
         pickerView.delegate = context.coordinator
@@ -58,6 +66,8 @@ struct TimePickerField: UIViewRepresentable {
 }
 
 fileprivate class TextField: UITextField {
+    var timeIsChosen: (() -> ())?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -70,6 +80,7 @@ fileprivate class TextField: UITextField {
         setContentHuggingPriority(.required, for: .horizontal)
         inputAccessoryView = DoneToolbarButton { [weak self] in
             self?.resignFirstResponder()
+            self?.timeIsChosen?()
         }
         borderStyle = .roundedRect
         backgroundColor = .tertiarySystemFill

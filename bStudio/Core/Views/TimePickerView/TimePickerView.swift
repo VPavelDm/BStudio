@@ -24,14 +24,12 @@ struct TimePickerView: View {
         HStack {
             Text(title)
             Spacer()
-            TimePickerField(data: times,
-                            lastSelectedIndex: $selectedIndex)
+            TimePickerField(data: times, lastSelectedIndex: $selectedIndex) {
+                selection = times[selectedIndex]
+            }
         }
         .onAppear {
             selection = times[selectedIndex]
-        }
-        .onChange(of: selectedIndex) { newValue in
-            selection = times[newValue]
         }
     }
 }
