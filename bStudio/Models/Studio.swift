@@ -45,7 +45,7 @@ class Studio: ObservableObject {
     func makeReservation(params: [String: Any], completion: @escaping (Result<Void, Error>) -> Void) {
         repository.makeReservation(params: params, completion: completion)
     }
-    func workTimes(for date: Date) -> [String] {
+    func workTimes(for date: Date) -> [WorkTime] {
         _workTimes
             .map { time in
                 DateMapper(time: time, date: date).serverTime
@@ -53,11 +53,9 @@ class Studio: ObservableObject {
             .map { time in
                 Date(timeIntervalSince1970: time)
             }
-            .filter { time in
-                !unavailableDateRanges.contains(where: { $0.contains(time) })
-            }
             .map { time in
-                dateFormatter.string(from: time)
+                WorkTime(text: dateFormatter.string(from: time),
+                         isEnabled: !unavailableDateRanges.contains(where: { $0.contains(time) }))
             }
     }
     func isDateRangeContinuous(startTime: String, endTime: String, date: Date) -> Bool {
@@ -65,6 +63,8 @@ class Studio: ObservableObject {
         let startDate = Date(timeIntervalSince1970: startTime)
         let endTime = DateMapper(time: endTime, date: date).serverTime
         let endDate = Date(timeIntervalSince1970: endTime)
+        
+        guard startDate < endDate else { return true }
         
         let chosenDateRange = startDate..<endDate
         return unavailableDateRanges

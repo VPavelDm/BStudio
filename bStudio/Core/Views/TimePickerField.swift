@@ -13,12 +13,12 @@ struct TimePickerField: UIViewRepresentable {
     private let textField = TextField()
     private let pickerView = UIPickerView()
     
-    var data: [String]
+    var times: [WorkTime]
     @Binding var lastSelectedIndex: Int
     var timeIsChosen: () -> ()
     
-    init(data: [String], lastSelectedIndex: Binding<Int>, timeIsChosen: @escaping () -> ()) {
-        self.data = data
+    init(times: [WorkTime], lastSelectedIndex: Binding<Int>, timeIsChosen: @escaping () -> ()) {
+        self.times = times
         self._lastSelectedIndex = lastSelectedIndex
         self.timeIsChosen = timeIsChosen
         self.textField.timeIsChosen = timeIsChosen
@@ -33,20 +33,20 @@ struct TimePickerField: UIViewRepresentable {
         return textField
     }
     func updateUIView(_ uiView: UIViewType, context: Context) {
-        uiView.text = data[lastSelectedIndex]
+        uiView.text = times[lastSelectedIndex].text
     }
     func makeCoordinator() -> Coordinator {
-        Coordinator(data: data) { index in
+        Coordinator(times: times) { index in
             lastSelectedIndex = index
         }
     }
     
     class Coordinator: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
-        private var data: [String]
+        private var times: [WorkTime]
         private var didSelectItemAt: (Int) -> Void
         
-        init(data: [String], didSelectItemAt: @escaping (Int) -> Void) {
-            self.data = data
+        init(times: [WorkTime], didSelectItemAt: @escaping (Int) -> Void) {
+            self.times = times
             self.didSelectItemAt = didSelectItemAt
         }
         
@@ -54,10 +54,15 @@ struct TimePickerField: UIViewRepresentable {
             1
         }
         func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-            data.count
+            times.count
         }
-        func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-            data[row]
+        func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+            let label = UILabel()
+            label.text = times[row].text
+            label.textColor = times[row].isEnabled ? UIColor.label : UIColor.red
+            label.textAlignment = .center
+            label.font = .systemFont(ofSize: 18, weight: .semibold)
+            return label
         }
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
             didSelectItemAt(row)

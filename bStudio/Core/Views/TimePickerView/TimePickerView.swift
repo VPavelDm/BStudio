@@ -12,9 +12,9 @@ struct TimePickerView: View {
     @State private var selectedIndex = 0
     @Binding private var selection: String?
     private var title: String
-    private var times: [String]
+    private var times: [WorkTime]
 
-    init(title: String, selection: Binding<String?>, times: [String]) {
+    init(title: String, selection: Binding<String?>, times: [WorkTime]) {
         self.title = title
         self._selection = selection
         self.times = times
@@ -24,12 +24,12 @@ struct TimePickerView: View {
         HStack {
             Text(title)
             Spacer()
-            TimePickerField(data: times, lastSelectedIndex: $selectedIndex) {
-                selection = times[selectedIndex]
+            TimePickerField(times: times, lastSelectedIndex: $selectedIndex) {
+                selection = times[selectedIndex].text
             }
         }
         .onAppear {
-            selection = times[selectedIndex]
+            selection = times[selectedIndex].text
         }
     }
 }
