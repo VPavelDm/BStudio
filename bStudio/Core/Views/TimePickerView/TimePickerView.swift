@@ -30,5 +30,8 @@ struct TimePickerView: View {
         .onAppear {
             selection = times[selectedIndex]
         }
+        .onChange(of: selectedIndex) { newValue in
+            selection = times[newValue]
+        }
     }
 }

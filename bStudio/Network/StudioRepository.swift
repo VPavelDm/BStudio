@@ -10,16 +10,19 @@ import Foundation
 class StudioRepository {
     
     func loadStudio(completion: @escaping (Result<([Author], [String], [Reservation]), Error>) -> Void) {
-        URLSession.shared.dataTask(with: loadRequest!) { [weak self] data, response, error in
-            if let error = error {
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
-            } else if let data = data {
-                self?.handleStudioLoadResponse(data: data, completion: completion)
-            }
+        if let responseData = try? readJSONData(jsonFileName: "response") {
+            handleStudioLoadResponse(data: responseData, completion: completion)
         }
-        .resume()
+//        URLSession.shared.dataTask(with: loadRequest!) { [weak self] data, response, error in
+//            if let error = error {
+//                DispatchQueue.main.async {
+//                    completion(.failure(error))
+//                }
+//            } else if let data = data {
+//                self?.handleStudioLoadResponse(data: data, completion: completion)
+//            }
+//        }
+//        .resume()
     }
     func makeReservation(params: [String: Any], completion: @escaping (Result<Void, Error>) -> Void) {
         guard let request = makeRequest(params: params) else { return }

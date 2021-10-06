@@ -1,0 +1,183 @@
+{
+    "authors": [
+        {
+            "id": 1,
+            "name": "Kookah",
+            "image_url": "https://scontent-waw1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/c0.180.1440.1440a/s640x640/140089689_272927090921061_5555409769371200460_n.jpg?_nc_ht=scontent-waw1-1.cdninstagram.com&_nc_cat=109&_nc_ohc=hbvbapZgevcAX-nrasn&tn=fAaKYngE5-px8oyw&edm=APU89FABAAAA&ccb=7-4&oh=792a373322fc403f53a751f8726a62e5&oe=6157C074&_nc_sid=86f79a",
+            "songs": [
+                {
+                    "id": 1,
+                    "image_url": "https://cdn.promodj.com/afs/500166ff33a9cec4cae4435916a60dfb12:resize:2000x2000:same:3e0710",
+                    "user_friendly_name": "Linkin Park - Numb",
+                    "song_name": "linkin_park_numb"
+                },
+                {
+                    "id": 2,
+                    "image_url": "https://i.ytimg.com/vi/q-ElXFQAtDs/maxresdefault.jpg",
+                    "user_friendly_name": "Linkin Park - In the end",
+                    "song_name": "linkin_park_in_the_end"
+                }
+            ],
+            "services": [
+                "arrangement"
+            ],
+            "arrangements": [
+                {
+                    "id": 1,
+                    "name": "wav",
+                    "price": "30$"
+                },
+                {
+                    "id": 2,
+                    "name": "wav + дорожки",
+                    "price": "50$"
+                },
+                {
+                    "id": 3,
+                    "name": "exclusive",
+                    "price": "100$"
+                },
+                {
+                    "id": 4,
+                    "name": "на заказ",
+                    "price": "от 100$"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Никита SAYPINK!",
+            "image_url": "https://scontent-waw1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/c2.0.1435.1435a/s640x640/233175680_508285140259395_9051338038596444189_n.jpg?_nc_ht=scontent-waw1-1.cdninstagram.com&_nc_cat=103&_nc_ohc=sgGQfEoSXbcAX8GRGjy&tn=fAaKYngE5-px8oyw&edm=ABfd0MgBAAAA&ccb=7-4&oh=6a6832d1fafba15ae8feb11d577b37bf&oe=6159176E&_nc_sid=7bff83",
+            "songs": [],
+            "services": [
+                "arrangement"
+            ],
+            "arrangements": [
+                {
+                    "id": 5,
+                    "name": "wav",
+                    "price": "30$"
+                },
+                {
+                    "id": 6,
+                    "name": "wav + дорожки",
+                    "price": "50$"
+                },
+                {
+                    "id": 7,
+                    "name": "exclusive",
+                    "price": "100$"
+                },
+                {
+                    "id": 8,
+                    "name": "на заказ",
+                    "price": "от 100$"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Денис Грачёв",
+            "image_url": "https://scontent-waw1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/c0.180.1440.1440a/s640x640/204769520_174334191327546_7776797308572425061_n.jpg?_nc_ht=scontent-waw1-1.cdninstagram.com&_nc_cat=106&_nc_ohc=JFDIX6-41LoAX_4gkXU&edm=ABfd0MgBAAAA&ccb=7-4&oh=15c04ec52955f34b7931cf3ac20db128&oe=6157B36F&_nc_sid=7bff83",
+            "songs": [],
+            "services": [
+                "arrangement"
+            ],
+            "arrangements": [
+                {
+                    "id": 9,
+                    "name": "wav",
+                    "price": "30$"
+                },
+                {
+                    "id": 10,
+                    "name": "wav + дорожки",
+                    "price": "50$"
+                },
+                {
+                    "id": 11,
+                    "name": "exclusive",
+                    "price": "100$"
+                },
+                {
+                    "id": 12,
+                    "name": "на заказ",
+                    "price": "от 100$"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Ground",
+            "image_url": "https://scontent-waw1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/c240.0.960.960a/s640x640/83944431_466492674232649_3436767051902357751_n.jpg?_nc_ht=scontent-waw1-1.cdninstagram.com&_nc_cat=105&_nc_ohc=Da8bklefpfwAX-S5mal&edm=APU89FABAAAA&ccb=7-4&oh=f0beb19cf12279f96d5e57c561145034&oe=61587838&_nc_sid=86f79a",
+            "songs": [],
+            "services": [
+                "arrangement"
+            ],
+            "arrangements": [
+                {
+                    "id": 13,
+                    "name": "wav",
+                    "price": "30$"
+                },
+                {
+                    "id": 14,
+                    "name": "wav + дорожки",
+                    "price": "50$"
+                },
+                {
+                    "id": 15,
+                    "name": "exclusive",
+                    "price": "100$"
+                },
+                {
+                    "id": 16,
+                    "name": "на заказ",
+                    "price": "от 100$"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Герман",
+            "image_url": "https://scontent-waw1-1.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s640x640/134513018_3678589655512920_2139400402784268642_n.jpg?_nc_ht=scontent-waw1-1.cdninstagram.com&_nc_cat=100&_nc_ohc=aR6Kvs3IuTMAX-bMSkl&edm=ABfd0MgBAAAA&ccb=7-4&oh=b9f75aac4c825691cdf3b91948455879&oe=6157A308&_nc_sid=7bff83",
+            "mastering_and_mixing": "стоимость работы - 15р в час",
+            "songs": [],
+            "services": [
+                "mixing",
+                "mastering"
+            ],
+            "arrangements": []
+        }
+    ],
+    "work_times": [
+        "8:00",
+        "8:30",
+        "9:00",
+        "9:30",
+        "10:00",
+        "10:30",
+        "11:00",
+        "11:30",
+        "12:00",
+        "12:30",
+        "13:00",
+        "13:30",
+        "14:00",
+        "14:30",
+        "15:00",
+        "15:30",
+        "16:00",
+        "16:30",
+        "17:00",
+        "17:30",
+        "18:00"
+    ],
+    "reservations": [
+        {
+            "id": 7,
+            "start_time": 1633590000,
+            "end_time": 1633599000
+        }
+    ]
+}
