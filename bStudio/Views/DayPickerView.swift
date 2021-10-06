@@ -17,8 +17,7 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
     @EnvironmentObject private var studio: Studio
     @EnvironmentObject var dateDetails: ViewModel
     @State private var shouldNavigateToNextScreen = false
-    @State private var showDiscontinuousWarning = false
-    @State private var showIncorrectDataInputWarning = false
+    @State private var shouldShowWarning: Warning?
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -32,16 +31,11 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("VOSTOK'7")
         .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
-        .alert(isPresented: $showDiscontinuousWarning) {
-            Alert(title: Text("Обратите внимание"),
-                  message: Text("Выбранный Вами диапазон времени прерывен, т.е. Вам необходимо будет прерваться, так как студия уже забронирована на промежуток времени внутри Вашего выбора."),
+        .alert(item: $shouldShowWarning, content: { warning in
+            Alert(title: Text(warning.title),
+                  message: Text(warning.description),
                   dismissButton: .cancel(Text("Понятно")))
-        }
-        .alert(isPresented: $showIncorrectDataInputWarning) {
-            Alert(title: Text("Ошибка ввода данных"),
-                  message: Text("Вы выбрали неверный промежуток времени, время окончания работы должно быть больше времени начала"),
-                  dismissButton: .cancel(Text("Понятно")))
-        }
+        })
     }
     private var content: some View {
         VStack(spacing: 24) {
@@ -85,7 +79,7 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
                 let startDate = DateMapper(time: startTime, date: dateDetails.selectionDate).serverTime
                 let endDate = DateMapper(time: endTime, date: dateDetails.selectionDate).serverTime
                 if startDate >= endDate {
-                    showIncorrectDataInputWarning = true
+                    shouldShowWarning = .incorrectInput
                 } else {
                     shouldNavigateToNextScreen = true
                 }
@@ -102,7 +96,30 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
         guard let endTime = dateDetails.endTime else { return }
         let date = dateDetails.selectionDate
         if !studio.isDateRangeContinuous(startTime: startTime, endTime: endTime, date: date) {
-            showDiscontinuousWarning = true
+            shouldShowWarning = .overlapsDateRange
+        }
+    }
+    private enum Warning: Identifiable {
+        var id: Warning { self }
+        
+        case incorrectInput
+        case overlapsDateRange
+        
+        var title: String {
+            switch self {
+            case .incorrectInput:
+                return "Ошибка ввода данных"
+            case .overlapsDateRange:
+                return "Обратите внимание"
+            }
+        }
+        var description: String {
+            switch self {
+            case .incorrectInput:
+                return "Вы выбрали неверный промежуток времени, время окончания работы должно быть больше времени начала"
+            case .overlapsDateRange:
+                return "Выбранный Вами диапазон времени прерывен, т.е. Вам необходимо будет прерваться, так как студия уже забронирована на промежуток времени внутри Вашего выбора."
+            }
         }
     }
 }
