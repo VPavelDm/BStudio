@@ -18,6 +18,7 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
     @EnvironmentObject var dateDetails: ViewModel
     @State private var shouldNavigateToNextScreen = false
     @State private var showDiscontinuousWarning = false
+    @State private var showIncorrectDataInputWarning = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -34,6 +35,11 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
         .alert(isPresented: $showDiscontinuousWarning) {
             Alert(title: Text("Обратите внимание"),
                   message: Text("Выбранный Вами диапазон времени прерывен, т.е. Вам необходимо будет прерваться, так как студия уже забронирована на промежуток времени внутри Вашего выбора."),
+                  dismissButton: .cancel(Text("Понятно")))
+        }
+        .alert(isPresented: $showIncorrectDataInputWarning) {
+            Alert(title: Text("Ошибка ввода данных"),
+                  message: Text("Вы выбрали неверный промежуток времени, время окончания работы должно быть больше времени начала"),
                   dismissButton: .cancel(Text("Понятно")))
         }
     }
@@ -74,7 +80,15 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
     private var next: some View {
         NavigationLink(destination: nextScreen, isActive: $shouldNavigateToNextScreen) {
             RoundedButton(text: "Дальше") {
-                shouldNavigateToNextScreen = true
+                guard let startTime = dateDetails.startTime else { return }
+                guard let endTime = dateDetails.endTime else { return }
+                let startDate = DateMapper(time: startTime, date: dateDetails.selectionDate).serverTime
+                let endDate = DateMapper(time: endTime, date: dateDetails.selectionDate).serverTime
+                if startDate >= endDate {
+                    showIncorrectDataInputWarning = true
+                } else {
+                    shouldNavigateToNextScreen = true
+                }
             }
         }
     }
