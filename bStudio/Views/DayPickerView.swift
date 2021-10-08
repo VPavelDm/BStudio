@@ -51,8 +51,7 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
             .foregroundColor(.white)
     }
     private var calendar: some View {
-        CalendarView(selection: $dateDetails.selectionDate,
-                     unavailableDateRanges: studio.unavailableDateRanges)
+        CalendarView(selection: $dateDetails.selectionDate)
     }
     private var timePicker: some View {
         VStack {

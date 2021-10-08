@@ -34,19 +34,19 @@ class CalendarViewModel: ObservableObject {
     func isTheSameDate(_ date: Date, selection: Date) -> Bool {
         calendar.isDate(date, inSameDayAs: selection)
     }
-    func isDateEnabled(_ date: Date, selectionPage: Int, unavailableDateRanges: [Range<Date>]) -> Bool {
+    func isDateEnabled(_ date: Date, selectionPage: Int, workTimes: [WorkTime]) -> Bool {
         let anyDateForMonthWithinPage = calendar.date(byAdding: .month, value: selectionPage, to: Date()) ?? Date()
         guard calendar.isDate(date, inSameMonthAs: anyDateForMonthWithinPage) else { return false }
         guard !calendar.isDateInPastAndNotToday(date) else { return false }
-        return !unavailableDateRanges.contains(where: { $0.contains(date) })
+        return workTimes.first(where: { $0.isEnabled }) != nil
     }
-    func textColor(for date: Date, selection: Date, selectionPage: Int, unavailableDateRanges: [Range<Date>]) -> Color {
+    func textColor(for date: Date, selection: Date, selectionPage: Int, workTimes: [WorkTime]) -> Color {
         let anyDateForMonthWithinPage = calendar.date(byAdding: .month, value: selectionPage, to: Date()) ?? Date()
         guard calendar.isDate(date, inSameMonthAs: anyDateForMonthWithinPage) else { return .clear }
         guard !isTheSameDate(date, selection: selection) else { return .white }
         guard !isTheSameDate(date, selection: Date()) else { return .red }
         guard !calendar.isDateInPastAndNotToday(date) else { return .secondary }
-        return unavailableDateRanges.contains(where: { $0.contains(date) }) ? .secondary : .primary
+        return workTimes.first(where: { $0.isEnabled }) == nil ? .secondary : .primary
     }
     func textFont(for date: Date, selectionDate: Date) -> Font {
         if isTheSameDate(date, selection: selectionDate) {

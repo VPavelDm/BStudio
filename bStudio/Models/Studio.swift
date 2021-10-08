@@ -14,10 +14,10 @@ class Studio: ObservableObject {
     @Published var reservations: [Reservation] = []
     @Published var authors: [Author] = []
     private var _workTimes: [String] = []
-    var isStudioLoaded: Bool { !authors.isEmpty }
-    var unavailableDateRanges: [Range<Date>] {
+    private var unavailableDateRanges: [Range<Date>] {
         reservations.map { $0.timeInterval }
     }
+    var isStudioLoaded: Bool { !authors.isEmpty }
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = Calendar(identifier: .gregorian)

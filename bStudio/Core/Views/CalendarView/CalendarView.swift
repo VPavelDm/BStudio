@@ -11,15 +11,14 @@ struct CalendarView: View {
     
     // MARK: - Properties
     private let columns: [GridItem] = (1...7).map { _ in GridItem(.flexible()) }
-    private var unavailableDateRanges: [Range<Date>]
+    @EnvironmentObject private var studio: Studio
     @StateObject private var calendar = CalendarViewModel()
     @State private var isBackTransitionAnimation = false
     @Binding var selectionDate: Date
     @State private var selectionPage = 0
     
     // MARK: - Inits
-    init(selection: Binding<Date>, unavailableDateRanges: [Range<Date>]) {
-        self.unavailableDateRanges = unavailableDateRanges
+    init(selection: Binding<Date>) {
         self._selectionDate = selection
     }
     
@@ -102,13 +101,22 @@ struct CalendarView: View {
                 .onTapGesture {
                     selectionDate = day.date
                 }
-                .disabled(!calendar.isDateEnabled(day.date, selectionPage: selectionPage, unavailableDateRanges: unavailableDateRanges))
+                .disabled(
+                    !calendar.isDateEnabled(day.date,
+                                            selectionPage: selectionPage,
+                                            workTimes: studio.workTimes(for: day.date))
+                )
         }
         .aspectRatio(1.0, contentMode: .fill)
     }
     private func dayTextView(_ day: Day) -> some View {
         Text("\(day.number)")
-            .foregroundColor(calendar.textColor(for: day.date, selection: selectionDate, selectionPage: selectionPage, unavailableDateRanges: unavailableDateRanges))
+            .foregroundColor(
+                calendar.textColor(for: day.date,
+                                      selection: selectionDate,
+                                      selectionPage: selectionPage,
+                                      workTimes: studio.workTimes(for: day.date))
+            )
             .font(calendar.textFont(for: day.date, selectionDate: selectionDate))
     }
 }
@@ -117,7 +125,7 @@ struct CalendarView_Previews: PreviewProvider {
     struct ContentView: View {
         @State var selection = Date()
         var body: some View {
-            CalendarView(selection: $selection, unavailableDateRanges: [])
+            CalendarView(selection: $selection)
         }
     }
     static var previews: some View {
