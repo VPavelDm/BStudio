@@ -23,18 +23,18 @@ struct ArrangementDetailsView<ViewModel>: View where ViewModel: ArrangementDetai
     @State private var shouldShowDocumentsScreen = false
     
     var body: some View {
-        content
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .bStudioNavigationBar(title: "VOSTOK'7")
-            .alert(isPresented: $shouldShowNotFilledAlert) {
-                Alert(title: Text("Вы не заполнили обязательные поля"),
-                      message: Text("Для того, чтобы продолжить, Вам необходимо ввести хотя бы 1 название песни"),
-                      dismissButton: .cancel(Text("Понятно")))
-            }
-            .sheet(isPresented: $shouldShowDocumentsScreen) {
-                DocumentsPickerView()
-            }
-
+        ScrollView {
+            content
+        }
+        .bStudioNavigationBar(title: "VOSTOK'7")
+        .alert(isPresented: $shouldShowNotFilledAlert) {
+            Alert(title: Text("Вы не заполнили обязательные поля"),
+                  message: Text("Для того, чтобы продолжить, Вам необходимо ввести хотя бы 1 название песни"),
+                  dismissButton: .cancel(Text("Понятно")))
+        }
+        .sheet(isPresented: $shouldShowDocumentsScreen) {
+            DocumentsPickerView()
+        }
     }
     private var content: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -62,10 +62,16 @@ struct ArrangementDetailsView<ViewModel>: View where ViewModel: ArrangementDetai
         VStack(alignment: .leading, spacing: 8) {
             referenceTitle
             HStack(alignment: .top, spacing: 8) {
-                VStack {
-                    ForEach(arrangementDetails.songs.indices, id: \.self) { index in
-                        referenceInputs(text: $arrangementDetails.songs[index])
+                VStack(alignment: .leading, spacing: 2) {
+                    VStack {
+                        ForEach(arrangementDetails.songs.indices, id: \.self) { index in
+                            referenceInputs(text: $arrangementDetails.songs[index])
+                        }
                     }
+                    Text("Вы также можете вставить ссылку на песню")
+                        .foregroundColor(.white.opacity(0.6))
+                        .font(.system(size: 14))
+                        .padding(.horizontal, 12)
                 }
                 moreSongs
             }
@@ -77,17 +83,11 @@ struct ArrangementDetailsView<ViewModel>: View where ViewModel: ArrangementDetai
             .foregroundColor(.white)
     }
     private func referenceInputs(text: Binding<String>) -> some View {
-        VStack(alignment: .leading, spacing: 2) {
-            TextField("", text: text)
-                .textFieldStyle(StudioTextFieldStyle(when: text.wrappedValue.isEmpty) {
-                    Text("Введите название песни")
-                        .foregroundColor(.white.opacity(0.6))
-                })
-            Text("Вы также можете вставить ссылку на песню")
-                .foregroundColor(.white.opacity(0.6))
-                .font(.system(size: 14))
-                .padding(.horizontal, 12)
-        }
+        TextField("", text: text)
+            .textFieldStyle(StudioTextFieldStyle(when: text.wrappedValue.isEmpty) {
+                Text("Введите название песни")
+                    .foregroundColor(.white.opacity(0.6))
+            })
     }
     private var moreSongs: some View {
         Button {
@@ -134,9 +134,6 @@ struct ArrangementDetailsView<ViewModel>: View where ViewModel: ArrangementDetai
             .padding(.horizontal, 12)
             .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(lineWidth: 1))
             .foregroundColor(.white)
-            .onTapGesture {
-                print("Tap")
-            }
         }
     }
     
