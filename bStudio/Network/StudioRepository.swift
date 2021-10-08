@@ -10,19 +10,16 @@ import Foundation
 class StudioRepository {
     
     func loadStudio(completion: @escaping (Result<([Author], [String], [Reservation]), Error>) -> Void) {
-        if let responseData = try? readJSONData(jsonFileName: "response") {
-            handleStudioLoadResponse(data: responseData, completion: completion)
+        URLSession.shared.dataTask(with: loadRequest!) { [weak self] data, response, error in
+            if let error = error {
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+            } else if let data = data {
+                self?.handleStudioLoadResponse(data: data, completion: completion)
+            }
         }
-//        URLSession.shared.dataTask(with: loadRequest!) { [weak self] data, response, error in
-//            if let error = error {
-//                DispatchQueue.main.async {
-//                    completion(.failure(error))
-//                }
-//            } else if let data = data {
-//                self?.handleStudioLoadResponse(data: data, completion: completion)
-//            }
-//        }
-//        .resume()
+        .resume()
     }
     func makeReservation(params: [String: Any], completion: @escaping (Result<Void, Error>) -> Void) {
         guard let request = makeRequest(params: params) else { return }
@@ -61,16 +58,15 @@ class StudioRepository {
     }
     
     private var loadRequest: URLRequest? {
-        guard let url = URL(string: "https://jl9kbc3dfl.execute-api.eu-central-1.amazonaws.com/prod/") else { return nil }
-        var request = URLRequest(url: url)
-        request.addValue("TbTbOv0BkZ1Hf5M8M8Y7z8Tpc6qoa8HZ7NrPGIF3", forHTTPHeaderField: "x-api-key")
-        return request
+        guard let url = URL(string: "https://fx6h6bgyvj.execute-api.eu-central-1.amazonaws.com/loadStudios") else { return nil }
+        return URLRequest(url: url)
     }
     private func makeRequest(params: [String: Any]) -> URLRequest? {
         let body = createBody(params: params)
-        guard let url = URL(string: "https://x958s2uw0m.execute-api.eu-central-1.amazonaws.com/prod/") else { return nil }
+        guard let url = URL(string: "https://z7qul7zy1m.execute-api.eu-central-1.amazonaws.com/makeReservation") else { return nil }
         var request = URLRequest(url: url)
-        request.addValue("TbTbOv0BkZ1Hf5M8M8Y7z8Tpc6qoa8HZ7NrPGIF3", forHTTPHeaderField: "x-api-key")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.httpBody = body
         request.httpMethod = "POST"
         return request
