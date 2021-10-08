@@ -21,21 +21,15 @@ class StudioRepository {
         }
         .resume()
     }
-    func makeReservation(params: [String: Any], completion: @escaping (Result<Void, Error>) -> Void) {
+    func makeReservation(params: [String: Any], completion: @escaping (Result<([Author], [String], [Reservation]), Error>) -> Void) {
         guard let request = makeRequest(params: params) else { return }
-        URLSession.shared.dataTask(with: request) { data, _, error in
+        URLSession.shared.dataTask(with: request) { [weak self] data, _, error in
             if let error = error {
                 DispatchQueue.main.async {
                     completion(.failure(error))
                 }
             } else if let data = data {
-                DispatchQueue.main.async {
-                    if String(data: data, encoding: .utf8) ?? "parse error" == "success" {
-                        completion(.success(Void()))
-                    } else {
-                        completion(.failure(ServerError.parseError))
-                    }
-                }
+                self?.handleStudioLoadResponse(data: data, completion: completion)
             }
         }
         .resume()

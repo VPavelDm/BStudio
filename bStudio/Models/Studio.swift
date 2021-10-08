@@ -43,7 +43,17 @@ class Studio: ObservableObject {
         }
     }
     func makeReservation(params: [String: Any], completion: @escaping (Result<Void, Error>) -> Void) {
-        repository.makeReservation(params: params, completion: completion)
+        repository.makeReservation(params: params) { [weak self] result in
+            switch result {
+            case .success(let (authors, workTimes, reservations)):
+                self?.reservations = reservations
+                self?.authors = authors
+                self?._workTimes = workTimes
+                completion(.success(Void()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     func workTimes(for date: Date) -> [WorkTime] {
         var workTimes = _workTimes
