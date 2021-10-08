@@ -66,6 +66,7 @@
 		4AC709FB26FBCD000031A24F /* MonthMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC709FA26FBCD000031A24F /* MonthMetadata.swift */; };
 		4AC709FD26FBD8330031A24F /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC709FC26FBD8330031A24F /* Calendar.swift */; };
 		4AC7FBAE271090F30045B127 /* BStudioNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7FBAD271090F30045B127 /* BStudioNavigationBar.swift */; };
+		4AC7FBB0271093F10045B127 /* BookingNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7FBAF271093F10045B127 /* BookingNavigation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +131,7 @@
 		4AC709FA26FBCD000031A24F /* MonthMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthMetadata.swift; sourceTree = "<group>"; };
 		4AC709FC26FBD8330031A24F /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		4AC7FBAD271090F30045B127 /* BStudioNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BStudioNavigationBar.swift; sourceTree = "<group>"; };
+		4AC7FBAF271093F10045B127 /* BookingNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingNavigation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,6 +359,7 @@
 				4A036B542700E7F500451518 /* Reservation.swift */,
 				4A036B5A27010C3500451518 /* VocalRecordingType.swift */,
 				4A5BBF73270E28F500DAFB18 /* WorkTime.swift */,
+				4AC7FBAF271093F10045B127 /* BookingNavigation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				4ABE819F26F45F6600CC9C60 /* ImageLoader.swift in Sources */,
 				4A3E7D2E27060F410086D578 /* DateMapper.swift in Sources */,
 				4A2EF70126F9C10000A45A0A /* ArrangementOrderDetails.swift in Sources */,
+				4AC7FBB0271093F10045B127 /* BookingNavigation.swift in Sources */,
 				4AC709F726FBCC8F0031A24F /* Day.swift in Sources */,
 				4A036B4C2700900A00451518 /* Service.swift in Sources */,
 				4ABE819126F3C43500CC9C60 /* NavigationBarModifier.swift in Sources */,

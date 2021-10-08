@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ServiceView: View {
     @StateObject private var studio: Studio = Studio()
-    @State private var shouldNavigateToNextScreen = false
+    @StateObject private var bookingNavigation = BookingNavigation()
     @State private var selectionIndex = 0
     @State private var shouldShowProgressView = true
     
@@ -28,6 +28,7 @@ struct ServiceView: View {
                 }
         }
         .environmentObject(studio)
+        .environmentObject(bookingNavigation)
     }
     
     private var content: some View {
@@ -59,9 +60,9 @@ struct ServiceView: View {
         }
     }
     private var next: some View {
-        NavigationLink(destination: nextScreen, isActive: $shouldNavigateToNextScreen) {
+        NavigationLink(destination: nextScreen, isActive: $bookingNavigation.isBookingUnderway) {
             RoundedButton(text: "Дальше") {
-                shouldNavigateToNextScreen = true
+                bookingNavigation.isBookingUnderway = true
             }
         }
     }

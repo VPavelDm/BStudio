@@ -18,9 +18,11 @@ protocol AuthenticationDetails: ObservableObject {
 struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetails {
     @EnvironmentObject private var authenticationDetails: ViewModel
     @EnvironmentObject private var studio: Studio
+    @EnvironmentObject private var bookingNavigation: BookingNavigation
     @State private var notFilledFieldErrorMessage: IdentifiableString?
     @State private var makeOrderError = false
     @State private var makeOrderRequestIsWorking = false
+    @State private var shouldShowSuccessAlert = false
     
     var body: some View {
         VStack(alignment: .leading){
@@ -42,6 +44,15 @@ struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetail
                   primaryButton: .default(Text("Попробовать еще раз"),
                                           action: tryToMakeOrder),
                   secondaryButton: .cancel(Text("Понятно")))
+        }
+        .alert(isPresented: $shouldShowSuccessAlert) {
+            Alert(
+                title: Text("Ура! 🎶"),
+                message: Text("Запись прошла успешно! Ждем Вас в нашей студии"),
+                dismissButton: .default(Text("Понятно")) {
+                    bookingNavigation.isBookingUnderway = false
+                }
+            )
         }
     }
     private var activityIndicator: some View {
@@ -101,7 +112,7 @@ struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetail
                 makeOrderRequestIsWorking = false
                 switch result {
                 case .success:
-                    print("Success")
+                    shouldShowSuccessAlert = true
                 case .failure:
                     makeOrderError = true
                 }
