@@ -7,12 +7,15 @@
 
 import UIKit
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct DocumentsPickerView: UIViewControllerRepresentable {
+    @Binding var fileName: String
     
     // MARK: - UIViewControllerRepresentable
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
-        let controller = UIDocumentPickerViewController(forOpeningContentTypes: [.text], asCopy: true)
+        let types: [UTType] = [.audio]
+        let controller = UIDocumentPickerViewController(forOpeningContentTypes: types, asCopy: true)
         controller.delegate = context.coordinator
         return controller
     }
@@ -21,11 +24,18 @@ struct DocumentsPickerView: UIViewControllerRepresentable {
     
     // MARK: - Coordinator
     func makeCoordinator() -> Coordinator {
-        Coordinator()
+        Coordinator(fileName: $fileName)
     }
     class Coordinator: NSObject, UIDocumentPickerDelegate, UINavigationBarDelegate {
+        @Binding var fileName: String
+        
+        init(fileName: Binding<String>) {
+            self._fileName = fileName
+        }
+        
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-            print(urls)
+            guard let url = urls.first else { return }
+            fileName = url.lastPathComponent
         }
     }
 }

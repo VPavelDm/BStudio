@@ -21,6 +21,7 @@ struct ArrangementDetailsView<ViewModel>: View where ViewModel: ArrangementDetai
     @State private var shouldNavigateToNextScreen = false
     @State private var shouldShowNotFilledAlert = false
     @State private var shouldShowDocumentsScreen = false
+    @State private var fileName = ""
     
     var body: some View {
         ScrollView {
@@ -33,7 +34,7 @@ struct ArrangementDetailsView<ViewModel>: View where ViewModel: ArrangementDetai
                   dismissButton: .cancel(Text("Понятно")))
         }
         .sheet(isPresented: $shouldShowDocumentsScreen) {
-            DocumentsPickerView()
+            DocumentsPickerView(fileName: $fileName)
         }
     }
     private var content: some View {
@@ -127,6 +128,7 @@ struct ArrangementDetailsView<ViewModel>: View where ViewModel: ArrangementDetai
             shouldShowDocumentsScreen = true
         } label: {
             HStack {
+                Text(fileName)
                 Spacer()
                 Image(systemName: "paperclip")
             }
