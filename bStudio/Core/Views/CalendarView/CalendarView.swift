@@ -108,6 +108,22 @@ struct CalendarView: View {
                 )
         }
         .aspectRatio(1.0, contentMode: .fill)
+        .onAppear {
+            let isSelectionDateAvailable = calendar.isDateEnabled(
+                selectionDate,
+                selectionPage: selectionPage,
+                workTimes: studio.workTimes(for: selectionDate)
+            )
+            guard !isSelectionDateAvailable || selectionDate > day.date else { return }
+            let isDateAvailable = calendar.isDateEnabled(
+                day.date,
+                selectionPage: selectionPage,
+                workTimes: studio.workTimes(for: day.date)
+            )
+            if isDateAvailable {
+                selectionDate = day.date
+            }
+        }
     }
     private func dayTextView(_ day: Day) -> some View {
         Text("\(day.number)")
