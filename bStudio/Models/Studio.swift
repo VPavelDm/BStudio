@@ -46,7 +46,7 @@ class Studio: ObservableObject {
         repository.makeReservation(params: params, completion: completion)
     }
     func workTimes(for date: Date) -> [WorkTime] {
-        _workTimes
+        var workTimes = _workTimes
             .map { time in
                 DateMapper(time: time, date: date).serverTime
             }
@@ -57,6 +57,19 @@ class Studio: ObservableObject {
                 WorkTime(text: dateFormatter.string(from: time),
                          isEnabled: !unavailableDateRanges.contains(where: { $0.contains(time) }))
             }
+        
+        guard workTimes.count > 1 else {
+            return workTimes
+        }
+        
+        workTimes[0].isEnabled = workTimes[0].isEnabled && workTimes[1].isEnabled
+        for index in 1..<workTimes.count-1 {
+            if !workTimes[index-1].isEnabled && !workTimes[index+1].isEnabled {
+                workTimes[index].isEnabled = false
+            }
+        }
+        workTimes[workTimes.count-1].isEnabled = workTimes[workTimes.count-1].isEnabled && workTimes[workTimes.count-2].isEnabled
+        return workTimes
     }
     func isDateRangeContinuous(startTime: String, endTime: String, date: Date) -> Bool {
         let startTime = DateMapper(time: startTime, date: date).serverTime
