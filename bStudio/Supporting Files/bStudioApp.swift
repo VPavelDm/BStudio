@@ -11,10 +11,10 @@ import SwiftUI
 struct bStudioApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ServiceView()
                 .preferredColorScheme(.dark)
                 .accentColor(.white)
-                .environmentObject(Studio())
+                .navigationViewStyle(StackNavigationViewStyle())
                 .environmentObject(ArrangementOrderDetails())
                 .environmentObject(VocalRecordingOrderDetails())
                 .environmentObject(MixingOrderDetails())

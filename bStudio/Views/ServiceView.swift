@@ -8,27 +8,30 @@
 import SwiftUI
 
 struct ServiceView: View {
-    @EnvironmentObject private var studio: Studio
+    @StateObject private var studio: Studio = Studio()
     @State private var shouldNavigateToNextScreen = false
     @State private var selectionIndex = 0
     @State private var shouldShowProgressView = true
     
     var body: some View {
-        content
-            .padding(16)
-            .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
-            .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("VOSTOK'7")
-            .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
-            .onAppear {
-                studio.loadStudio()
-            }
-            .onReceive(studio.$authors) { authors in
-                withAnimation {
-                    shouldShowProgressView = authors.isEmpty
+        NavigationView {
+            content
+                .padding(16)
+                .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+                .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("VOSTOK'7")
+                .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+                .onAppear {
+                    studio.loadStudio()
                 }
-            }
+                .onReceive(studio.$authors) { authors in
+                    withAnimation {
+                        shouldShowProgressView = authors.isEmpty
+                    }
+                }
+        }
+        .environmentObject(studio)
     }
     
     private var content: some View {
@@ -100,8 +103,7 @@ fileprivate extension Font.Weight {
 // MARK: - Previews
 struct ServiceView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-            .environmentObject(Studio())
+        ServiceView()
     }
 }
 
