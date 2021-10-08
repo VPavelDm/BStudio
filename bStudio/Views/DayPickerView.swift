@@ -27,10 +27,7 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
                     .padding([.horizontal, .bottom], 16)
             }
         }
-        .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("VOSTOK'7")
-        .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+        .bStudioNavigationBar(title: "VOSTOK'7")
         .alert(item: $shouldShowWarning, content: { warning in
             Alert(title: Text(warning.title),
                   message: Text(warning.description),

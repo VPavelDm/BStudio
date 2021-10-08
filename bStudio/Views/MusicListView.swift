@@ -34,10 +34,7 @@ struct MusicListView: View {
                     .id(song.id)
             }
         }
-        .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("VOSTOK'7")
-        .navigationBarColor(backgroundColor: .navBarBackground, titleColor: .textColor)
+        .bStudioNavigationBar(title: "VOSTOK'7")
     }
     private var title: some View {
         HStack {

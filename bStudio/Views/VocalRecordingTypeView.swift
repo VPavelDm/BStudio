@@ -33,10 +33,7 @@ struct VocalRecordingTypeView<ViewModel>: View where ViewModel: VocalRecordingTy
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(16)
-        .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("VOSTOK'7")
-        .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+        .bStudioNavigationBar(title: "VOSTOK'7")
     }
     private var title: some View {
         Text("Детали записи")

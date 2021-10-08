@@ -30,10 +30,7 @@ struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetail
             Spacer()
         }
         .padding(16)
-        .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("VOSTOK'7")
-        .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+        .bStudioNavigationBar(title: "VOSTOK'7")
         .alert(item: $notFilledFieldErrorMessage) { message in
             Alert(title: Text("Вы не заполнили обязательные поля"),
                   message: Text(message.text),

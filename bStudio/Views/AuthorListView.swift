@@ -20,10 +20,7 @@ struct AuthorListView<ViewModel>: View where ViewModel: AuthorListDetails {
     var body: some View {
         content
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("VOSTOK'7")
-            .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+            .bStudioNavigationBar(title: "VOSTOK'7")
     }
     
     private var content: some View {
@@ -191,6 +188,7 @@ struct AuthorListView_Previews: PreviewProvider {
         NavigationView {
             AuthorListView<ArrangementOrderDetails>(service: .mixing)
                 .environmentObject(studio)
+                .environmentObject(ArrangementOrderDetails())
         }
     }
 }

@@ -17,11 +17,7 @@ struct ServiceView: View {
         NavigationView {
             content
                 .padding(16)
-                .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
-                .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationTitle("VOSTOK'7")
-                .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+                .bStudioNavigationBar(title: "VOSTOK'7")
                 .onAppear {
                     studio.loadStudio()
                 }

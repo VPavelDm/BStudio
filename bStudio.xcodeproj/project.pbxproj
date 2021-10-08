@@ -65,6 +65,7 @@
 		4AC709F926FBCCD10031A24F /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC709F826FBCCD10031A24F /* CalendarViewModel.swift */; };
 		4AC709FB26FBCD000031A24F /* MonthMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC709FA26FBCD000031A24F /* MonthMetadata.swift */; };
 		4AC709FD26FBD8330031A24F /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC709FC26FBD8330031A24F /* Calendar.swift */; };
+		4AC7FBAE271090F30045B127 /* BStudioNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7FBAD271090F30045B127 /* BStudioNavigationBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +129,7 @@
 		4AC709F826FBCCD10031A24F /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		4AC709FA26FBCD000031A24F /* MonthMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthMetadata.swift; sourceTree = "<group>"; };
 		4AC709FC26FBD8330031A24F /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		4AC7FBAD271090F30045B127 /* BStudioNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BStudioNavigationBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +338,7 @@
 		4ABE818F26F3C42E00CC9C60 /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				4AC7FBAD271090F30045B127 /* BStudioNavigationBar.swift */,
 				4ABE819026F3C43500CC9C60 /* NavigationBarModifier.swift */,
 				4A2EF6FB26F9B37700A45A0A /* TextField+placeholder.swift */,
 			);
@@ -461,6 +464,7 @@
 				4A036B5F2701911100451518 /* MixingDetailsView.swift in Sources */,
 				4A3E7D252704CDDC0086D578 /* SongTO.swift in Sources */,
 				4A5BBE53270D771500DAFB18 /* readJSON.swift in Sources */,
+				4AC7FBAE271090F30045B127 /* BStudioNavigationBar.swift in Sources */,
 				4A489F7226FA50BE00B428B2 /* Date.swift in Sources */,
 				4A11985726FD10E80035ABD7 /* DayPickerView.swift in Sources */,
 				4A167D2026F467900046E32D /* MusicListView.swift in Sources */,

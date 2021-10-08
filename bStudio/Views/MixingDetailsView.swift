@@ -26,10 +26,7 @@ struct MixingDetailsView<ViewModel>: View where ViewModel: MixingDetails {
     var body: some View {
         content
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.background.edgesIgnoringSafeArea([.bottom, .horizontal]))
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("VOSTOK'7")
-            .navigationBarColor(backgroundColor: .woodsmoke, titleColor: .white)
+            .bStudioNavigationBar(title: "VOSTOK'7")
             .alert(isPresented: $shouldShowNotFilledAlert) {
                 Alert(title: Text("Вы не заполнили обязательные поля"),
                       message: Text("Для того, чтобы продолжить, Вам необходимо ввести хотя бы 1 название песни"),
