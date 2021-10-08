@@ -64,21 +64,13 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
                            times: studio.workTimes(for: dateDetails.selectionDate))
         }
         .id(dateDetails.selectionDate)
-        .onChange(of: dateDetails.startTime) { newValue in
-            validateTimeRange()
-        }
-        .onChange(of: dateDetails.endTime) { newValue in
-            validateTimeRange()
-        }
     }
     private var next: some View {
         NavigationLink(destination: nextScreen, isActive: $shouldNavigateToNextScreen) {
             RoundedButton(text: "Дальше") {
-                guard let startTime = dateDetails.startTime else { return }
-                guard let endTime = dateDetails.endTime else { return }
-                let startDate = DateMapper(time: startTime, date: dateDetails.selectionDate).serverTime
-                let endDate = DateMapper(time: endTime, date: dateDetails.selectionDate).serverTime
-                if startDate >= endDate {
+                if !isTimeRangeContinuous() {
+                    shouldShowWarning = .overlapsDateRange
+                } else if !isStartTimeLessThanEndTime() {
                     shouldShowWarning = .incorrectInput
                 } else {
                     shouldNavigateToNextScreen = true
@@ -91,13 +83,18 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
     }
     
     // MARK: - Utils
-    private func validateTimeRange() {
-        guard let startTime = dateDetails.startTime else { return }
-        guard let endTime = dateDetails.endTime else { return }
+    private func isTimeRangeContinuous() -> Bool {
+        guard let startTime = dateDetails.startTime else { return false }
+        guard let endTime = dateDetails.endTime else { return false }
         let date = dateDetails.selectionDate
-        if !studio.isDateRangeContinuous(startTime: startTime, endTime: endTime, date: date) {
-            shouldShowWarning = .overlapsDateRange
-        }
+        return studio.isDateRangeContinuous(startTime: startTime, endTime: endTime, date: date)
+    }
+    private func isStartTimeLessThanEndTime() -> Bool {
+        guard let startTime = dateDetails.startTime else { return false }
+        guard let endTime = dateDetails.endTime else { return false }
+        let startDate = DateMapper(time: startTime, date: dateDetails.selectionDate).serverTime
+        let endDate = DateMapper(time: endTime, date: dateDetails.selectionDate).serverTime
+        return startDate < endDate
     }
     private enum Warning: Identifiable {
         var id: Warning { self }
@@ -110,15 +107,15 @@ struct DayPickerView<ViewModel>: View where ViewModel: DateDetails, ViewModel: A
             case .incorrectInput:
                 return "Ошибка ввода данных"
             case .overlapsDateRange:
-                return "Обратите внимание"
+                return "Ошибка ввода данных"
             }
         }
         var description: String {
             switch self {
             case .incorrectInput:
-                return "Вы выбрали неверный промежуток времени, время окончания работы должно быть больше времени начала"
+                return "Вы выбрали неверный промежуток времени: время окончания работы должно быть больше времени начала!"
             case .overlapsDateRange:
-                return "Выбранный Вами диапазон времени прерывен, т.е. Вам необходимо будет прерваться, так как студия уже забронирована на промежуток времени внутри Вашего выбора."
+                return "Вы выбрали неверный промежуток времени: между временем начала и окончания работы не должно быть зарезервировано другими людьми!"
             }
         }
     }
