@@ -67,6 +67,7 @@
 		4AC709FD26FBD8330031A24F /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC709FC26FBD8330031A24F /* Calendar.swift */; };
 		4AC7FBAE271090F30045B127 /* BStudioNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7FBAD271090F30045B127 /* BStudioNavigationBar.swift */; };
 		4AC7FBB0271093F10045B127 /* BookingNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7FBAF271093F10045B127 /* BookingNavigation.swift */; };
+		4AC7FBB22710A70F0045B127 /* DocumentsPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7FBB12710A70F0045B127 /* DocumentsPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +133,7 @@
 		4AC709FC26FBD8330031A24F /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		4AC7FBAD271090F30045B127 /* BStudioNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BStudioNavigationBar.swift; sourceTree = "<group>"; };
 		4AC7FBAF271093F10045B127 /* BookingNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingNavigation.swift; sourceTree = "<group>"; };
+		4AC7FBB12710A70F0045B127 /* DocumentsPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,6 +314,7 @@
 				4A5BBDE7270C278700DAFB18 /* Blur.swift */,
 				4A5BBE45270CCCB300DAFB18 /* TimePickerField.swift */,
 				4A5BBE47270CCFD600DAFB18 /* DoneToolbarButton.swift */,
+				4AC7FBB12710A70F0045B127 /* DocumentsPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				4A2EF70126F9C10000A45A0A /* ArrangementOrderDetails.swift in Sources */,
 				4AC7FBB0271093F10045B127 /* BookingNavigation.swift in Sources */,
 				4AC709F726FBCC8F0031A24F /* Day.swift in Sources */,
+				4AC7FBB22710A70F0045B127 /* DocumentsPickerView.swift in Sources */,
 				4A036B4C2700900A00451518 /* Service.swift in Sources */,
 				4ABE819126F3C43500CC9C60 /* NavigationBarModifier.swift in Sources */,
 				4A2EF6FF26F9B66100A45A0A /* StudioTextFieldStyle.swift in Sources */,

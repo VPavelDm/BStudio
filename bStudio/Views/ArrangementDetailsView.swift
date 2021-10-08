@@ -20,6 +20,7 @@ struct ArrangementDetailsView<ViewModel>: View where ViewModel: ArrangementDetai
     @EnvironmentObject private var arrangementDetails: ViewModel
     @State private var shouldNavigateToNextScreen = false
     @State private var shouldShowNotFilledAlert = false
+    @State private var shouldShowDocumentsScreen = false
     
     var body: some View {
         content
@@ -30,6 +31,9 @@ struct ArrangementDetailsView<ViewModel>: View where ViewModel: ArrangementDetai
                       message: Text("Для того, чтобы продолжить, Вам необходимо ввести хотя бы 1 название песни"),
                       dismissButton: .cancel(Text("Понятно")))
             }
+            .sheet(isPresented: $shouldShowDocumentsScreen) {
+                DocumentsPickerView()
+            }
 
     }
     private var content: some View {
@@ -37,6 +41,7 @@ struct ArrangementDetailsView<ViewModel>: View where ViewModel: ArrangementDetai
             title
             Group {
                 referenceContent
+                demoContent
                 commentsContent
                 workTypeContent
                 next
@@ -72,11 +77,17 @@ struct ArrangementDetailsView<ViewModel>: View where ViewModel: ArrangementDetai
             .foregroundColor(.white)
     }
     private func referenceInputs(text: Binding<String>) -> some View {
-        TextField("", text: text)
-            .textFieldStyle(StudioTextFieldStyle(when: text.wrappedValue.isEmpty) {
-                Text("Введите названия песни")
-                    .foregroundColor(.white.opacity(0.6))
-            })
+        VStack(alignment: .leading, spacing: 2) {
+            TextField("", text: text)
+                .textFieldStyle(StudioTextFieldStyle(when: text.wrappedValue.isEmpty) {
+                    Text("Введите название песни")
+                        .foregroundColor(.white.opacity(0.6))
+                })
+            Text("Вы также можете вставить ссылку на песню")
+                .foregroundColor(.white.opacity(0.6))
+                .font(.system(size: 14))
+                .padding(.horizontal, 12)
+        }
     }
     private var moreSongs: some View {
         Button {
@@ -96,6 +107,37 @@ struct ArrangementDetailsView<ViewModel>: View where ViewModel: ArrangementDetai
                 .opacity(arrangementDetails.songs.count == 3 ? 0.5 : 1)
         }
         .disabled(arrangementDetails.songs.count == 3)
+    }
+    
+    // MARK: Demo
+    private var demoContent: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            demoTitle
+            demoInput
+        }
+    }
+    private var demoTitle: some View {
+        Text("Добавьте демо")
+            .font(.system(size: 20, weight: .semibold))
+            .foregroundColor(.white)
+    }
+    @State private var demoURL = ""
+    private var demoInput: some View {
+        Button {
+            shouldShowDocumentsScreen = true
+        } label: {
+            HStack {
+                Spacer()
+                Image(systemName: "paperclip")
+            }
+            .padding(.vertical, 8)
+            .padding(.horizontal, 12)
+            .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(lineWidth: 1))
+            .foregroundColor(.white)
+            .onTapGesture {
+                print("Tap")
+            }
+        }
     }
     
     // MARK: Comments
