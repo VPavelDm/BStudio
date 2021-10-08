@@ -29,6 +29,7 @@ struct TimePickerField: UIViewRepresentable {
         pickerView.dataSource = context.coordinator
         
         textField.inputView = pickerView
+        pickerView.selectRow(lastSelectedIndex, inComponent: 0, animated: false)
 
         return textField
     }

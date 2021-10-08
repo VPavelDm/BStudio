@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TimePickerView: View {
     
-    @State private var selectedIndex = 0
+    @State private var selectedIndex: Int
     @Binding private var selection: String?
     private var title: String
     private var times: [WorkTime]
@@ -18,6 +18,8 @@ struct TimePickerView: View {
         self.title = title
         self._selection = selection
         self.times = times
+        let initialIndex = Int(times.firstIndex(where: { $0.isEnabled }) ?? 0)
+        _selectedIndex = State(initialValue: initialIndex)
     }
 
     var body: some View {
