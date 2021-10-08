@@ -55,7 +55,7 @@ class Studio: ObservableObject {
             }
             .map { time in
                 WorkTime(text: dateFormatter.string(from: time),
-                         isEnabled: !unavailableDateRanges.contains(where: { $0.contains(time) }))
+                         isEnabled: !unavailableDateRanges.contains(where: { $0.contains(time) }) && Date() < time)
             }
         
         guard workTimes.count > 1 else {
