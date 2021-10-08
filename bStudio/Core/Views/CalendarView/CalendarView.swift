@@ -109,6 +109,7 @@ struct CalendarView: View {
         }
         .aspectRatio(1.0, contentMode: .fill)
         .onAppear {
+            guard calendar.isDateInSameMonth(day.date, as: selectionDate) else { return }
             let isSelectionDateAvailable = calendar.isDateEnabled(
                 selectionDate,
                 selectionPage: selectionPage,

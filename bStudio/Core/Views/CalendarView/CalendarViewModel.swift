@@ -40,6 +40,9 @@ class CalendarViewModel: ObservableObject {
         guard !calendar.isDateInPastAndNotToday(date) else { return false }
         return workTimes.first(where: { $0.isEnabled }) != nil
     }
+    func isDateInSameMonth(_ date: Date, as otherDate: Date) -> Bool {
+        calendar.isDate(date, inSameMonthAs: otherDate)
+    }
     func textColor(for date: Date, selection: Date, selectionPage: Int, workTimes: [WorkTime]) -> Color {
         let anyDateForMonthWithinPage = calendar.date(byAdding: .month, value: selectionPage, to: Date()) ?? Date()
         guard calendar.isDate(date, inSameMonthAs: anyDateForMonthWithinPage) else { return .clear }
