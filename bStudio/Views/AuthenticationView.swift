@@ -13,6 +13,7 @@ protocol AuthenticationDetails: ObservableObject {
     var comments: String { get set }
     
     func createParamsForRequest() -> [String: Any]
+    func clearOrderDetails()
 }
 
 struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetails {
@@ -50,6 +51,7 @@ struct AuthenticationView<ViewModel>: View where ViewModel: AuthenticationDetail
                 title: Text("Ура! 🎶"),
                 message: Text("Запись прошла успешно! Ждем Вас в нашей студии"),
                 dismissButton: .default(Text("Понятно")) {
+                    authenticationDetails.clearOrderDetails()
                     bookingNavigation.isBookingUnderway = false
                 }
             )

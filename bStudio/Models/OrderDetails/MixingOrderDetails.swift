@@ -34,4 +34,17 @@ class MixingOrderDetails: ObservableObject, DateDetails, MixingDetails, Authenti
          "start_time": DateMapper(time: startTime!, date: selectionDate).serverTime,
          "end_time": DateMapper(time: endTime!, date: selectionDate).serverTime]
     }
+    func clearOrderDetails() {
+        songs = [""]
+        suggestionsForWork = ""
+        selectedWorkTypeIndex = 0
+        selectionDate = Date()
+        startTime = nil
+        endTime = nil
+        clientName = ""
+        clientPhoneNumber = ""
+        comments = ""
+        chosenAuthorID = nil
+        service = nil
+    }
 }

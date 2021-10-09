@@ -42,4 +42,17 @@ class ArrangementOrderDetails: ObservableObject, DateDetails, ArrangementDetails
          "songs": songs,
          "demo_url": demoURL?.absoluteString ?? ""]
     }
+    func clearOrderDetails() {
+        songs = [""]
+        suggestionsForWork = ""
+        selectedWorkTypeIndex = 0
+        selectionDate = Date()
+        startTime = nil
+        endTime = nil
+        clientName = ""
+        clientPhoneNumber = ""
+        comments = ""
+        chosenAuthorID = nil
+        demoURL = nil
+    }
 }

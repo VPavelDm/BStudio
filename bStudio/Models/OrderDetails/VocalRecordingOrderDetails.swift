@@ -16,10 +16,22 @@ class VocalRecordingOrderDetails: ObservableObject, VocalRecordingTypeDetails, D
     @Published var endTime: String?
     @Published var selectionIndex: Int = 0
     @Published var otherText: String = ""
+    
+    // MARK: - Intents
     func createParamsForRequest() -> [String: Any] {
         ["service": StudioMapper().map(from: .vocalRecording),
          "studio_id": 1,
          "start_time": DateMapper(time: startTime!, date: selectionDate).serverTime,
          "end_time": DateMapper(time: endTime!, date: selectionDate).serverTime]
+    }
+    func clearOrderDetails() {
+        clientName = ""
+        clientPhoneNumber = ""
+        comments = ""
+        selectionDate = Date()
+        startTime = nil
+        endTime = nil
+        selectionIndex = 0
+        otherText = ""
     }
 }
