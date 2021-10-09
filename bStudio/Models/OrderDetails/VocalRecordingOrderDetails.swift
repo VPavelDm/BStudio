@@ -28,7 +28,7 @@ class VocalRecordingOrderDetails: ObservableObject, VocalRecordingTypeDetails, D
             "studio_id": 1,
             "start_time": DateMapper(time: startTime!, date: selectionDate).serverTime,
             "end_time": DateMapper(time: endTime!, date: selectionDate).serverTime,
-            "type": vocalRecordingTypes[selectionIndex],
+            "vocal_recording_type": vocalRecordingTypes[selectionIndex],
             "other_text": otherText
         ]
     }
