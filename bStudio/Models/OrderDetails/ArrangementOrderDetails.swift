@@ -18,6 +18,7 @@ class ArrangementOrderDetails: ObservableObject, DateDetails, ArrangementDetails
     @Published var clientPhoneNumber: String = ""
     @Published var comments: String = ""
     @Published var chosenAuthorID: Int?
+    @Published var demoURL: URL?
     let workTypes = ["На студии", "Удаленный"]
     
     // MARK: - Intents
@@ -38,6 +39,7 @@ class ArrangementOrderDetails: ObservableObject, DateDetails, ArrangementDetails
          "suggestions_for_work": suggestionsForWork,
          "comments": comments,
          "author_id": chosenAuthorID!,
-         "songs": songs]
+         "songs": songs,
+         "demo_url": demoURL?.absoluteString ?? ""]
     }
 }

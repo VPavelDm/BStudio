@@ -12,6 +12,7 @@ protocol ArrangementDetails: ObservableObject {
     var suggestionsForWork: String { get set }
     var workTypes: [String] { get }
     var selectedWorkTypeIndex: Int { get set }
+    var demoURL: URL? { get set }
     
     func addNewSong()
 }
@@ -21,7 +22,6 @@ struct ArrangementDetailsView<ViewModel>: View where ViewModel: ArrangementDetai
     @State private var shouldNavigateToNextScreen = false
     @State private var shouldShowNotFilledAlert = false
     @State private var shouldShowDocumentsScreen = false
-    @State private var fileName = ""
     
     var body: some View {
         ScrollView {
@@ -34,7 +34,7 @@ struct ArrangementDetailsView<ViewModel>: View where ViewModel: ArrangementDetai
                   dismissButton: .cancel(Text("Понятно")))
         }
         .sheet(isPresented: $shouldShowDocumentsScreen) {
-            DocumentsPickerView(fileName: $fileName)
+            DocumentsPickerView(fileURL: $arrangementDetails.demoURL)
         }
     }
     private var content: some View {
@@ -122,13 +122,12 @@ struct ArrangementDetailsView<ViewModel>: View where ViewModel: ArrangementDetai
             .font(.system(size: 20, weight: .semibold))
             .foregroundColor(.white)
     }
-    @State private var demoURL = ""
     private var demoInput: some View {
         Button {
             shouldShowDocumentsScreen = true
         } label: {
             HStack {
-                Text(fileName)
+                Text(arrangementDetails.demoURL?.lastPathComponent ?? "")
                 Spacer()
                 Image(systemName: "paperclip")
             }

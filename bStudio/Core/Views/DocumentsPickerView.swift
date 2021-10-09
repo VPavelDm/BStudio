@@ -10,7 +10,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct DocumentsPickerView: UIViewControllerRepresentable {
-    @Binding var fileName: String
+    @Binding var fileURL: URL?
     
     // MARK: - UIViewControllerRepresentable
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
@@ -24,18 +24,18 @@ struct DocumentsPickerView: UIViewControllerRepresentable {
     
     // MARK: - Coordinator
     func makeCoordinator() -> Coordinator {
-        Coordinator(fileName: $fileName)
+        Coordinator(fileURL: $fileURL)
     }
     class Coordinator: NSObject, UIDocumentPickerDelegate, UINavigationBarDelegate {
-        @Binding var fileName: String
+        @Binding var fileURL: URL?
         
-        init(fileName: Binding<String>) {
-            self._fileName = fileName
+        init(fileURL: Binding<URL?>) {
+            self._fileURL = fileURL
         }
         
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
             guard let url = urls.first else { return }
-            fileName = url.lastPathComponent
+            fileURL = url
         }
     }
 }
