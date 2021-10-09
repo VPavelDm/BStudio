@@ -16,13 +16,21 @@ class VocalRecordingOrderDetails: ObservableObject, VocalRecordingTypeDetails, D
     @Published var endTime: String?
     @Published var selectionIndex: Int = 0
     @Published var otherText: String = ""
-    
+    var vocalRecordingTypes: [String] { VocalRecordingType.allCases.map { $0.title } }
+
     // MARK: - Intents
     func createParamsForRequest() -> [String: Any] {
-        ["service": StudioMapper().map(from: .vocalRecording),
-         "studio_id": 1,
-         "start_time": DateMapper(time: startTime!, date: selectionDate).serverTime,
-         "end_time": DateMapper(time: endTime!, date: selectionDate).serverTime]
+        [
+            "client_name": clientName,
+            "phone_number": clientPhoneNumber,
+            "comments": comments,
+            "service": StudioMapper().map(from: .vocalRecording),
+            "studio_id": 1,
+            "start_time": DateMapper(time: startTime!, date: selectionDate).serverTime,
+            "end_time": DateMapper(time: endTime!, date: selectionDate).serverTime,
+            "type": vocalRecordingTypes[selectionIndex],
+            "other_text": otherText
+        ]
     }
     func clearOrderDetails() {
         clientName = ""

@@ -10,7 +10,6 @@ import Foundation
 class Studio: ObservableObject {
     private let repository = StudioRepository()
     var services: [Service] { Service.allCases }
-    var vocalRecordingTypes: [VocalRecordingType] { VocalRecordingType.allCases }
     @Published var reservations: [Reservation] = []
     @Published var authors: [Author] = []
     private var _workTimes: [String] = []

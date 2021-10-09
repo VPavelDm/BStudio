@@ -9,6 +9,7 @@ import SwiftUI
 
 protocol VocalRecordingTypeDetails: ObservableObject {
     var selectionIndex: Int { get set }
+    var vocalRecordingTypes: [String] { get }
     var otherText: String { get set }
 }
 
@@ -47,7 +48,7 @@ struct VocalRecordingTypeView<ViewModel>: View where ViewModel: VocalRecordingTy
     }
     private var servicesView: some View {
         RadioButtonPicker(
-            values: studio.vocalRecordingTypes.map { $0.title },
+            values: vocalRecordingTypeDetails.vocalRecordingTypes,
             selectionIndex: $vocalRecordingTypeDetails.selectionIndex
         ) { text in
             Text(text)
