@@ -29,18 +29,20 @@ class ArrangementOrderDetails: ObservableObject, DateDetails, ArrangementDetails
         songs[index] = text
     }
     func createParamsForRequest() -> [String: Any] {
-        ["service": StudioMapper().map(from: .arrangement),
-         "studio_id": 1,
-         "client_name": clientName,
-         "phone_number": clientPhoneNumber,
-         "start_time": DateMapper(time: startTime!, date: selectionDate).serverTime,
-         "end_time": DateMapper(time: endTime!, date: selectionDate).serverTime,
-         "work_type": workTypes[selectedWorkTypeIndex],
-         "suggestions_for_work": suggestionsForWork,
-         "comments": comments,
-         "author_id": chosenAuthorID!,
-         "songs": songs,
-         "demo_url": demoURL?.absoluteString ?? ""]
+        [
+            "service": StudioMapper().map(from: .arrangement),
+            "studio_id": 1,
+            "client_name": clientName,
+            "phone_number": clientPhoneNumber,
+            "start_time": DateMapper(time: startTime!, date: selectionDate).serverTime,
+            "end_time": DateMapper(time: endTime!, date: selectionDate).serverTime,
+            "work_type": workTypes[selectedWorkTypeIndex],
+            "suggestions_for_work": suggestionsForWork,
+            "comments": comments,
+            "author_id": chosenAuthorID!,
+            "songs": songs,
+            "demo_url": demoURL?.absoluteString ?? ""
+        ]
     }
     func clearOrderDetails() {
         songs = [""]

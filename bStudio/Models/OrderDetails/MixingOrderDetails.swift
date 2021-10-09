@@ -29,10 +29,20 @@ class MixingOrderDetails: ObservableObject, DateDetails, MixingDetails, Authenti
         songs[index] = text
     }
     func createParamsForRequest() -> [String: Any] {
-        ["service": StudioMapper().map(from: service!),
-         "studio_id": 1,
-         "start_time": DateMapper(time: startTime!, date: selectionDate).serverTime,
-         "end_time": DateMapper(time: endTime!, date: selectionDate).serverTime]
+        [
+            "client_name": clientName,
+            "phone_number": clientPhoneNumber,
+            "comments": comments,
+            "author_id": chosenAuthorID!,
+            "service": StudioMapper().map(from: service!),
+            "work_type": workTypes[selectedWorkTypeIndex],
+            "suggestions_for_work": suggestionsForWork,
+            "songs": songs,
+            "studio_id": 1,
+            "start_time": DateMapper(time: startTime!, date: selectionDate).serverTime,
+            "end_time": DateMapper(time: endTime!, date: selectionDate).serverTime,
+            "demo_url": ""
+        ]
     }
     func clearOrderDetails() {
         songs = [""]
