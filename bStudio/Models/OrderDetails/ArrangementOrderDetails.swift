@@ -37,6 +37,7 @@ class ArrangementOrderDetails: ObservableObject, DateDetails, ArrangementDetails
          "work_type": workTypes[selectedWorkTypeIndex],
          "suggestions_for_work": suggestionsForWork,
          "comments": comments,
-         "author_id": chosenAuthorID!]
+         "author_id": chosenAuthorID!,
+         "songs": songs]
     }
 }
