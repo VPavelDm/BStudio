@@ -13,6 +13,7 @@ protocol MixingDetails: ObservableObject {
     var workTypes: [String] { get }
     var selectedWorkTypeIndex: Int { get set }
     var service: Service? { get set }
+    var demoURL: URL? { get set }
     
     func addNewSong()
 }
@@ -21,6 +22,7 @@ struct MixingDetailsView<ViewModel>: View where ViewModel: MixingDetails {
     @EnvironmentObject private var mixingDetails: ViewModel
     @State private var shouldNavigateToNextScreen = false
     @State private var shouldShowNotFilledAlert = false
+    @State private var shouldShowDocumentsScreen = false
     var service: Service
     
     var body: some View {
@@ -35,13 +37,16 @@ struct MixingDetailsView<ViewModel>: View where ViewModel: MixingDetails {
             .onAppear {
                 mixingDetails.service = service
             }
-
+            .sheet(isPresented: $shouldShowDocumentsScreen) {
+                DocumentsPickerView(fileURL: $mixingDetails.demoURL)
+            }
     }
     private var content: some View {
         VStack(alignment: .leading, spacing: 16) {
             title
             Group {
                 referenceContent
+                demoContent
                 commentsContent
                 workTypeContent
                 next
@@ -141,6 +146,34 @@ struct MixingDetailsView<ViewModel>: View where ViewModel: MixingDetails {
             Text(text)
                 .font(.system(size: 20, weight: .regular))
                 .foregroundColor(.textColor)
+        }
+    }
+    
+    // MARK: Demo content
+    private var demoContent: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            demoTitle
+            demoInput
+        }
+    }
+    private var demoTitle: some View {
+        Text("Добавьте демо")
+            .font(.system(size: 20, weight: .semibold))
+            .foregroundColor(.white)
+    }
+    private var demoInput: some View {
+        Button {
+            shouldShowDocumentsScreen = true
+        } label: {
+            HStack {
+                Text(mixingDetails.demoURL?.lastPathComponent ?? "")
+                Spacer()
+                Image(systemName: "paperclip")
+            }
+            .padding(.vertical, 8)
+            .padding(.horizontal, 12)
+            .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(lineWidth: 1))
+            .foregroundColor(.white)
         }
     }
     

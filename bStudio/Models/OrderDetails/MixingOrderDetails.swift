@@ -18,6 +18,7 @@ class MixingOrderDetails: ObservableObject, DateDetails, MixingDetails, Authenti
     @Published var clientPhoneNumber: String = ""
     @Published var comments: String = ""
     @Published var chosenAuthorID: Int?
+    @Published var demoURL: URL?
     var service: Service?
     let workTypes = ["На студии", "Удаленный"]
     
@@ -56,5 +57,6 @@ class MixingOrderDetails: ObservableObject, DateDetails, MixingDetails, Authenti
         comments = ""
         chosenAuthorID = nil
         service = nil
+        demoURL = nil
     }
 }
